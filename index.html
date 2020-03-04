@@ -1,108 +1,233 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <script src="static/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="static/js/AdMove.js" type="text/javascript" charset="utf-8"></script>
-    <title>中国科技云</title>
-    <script>
-        window.SITE_CONFIG = {};
-    </script>
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var ifMobile=ismobile()
-      var _this=this;
-      if(ifMobile == true) {
-        _this.presentFloat = true;
-        $('.float_word').hide()
-        $('body').css('width','1200px')
-        var phoneWidth = parseInt(window.screen.width);
-        console.log("phoneWidth",phoneWidth)
-        var phoneHeight = parseInt(window.screen.height);
-        var phoneScale = phoneWidth / 1200; //除以的值按手机的物理分辨率					console.log('phoneScale',phoneScale)
-        var ua = navigator.userAgent;
-        if(/Android (\d+\.\d+)/.test(ua)) {
-          var version = parseFloat(RegExp.$1);
-          // andriod 2.3
-          if (version > 2.3) {
-            document.write('<meta name="viewport" content="width=device-width,initial-scale='+phoneScale+',minimum-scale='+phoneScale+',maximum-scale='+phoneScale+',user-scalable=no">');
-            // andriod 2.3以上
-          } else {
-            document.write('<meta name="viewport" content="width=device-width,user-scalable=no">');
-          }
-        } else {
-          document.write('<meta name="viewport" content="width=device-width, initial-scale=' + phoneScale + ',minimum-scale=' + phoneScale + ',maximum-scale =' + phoneScale + ',user-scalable=no,">');
-        }
 
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<script src="static/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<title>科学软件开源社区</title>
+		<style type="text/css">
+			#masking{
+    	 display: none;
+    	position: fixed;
+    	left: 0;
+    	top: 0;
+    	width: 100%;
+    	height: 100%;
+    	background: #000;
+    	z-index: 10000;
+    	filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+		-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+		-khtml-opacity: 0.5; /*webkit内核浏览器*/
+		opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+    }
+    #ieBox{
+    	 display: none;
+    	position: fixed;
+    	left: 50%;
+    	top: 10%;
+    	margin-left: -300px;
+    	padding: 10px 25px;
+    	width: 550px;
+    	height: 600px;
+    	background: #f0f8ed;
+    	border: 1px solid #c5dbbc;
+    	z-index: 10001;
+    	
+    }
+    #ieBox h2{
+    	position: relative;
+    	width: 100%;
+    	height: 60px;
+    	line-height: 60px;
+    	text-indent: 10px;
+    	font-size: 26px;
+    	color: #d30001;
+    }
+     #ieBox h2 span{
+     	display: inline-block;
+     	position: absolute;
+     	left: -60px;
+     	top: -60px;
+     	width: 81px;
+     	height: 81px;
+     
+     }
+     .p_up{
+     	display: inline-block;
+     	width: 100%;
+     	text-align: right;
+     	font-size: 24px;
+     	line-height: 30px;
+     	color: #db030f;
+     	text-decoration: underline;
+     }
+      #ieBox p{
+      	margin: 0;
+      	padding: 10px 0;
+      	font-size: 14px;
+      	color: #666;
+      	line-height: 20px;
+      	
       }
-
-      function ismobile() {
-        var mobileArry = ["iPhone", "iPad", "Android", "Windows Phone", "BB10; Touch", "BB10; Touch", "PlayBook", "Nokia"];
-        var ua = navigator.userAgent;
-        var res = mobileArry.filter(function(arr) {
-          return ua.indexOf(arr) > 0;
-        });
-        return res.length > 0;
+      #ieBox h4{
+      	margin: 0;
+      	padding: 0;
+      	font-size: 20px;
+      	line-height: 26px;
+      	color: #333;
       }
-
-      /*let u = {
-        userId: 2,
-        userInfo: {
-        id: 2,
-        trueName: '测试账号',
-        mobile: 13333333333,
-        cstnetId: '1397372495@qq.com',
-        //supplierName="测试第三方"
-        }
+      #ieBox h4 span{
+      	color: #ba0909;
       }
-      sessionStorage.setItem("sessionData", JSON.stringify(u))*/
-      var userJsonStr = sessionStorage.getItem('sessionData');
-      var userEntity = JSON.parse(userJsonStr);
-      var _paq = _paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      if(userEntity){
-          let userInfo = userEntity.userInfo;
-          _paq.push(["setUserId",userInfo.cstnetId]);
-          _paq.push(["setCustomVariable", 1, "UserId", userInfo.cstnetId, "visit"]);
-          _paq.push(["setCustomVariable", 2, "UserName", userInfo.trueName, "visit"]);
-          _paq.push(["setCustomVariable", 3, "Company",userInfo.company, "visit"]);
-      }
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-          var u="//analysis.cstcloud.cn/";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
-          _paq.push(['setSiteId', '4']);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <noscript>
-      <!-- Matomo Image Tracker-->
-      <img src="http://analysis.cstcloud.cn/piwik.php?idsite=4&rec=1" style="border:0" alt="" />
-      <!-- End Matomo -->
-    </noscript>
-    <!-- 开发环境 -->
-    <% if (process.env.NODE_ENV === 'development') { %>
-<!--    <script>window.SITE_CONFIG['apiURL'] = 'http://localhost:8080';</script>-->
-<!--    <script>window.SITE_CONFIG['apiURL'] = 'http://portal.cstcloud.cn';</script>-->
-    <script>window.SITE_CONFIG['apiURL'] = 'http://www.cstcloud.cn';</script>
+       #ieBox h3{
+       	margin: ;
+       	padding: 10px;
+       	font-size: 22px;
+       	color: #333;
+       	
+       }
+       #ieBox .browserlist{
+       	margin: 10px 0;
+       	overflow: hidden;
+       	 	width: 550px;
+       }
+       #ieBox .browserlist dl{
+       	padding: 0;
+       	margin: 0 25px;
+       	float: left;
+       }
+       #ieBox .browserlist dl dd{
+       	margin: 0;
+       	width: 0;
+       }
+       #ieBox .browserlist dl dt{
+       	width: 126px;
+       	text-align: center;
+       }
+       #ieBox .browserlist dl dd a{
+       	display: inline-block;
+       	margin-top: 10px;
+       	width: 130px;
+       	height: 36px;
+       	line-height: 36px;
+       	font-size: 16px;
+       	color: #fff;
+       	text-align: center;
+       	border-radius: 10px;
+       	background: #fd8300;
+       	
+       }
+		</style>
+	</head>
 
-    <!--退出登录回调地址-->
-    <script>window.SITE_CONFIG['backURL'] = 'http://localhost:8080';</script>
-    <% } %>
-    <!-- 生产环境 -->
-    <% if (process.env.NODE_ENV === 'production') { %>
-    <script>window.SITE_CONFIG['apiURL'] = 'http://portal.cstcloud.cn';</script>
-    <!--退出登录回调地址-->
-    <script>window.SITE_CONFIG['backURL'] = 'http://portal.cstcloud.cn';</script>
-    <% } %>
+	<body>
+		<!--ie升级提示-->
+		<div id="masking">
+		</div>
+		<div id="ieBox">
+			<h2>是时候升级你的浏览器了<span></span></h2>
+			<p>
+				你正在使用旧版 Internet Explorer（IE11以下版本或使用该内核的浏览器）。这意味着在升级浏览器前， 你将无法正常访问此网站。
 
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+			</p>
+			<h4>
+			<span>请注意：</span>Windows XP 及旧版 Internet Explorer 的支持服务已终止
+		</h4>
+			<p>
+				自2016年1月12日起，微软不再为 IE 11 以下版本提供相应支持和更新。没有关键的浏览器安全更新，您的电脑可能易受有害病毒、间谍软件和其他恶意软件的攻击，它们可以窃取或损害您的业务数据和信息。请参阅 微软对旧版 Internet Explorer 的支持服务已终止的说明 。
+			</p>
+			<a href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads" class="p_up">
+				升级ie浏览器
+			</a>
+			<h3>
+			下载更先进的浏览器
+		</h3>
+			<p>推荐使用以下浏览器的最新版本。如果你的电脑已有以下浏览器的最新版本则直接使用该浏览器极速模式访问该网站即可。</p>
+			<div class="browserlist">
+				<dl>
+					<dt><img src=""/></dt>
+					<dd>
+						<a href="http://images.yqbp.cn/car/browsers/chromedev_x64-v69.0.3497.12.exe">谷歌浏览器</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt><img src=""/></dt>
+					<dd>
+						<a href="http://images.yqbp.cn/car/browsers/Firefox-latest.exe">火狐浏览器</a>
+					</dd>
+				</dl>
+				<dl>
+					<dt><img src=""/></dt>
+					<dd>
+						<a href="http://images.yqbp.cn/car/browsers/360se10.0.1383.0.exe">360浏览器</a>
+					</dd>
+				</dl>
+
+			</div>
+		</div>
+		<!--//ie升级提示-->
+		<div id="app">
+
+		</div>
+		<!-- built files will be auto injected -->
+	</body>
+
 </html>
+<script type="text/javascript">
+	var ifMobile=ismobile()
+	var _this=this;
+	if(ifMobile == true) {
+				_this.presentFloat = true;
+				$('.float_word').hide()
+				$('body').css('width','1200px')
+				var phoneWidth = parseInt(window.screen.width);
+				console.log("phoneWidth",phoneWidth)
+				var phoneHeight = parseInt(window.screen.height);
+				var phoneScale = phoneWidth / 1200; //除以的值按手机的物理分辨率					console.log('phoneScale',phoneScale)
+				var ua = navigator.userAgent;
+				if(/Android (\d+\.\d+)/.test(ua)) {
+				 var version = parseFloat(RegExp.$1);
+ // andriod 2.3
+ if (version > 2.3) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale='+phoneScale+',minimum-scale='+phoneScale+',maximum-scale='+phoneScale+',user-scalable=no">');
+ // andriod 2.3以上
+ } else {
+ document.write('<meta name="viewport" content="width=device-width,user-scalable=no">');
+ }
+				} else {
+					document.write('<meta name="viewport" content="width=device-width, initial-scale=' + phoneScale + ',minimum-scale=' + phoneScale + ',maximum-scale =' + phoneScale + ',user-scalable=no,">');
+				}
+
+			}
+	
+		 function ismobile() {
+				var mobileArry = ["iPhone", "iPad", "Android", "Windows Phone", "BB10; Touch", "BB10; Touch", "PlayBook", "Nokia"];
+				var ua = navigator.userAgent;
+				var res = mobileArry.filter(function(arr) {
+					return ua.indexOf(arr) > 0;
+				});
+				return res.length > 0;
+			}
+	
+	var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+	var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+	var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+
+	var browser = {
+		versions: function() {
+			var u = navigator.userAgent;
+			return {
+				trident: u.indexOf('Trident') > -1, //IE内核
+			};
+		}()
+	}
+	if(browser.versions.trident && !isIE11) {
+	
+		$('#masking').show()
+		$('#ieBox').show()
+
+	}
+</script>

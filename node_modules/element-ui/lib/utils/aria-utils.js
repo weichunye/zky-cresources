@@ -119,8 +119,7 @@ aria.Utils.keys = {
   left: 37,
   up: 38,
   right: 39,
-  down: 40,
-  esc: 27
+  down: 40
 };
 
 exports.default = aria.Utils;

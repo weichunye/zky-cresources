@@ -4,7 +4,7 @@
 
 @include b(popover) {
   position: absolute;
-  background: $--popover-background-color;
+  background: $--popover-fill;
   min-width: 150px;
   border-radius: 4px;
   border: 1px solid $--popover-border-color;
@@ -22,7 +22,7 @@
   }
 
   @include e(title) {
-    color: $--popover-title-font-color;
+    color: $--popover-title-color;
     font-size: $--popover-title-font-size;
     line-height: 1;
     margin-bottom: 12px;

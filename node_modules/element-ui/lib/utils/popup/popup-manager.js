@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var hasModal = false;
 var hasInitZIndex = false;
-var zIndex = void 0;
+var zIndex = 2000;
 
 var getModal = function getModal() {
   if (_vue2.default.prototype.$isServer) return;
@@ -168,7 +168,7 @@ Object.defineProperty(PopupManager, 'zIndex', {
   configurable: true,
   get: function get() {
     if (!hasInitZIndex) {
-      zIndex = zIndex || (_vue2.default.prototype.$ELEMENT || {}).zIndex || 2000;
+      zIndex = (_vue2.default.prototype.$ELEMENT || {}).zIndex || zIndex;
       hasInitZIndex = true;
     }
     return zIndex;
