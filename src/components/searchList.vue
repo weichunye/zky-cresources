@@ -4,10 +4,9 @@
 		<!--面包屑-->
 		<!--  		<div class="crumbs">
   		<span>首頁 ></span>
-  		 <span>软件列表 </span>   
+  		 <span>软件列表 </span>
   		</div>-->
 		<!--//面包屑-->
-
 		<!--content-->
 		<div class="content" style="margin-top: 20px;">
 			<!--	<h2>软件分类名称</h2>-->
@@ -37,63 +36,60 @@
 				</router-link>
 				<div v-if="softData.length==0" class="empty-tit"></div>
 			</div>
-
 			<el-pagination layout="total, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange" :total="totalPage" :current-page.sync="pageNum" :page-size="limit">
 			</el-pagination>
-
 		</div>
 		<!--//content-->
-
 		<foot></foot>
 	</div>
 </template>
-
 <script>
 	import searchTop from './searchTop.vue';
 	import foot from './footer.vue';
 	import baseUrl from '../../config/index.js'
-
 	export default {
 		name: 'searchList',
 		components: {
 			foot,
 			searchTop
-
 		},
 		data() {
 			return {
 				softData: [],
 				totalPage: 0,
-				limit: 4,
-				pageNum: 1
+				limit: 1,
+				pageNum: 1,
+        keyWord:this.$route.query.keyword?this.$route.query.keyword:''
 
 			}
 		},
 		mounted() {
-			var _this = this;
 			//获取信息
-			_this.getList()
-
+			this.getList()
 		},
+    watch: {
+      '$route'(to, from) {
+        this.keyWord=this.$route.query.keyword?this.$route.query.keyword:''
+        this.getList()
+        //监控路由，更新tab
+      }
+    },
 		methods: {
 			getList: function() {
-				var _this = this;
-				var keyword =_this.$route.query.keyword?_this.$route.query.keyword:''
 				var params = new URLSearchParams();
-				params.append("page", _this.pageNum);
-				params.append("limit", _this.limit);
-				params.append("keyword", keyword);
-				params.append("itemType", _this.$route.query.itemType);
-
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/querySoftListByKeyword', params)
-					.then(function(response) {
-						_this.softData = response.data.page.records;
-						_this.totalPage = response.data.page.total
-						_this.$nextTick(function() {
-							var curJ = $('.software-box')
-							$(curJ).eq(curJ.length - 1).css('border', '0px solid #fff')
-						})
-					})
+				params.append("page", this.pageNum);
+				params.append("limit", this.limit);
+				params.append("keyword", this.keyWord);
+				params.append("itemType", this.$route.query.itemType);
+				this.$http.post('/haoweb/web/soft/querySoftListByKeyword', params)
+					.then((response)=>{
+            this.softData = response.data.page.records;
+            this.totalPage = response.data.page.total
+            this.$nextTick(function() {
+              var curJ = $('.software-box')
+              $(curJ).eq(curJ.length - 1).css('border', '0px solid #fff')
+            })
+          })
 			},
 			popupMsg: function(val) {
 				this.getList()
@@ -115,11 +111,13 @@
 	.list {
 		background: #f8f8f8;
 	}
-	
+
 	.list .content {
+    margin: 0 auto;
+    width: 1200px;
 		background: #fff;
 	}
-	
+
 	.list .content h2 {
 		padding-top: 10px;
 		width: 100%;
@@ -129,25 +127,25 @@
 		text-indent: 10px;
 		font-weight: normal;
 	}
-	
+
 	.list .min-height {
 		padding: 5px 0 15px;
 		min-height: 500px;
 	}
-	
+
 	.list .content .left-box {
 		float: left;
 		padding: 7px 0;
 		width: 960px;
 		background: #fff;
 	}
-	
+
 	.list .content .left-box li {
 		padding: 5px 10px 10px;
 		width: 940px;
 		border-bottom: 1px solid #dedede;
 	}
-	
+
 	.list .content .left-box li h4 {
 		width: 100%;
 		font-size: 16px;
@@ -155,12 +153,12 @@
 		line-height: 46px;
 		font-weight: normal;
 	}
-	
+
 	.list .content .left-box li p {
 		overflow: hidden;
 		width: 100%;
 	}
-	
+
 	.list .content .left-box li p span {
 		display: inline-block;
 		float: left;
@@ -170,22 +168,22 @@
 		line-height: 26px;
 		cursor: pointer;
 	}
-	
+
 	.list .content .left-box li p span:hover {
 		color: #b81027;
 	}
-	
+
 	.list .content .right-box {
 		float: right;
 		width: 230px;
 	}
-	
+
 	.list .content .right-box .num-list {
 		padding: 10px 0;
 		width: 100%;
 		background: #fff;
 	}
-	
+
 	.list .content .right-box .num-list h3 {
 		width: 100%;
 		line-height: 36px;
@@ -195,16 +193,16 @@
 		text-indent: 10px;
 		border-bottom: 1px solid #dedede;
 	}
-	
+
 	.list .content .right-box .num-list ul {
 		margin: 5px;
 	}
-	
+
 	.list .content .right-box .num-list ul li {
 		overflow: hidden;
 		line-height: 30px;
 	}
-	
+
 	.list .content .right-box .num-list ul li span {
 		float: left;
 		margin: 7px 0 0 10px;
@@ -217,17 +215,17 @@
 		color: #fff;
 		background: #7c7c7c;
 	}
-	
+
 	.list .content .right-box .num-list ul li .span1 {
 		background: #e76112;
 	}
-	
+
 	.list .content .right-box .num-list ul li p {
 		float: left;
 		margin-left: 10px;
 		color: #666;
 	}
-	
+
 	.list .content .right-box .game-banner {
 		margin-top: 10px;
 		width: 230px;

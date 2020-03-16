@@ -140,7 +140,7 @@
 			<!--left-box-->
 			<!--right-box-->
 			<div class="right-box">
-				<h3>热门软件推荐 
+				<h3>热门软件推荐
 				<router-link :to="{path:'/typeList',query:{typeId:'isHot',categoryName:'热门软件',ParentName:'首页'}}"><span>更多</span></router-link>
 				</h3>
 
@@ -344,33 +344,33 @@
 		mounted() {
 			//悬浮导航
 
-			var _this = this;
-			_this.softId = this.$route.query.id;
-			_this.userIdData = this.userId;
+
+			this.softId = this.$route.query.id;
+			this.userIdData = this.userId;
 			/*console.log("baseUrl",baseUrl)*/
-			_this.softLogoUrl = baseUrl.baseUrlImg
-			_this.parentNamenew = _this.$route.query.ParentName == "首页" ? '' : _this.$route.query.ParentName;
-			_this.activityIng()
+			this.softLogoUrl = baseUrl.baseUrlImg
+			this.parentNamenew = this.$route.query.ParentName == "首页" ? '' : this.$route.query.ParentName;
+			this.activityIng()
 
 			//获取热门软件
 			var params1 = new URLSearchParams();
 			params1.append("page", 1);
 			params1.append("limit", 10);
-			_this.axios.post(baseUrl.baseUrl + '/web/soft/queryHotSoftListByCondition', params1)
+			this.axios.post(baseUrl.baseUrl + '/web/soft/queryHotSoftListByCondition', params1)
 				.then(function(response) {
-					_this.hotList = response.data.page.list;
+					this.hotList = response.data.page.list;
 				})
 			//获取标签列表
-			_this.getSoftLabel()
-			_this.getSoftInfo()
-			_this.getSoftLabelList()
-			_this.DownWorlds()
-			_this.$nextTick(function() {
-				_this.myChart = this.$echarts.init(document.getElementById('oscilloGram'))
+			this.getSoftLabel()
+			this.getSoftInfo()
+			this.getSoftLabelList()
+			this.DownWorlds()
+			this.$nextTick(function() {
+				this.myChart = this.$echarts.init(document.getElementById('oscilloGram'))
 
-				_this.myChart.setOption(_this.option);
+				this.myChart.setOption(this.option);
 			})
-			_this.$nextTick(function() {
+			this.$nextTick(function() {
 				$('body').unbind().bind('click', function(e) {
 					var e = e || e.Element;
 					var tar = e.target || e.srcElement;
@@ -389,156 +389,67 @@
 		methods: {
 			getSoftInfo: function() {
 				//获取信息
-				var _this = this;
 				var params = new URLSearchParams();
-				params.append("softId", _this.softId);
+				params.append("softId", this.softId);
 				params.append("labelNum", 5);
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/querySoftInfoById', params)
-					.then(function(response) {
-						_this.softData = response.data.softInfo;
-						_this.statInfo = response.data.statInfo;
-						_this.runUrl = response.data.softInfo.runUrl;
-						_this.softData.createTime = _this.softData.createTime.substring(0, 10)
-						_this.categoryInfo = response.data.categoryInfo;
-						_this.newSoftUrl = _this.softData.softUrl.split(",")[0]
-						var collectionNumNew = _this.statInfo.collectionNum > 100 ? 100 : _this.statInfo.collectionNum;
-						var enjoyNumNew = _this.statInfo.enjoyNum > 100 ? 100 : _this.statInfo.enjoyNum;
-						var downloadNumNew = _this.statInfo.downloadNum > 100 ? 100 : _this.statInfo.downloadNum;
-						var browseNumNew = _this.statInfo.browseNum > 100 ? 100 : _this.statInfo.browseNum;
-						var runNumNew = _this.statInfo.runNum > 100 ? 100 : _this.statInfo.runNum;
-						
-						_this.option.series[0].data[0].value = [collectionNumNew, enjoyNumNew, downloadNumNew, browseNumNew, runNumNew]
-						_this.myChart.setOption(_this.option);
+				this.$http.post( '/haoweb/web/soft/querySoftInfoById', params)
+					.then((response)=>{
+						this.softData = response.data.softInfo;
+						this.statInfo = response.data.statInfo;
+						this.runUrl = response.data.softInfo.runUrl;
+						this.softData.createTime = this.softData.createTime.substring(0, 10)
+						this.categoryInfo = response.data.categoryInfo;
+						this.newSoftUrl = this.softData.softUrl.split(",")[0]
+						var collectionNumNew = this.statInfo.collectionNum > 100 ? 100 : this.statInfo.collectionNum;
+						var enjoyNumNew = this.statInfo.enjoyNum > 100 ? 100 : this.statInfo.enjoyNum;
+						var downloadNumNew = this.statInfo.downloadNum > 100 ? 100 : this.statInfo.downloadNum;
+						var browseNumNew = this.statInfo.browseNum > 100 ? 100 : this.statInfo.browseNum;
+						var runNumNew = this.statInfo.runNum > 100 ? 100 : this.statInfo.runNum;
 
-						if(_this.softData.opensourceType == 1) {
-							_this.softData.opensourceType = 'Apache许可'
+						this.option.series[0].data[0].value = [collectionNumNew, enjoyNumNew, downloadNumNew, browseNumNew, runNumNew]
+						this.myChart.setOption(this.option);
+
+						if(this.softData.opensourceType == 1) {
+							this.softData.opensourceType = 'Apache许可'
 						}
-						if(_this.softData.opensourceType == 2) {
-							_this.softData.opensourceType = 'MIT许可'
+						if(this.softData.opensourceType == 2) {
+							this.softData.opensourceType = 'MIT许可'
 						}
-						if(_this.softData.opensourceType == 3) {
-							_this.softData.opensourceType = 'ISC许可'
+						if(this.softData.opensourceType == 3) {
+							this.softData.opensourceType = 'ISC许可'
 						}
-						if(_this.softData.opensourceType == 4) {
-							_this.softData.opensourceType = 'BSD许可'
+						if(this.softData.opensourceType == 4) {
+							this.softData.opensourceType = 'BSD许可'
 						}
-						if(_this.softData.opensourceType == 5) {
-							_this.softData.opensourceType = 'GPL许可'
+						if(this.softData.opensourceType == 5) {
+							this.softData.opensourceType = 'GPL许可'
 						}
-						if(_this.softData.opensourceType == 6) {
-							_this.softData.opensourceType = 'Mozilla许可'
+						if(this.softData.opensourceType == 6) {
+							this.softData.opensourceType = 'Mozilla许可'
 						}
-						if(_this.softData.opensourceType == 7) {
-							_this.softData.opensourceType = 'LGPL许可'
+						if(this.softData.opensourceType == 7) {
+							this.softData.opensourceType = 'LGPL许可'
 						}
-						if(_this.softData.opensourceType == 8) {
-							_this.softData.opensourceType = '其他类型'
+						if(this.softData.opensourceType == 8) {
+							this.softData.opensourceType = '其他类型'
 						}
 					})
 			},
-			/*runThisSoft: function() {
-				var _this = this;
-				var params = new URLSearchParams();
-				params.append("softId", this.$route.query.id);
-				params.append("userId", this.userId);
-				_this.axios.defaults.headers.common['token'] = this.token;
-				_this.axios.post(baseUrl.baseUrl + '/web/softrun/selectRunFirst', params)
-					.then(function(response) {
-						console.log("011222", response.data)
-						if(response.data.code == 0) {
-							_this.$confirm(response.data.msg, '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
-								type: 'success'
-							}).then(() => {
 
-								_this.axios.post(baseUrl.baseUrl + '/web/softrun/clickSoftInfoRunTime', params)
-									.then(function(response) {
-										console.log("6666666666888888", response.data)
-										if(response.data.code == 0) {
-											window.open(response.data.url)
-										} else {
-											_this.$alert(response.data.msg, '提示信息', {
-												confirmButtonText: '确定',
-											});
-										}
-									})
-								return false;
-
-							}).catch(() => {
-
-							});
-						} else if(response.data.code == 1) {
-							_this.axios.post(baseUrl.baseUrl + '/web/softrun/clickSoftInfoRunTime', params)
-								.then(function(response) {
-									console.log("6666666666888888", response.data)
-									if(response.data.code == 0) {
-										_this.$confirm(response.data.msg, '提示', {
-											confirmButtonText: '确定',
-											cancelButtonText: '取消',
-											type: 'warning'
-										}).then(() => {
-											window.open(response.data.url)
-											return false;
-
-										}).catch(() => {
-
-										});
-									} else if(response.data.code == -1) {
-										
-										_this.$alert(
-									"试用时间已结束，请通过“nienm@sccas.cn”该邮箱联系管理员", '提示信息', {
-										confirmButtonText: '确定',
-									});
-									} else {
-										_this.$alert(response.data.msg, '提示信息', {
-											confirmButtonText: '确定',
-										});
-									}
-								})
-							return false;
-
-						} else if(response.data.code == 401) {
-							_this.$confirm(response.data.msg, '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
-								type: 'warning'
-							}).then(() => {
-								sessionStorage.clear()
-								var newUrl = baseUrl.baseUrl + '/web/auth/login';
-								window.open(newUrl)
-								return false;
-							}).catch(() => {
-
-							});
-						} else {
-							_this.$alert(response.data.msg, '提示信息', {
-								confirmButtonText: '确定',
-							});
-						}
-					})
-					.catch(function(error) {
-						console.log(error);
-					})
-			},*/
 			runThisSoft: function() {
-
-				var _this = this;
 				var params = new URLSearchParams();
 				params.append("softId", this.$route.query.id);
 				params.append("userId", this.userId);
-				_this.axios.post(baseUrl.baseUrl + '/web/softrun/clickSoftInfoRunTime', params)
+				this.axios.post(baseUrl.baseUrl + '/web/softrun/clickSoftInfoRunTime', params)
 					.then(function(response) {
 						window.open(response.data.url)
 					})
 
 			},
-
 			//收藏下载操作
 			saveFollow: function(type) {
-				var _this = this;
-				if(!_this.userId) {
-					_this.$confirm('请登录', '提示', {
+				if(!this.userId) {
+					this.$confirm('请登录', '提示', {
 						confirmButtonText: '确定',
 						cancelButtonText: '取消',
 						type: 'warning'
@@ -552,21 +463,21 @@
 					return false
 				}
 
-				_this.axios.defaults.headers.common['token'] = this.token;
+				this.axios.defaults.headers.common['token'] = this.token;
 				var softFollowHistory = {
 					createTime: "",
 					id: 0,
 					operationType: type,
-					softId: _this.softId,
+					softId: this.softId,
 					userId: this.userId,
 
 				}
 
-				_this.axios.post(baseUrl.baseUrl + '/web/user/saveFollow', softFollowHistory)
+				this.axios.post(baseUrl.baseUrl + '/web/user/saveFollow', softFollowHistory)
 					.then(function(response) {
 						//验证token是否过期
 						if(response.data.code == 401) {
-							_this.$confirm(response.data.msg, '提示', {
+							this.$confirm(response.data.msg, '提示', {
 								confirmButtonText: '确定',
 								cancelButtonText: '取消',
 								type: 'warning'
@@ -582,39 +493,39 @@
 						} else if(response.data.code == 0) {
 							if(type == 1) {
 
-								_this.statInfo.collectionNum = _this.statInfo.collectionNum + 1;
-								_this.$alert(
+								this.statInfo.collectionNum = this.statInfo.collectionNum + 1;
+								this.$alert(
 									response.data.msg, '提示信息', {
 										confirmButtonText: '确定',
 									});
 
 							}
-							if(type == 2 && !_this.sharShow) {
-								_this.sharShow = true;
+							if(type == 2 && !this.sharShow) {
+								this.sharShow = true;
 								$('.sharbox-over a').each(function(index, item) {
 									$(item).unbind().bind('click', function() {
-										_this.statInfo.enjoyNum = _this.statInfo.enjoyNum + 1;
-										_this.sharShow = false;
+										this.statInfo.enjoyNum = this.statInfo.enjoyNum + 1;
+										this.sharShow = false;
 									})
 								})
 
 							}
 							if(type == 3) {
-								_this.statInfo.downloadNum = _this.statInfo.downloadNum + 1;
+								this.statInfo.downloadNum = this.statInfo.downloadNum + 1;
 
 								var tempwindow = window.open('_blank'); // 先打开页面
-								tempwindow.location = _this.newSoftUrl; // 后更改页面地址
-								/*var openSoftUrl=_this.newSoftUrl.substr(0,6)
+								tempwindow.location = this.newSoftUrl; // 后更改页面地址
+								/*var openSoftUrl=this.newSoftUrl.substr(0,6)
 								if(openSoftUrl!='https:'&&openSoftUrl!='http:/'){
-									_this.newSoftUrl='http://'+_this.newSoftUrl
+									this.newSoftUrl='http://'+this.newSoftUrl
 								}
-								window.open(_this.newSoftUrl,'_blank')*/
+								window.open(this.newSoftUrl,'_blank')*/
 
 								/*'http://'*/
 							}
 
 						} else {
-							_this.$alert(
+							this.$alert(
 								response.data.msg, '提示信息', {
 									confirmButtonText: '确定',
 								});
@@ -630,29 +541,29 @@
 
 			//添加自定義標簽
 			addLabelOpen: function() {
-				var _this = this;
+
 				/*	Cookies.get('userId')*/
 				if(1) {
 					this.dialogTit = true;
 					this.getSoftLabel()
 
 				} else {
-					_this.dialogPrompt = true;
-					_this.dialogPromptTitle = '请先登录'
+					this.dialogPrompt = true;
+					this.dialogPromptTitle = '请先登录'
 				}
 
 			},
 			upData: function(newId) {
-				var _this = this;
-				_this.softId = newId;
-				_this.$router.push({
+
+				this.softId = newId;
+				this.$router.push({
 					path: '/hotDetails',
 					query: {
-						id: _this.softId,
+						id: this.softId,
 						ParentName: '首页'
 					}
 				});
-				/*	_this.getSoftInfo()*/
+				/*	this.getSoftInfo()*/
 
 			},
 			dialogPromptTrue: function() {
@@ -661,11 +572,11 @@
 			},
 			//获取当前正在进行中活动
 			activityIng: function() {
-				var _this = this;
-				_this.axios.get(baseUrl.baseUrl + 'web/activity/config/2')
+
+				this.axios.get(baseUrl.baseUrl + 'web/activity/config/2')
 					.then(function(response) {
 						if(response.data.config) {
-							_this.activityIngId = response.data.config.paramValue;
+							this.activityIngId = response.data.config.paramValue;
 						}
 
 
@@ -675,42 +586,42 @@
 					})
 			},
 			getSoftLabelList: function() {
-				var _this = this;
+
 				var params2 = new URLSearchParams();
-				params2.append("softId", _this.softId);
+				params2.append("softId", this.softId);
 				params2.append("page", 1);
 				params2.append("limit", 5);
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
+				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
 					.then(function(response) {
 
-						_this.labelInfo = response.data.page.list;
+						this.labelInfo = response.data.page.list;
 
 					})
 
 			},
 			softClose: function() {
-				var _this = this;
-				_this.softLabelArr = []
-				_this.checkedCities1 = []
-				_this.dialogTit = false;
+
+				this.softLabelArr = []
+				this.checkedCities1 = []
+				this.dialogTit = false;
 			},
 			getSoftLabel: function() {
 				//获取新增标签多选框框显示
-				var _this = this;
+
 				var params2 = new URLSearchParams();
-				params2.append("softId", _this.softId);
+				params2.append("softId", this.softId);
 				params2.append("limit", 10);
 				params2.append("page", 1);
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
+				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
 					.then(function(response) {
-						_this.labelInfoAdd = response.data.page.list;
+						this.labelInfoAdd = response.data.page.list;
 
 					})
 			},
 			ifLogin: function() {
-				var _this = this;
+
 				if(!this.userId) {
-					_this.$confirm('请登录', '提示', {
+					this.$confirm('请登录', '提示', {
 						confirmButtonText: '确定',
 						cancelButtonText: '取消',
 						type: 'warning'
@@ -728,48 +639,48 @@
 
 			//新增标签输入框
 			addSoftLabelArr: function() {
-				var _this = this;
-				_this.softLabelArr.push(this.softLabel)
-				_this.$nextTick(function() {
-					var emL = _this.softLabelArr.length;
+
+				this.softLabelArr.push(this.softLabel)
+				this.$nextTick(function() {
+					var emL = this.softLabelArr.length;
 					$('.labelem').eq(emL - 1).attr('data-mark', emL)
 				})
 				this.softLabel = ''
 
 			},
 			delLabel: function() {
-				var _this = this;
+
 				var eve = event.currentTarget;
 				var dataMark = $(eve).data('mark');
-				_this.softLabelArr.splice(dataMark - 1, 1);
+				this.softLabelArr.splice(dataMark - 1, 1);
 			},
 			addLabel: function() {
-				var _this = this;
+
 				var newSoftStr = ''
-				for(var i = 0; i < _this.softLabelArr.length; i++) {
-					var sCur = _this.softLabelArr[i];
+				for(var i = 0; i < this.softLabelArr.length; i++) {
+					var sCur = this.softLabelArr[i];
 					newSoftStr = newSoftStr + sCur + ','
 				}
-				for(var i = 0; i < _this.checkedCities1.length; i++) {
-					var cur = _this.checkedCities1[i]
+				for(var i = 0; i < this.checkedCities1.length; i++) {
+					var cur = this.checkedCities1[i]
 					this.softLabelArr = newSoftStr + cur + ','
 				}
 
 				var params = new URLSearchParams();
 				params.append("userId", this.userId);
-				params.append("softId", _this.softId);
-				params.append("softLabel", _this.softLabelArr);
+				params.append("softId", this.softId);
+				params.append("softLabel", this.softLabelArr);
 
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/addSoftLabel', params)
+				this.axios.post(baseUrl.baseUrl + '/web/soft/addSoftLabel', params)
 					.then(function(response) {
 						if(response.data.code == 0) {
-							_this.$alert(response.data.msg, '提示信息', {
+							this.$alert(response.data.msg, '提示信息', {
 								confirmButtonText: '确定',
 							});
-							_this.dialogTit = false;
-							_this.softLabelArr = []
-							_this.checkedCities1 = []
-							_this.getSoftLabelList()
+							this.dialogTit = false;
+							this.softLabelArr = []
+							this.checkedCities1 = []
+							this.getSoftLabelList()
 
 						}
 
@@ -787,14 +698,14 @@
 			},
 			//下载比赛文档
 			DownWorlds: function() {
-				var _this = this;
+
 				var params = new URLSearchParams();
 				params.append("softId", this.$route.query.id);
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftDocPackage', params)
+				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftDocPackage', params)
 					.then(function(response) {
 						if(response.data.code == 0) {
-							_this.DownWordUrl = baseUrl.baseUrlImg + response.data.packageUrl;
-							_this.ifDownWordUrl = response.data.packageUrl
+							this.DownWordUrl = baseUrl.baseUrlImg + response.data.packageUrl;
+							this.ifDownWordUrl = response.data.packageUrl
 
 						}
 
@@ -809,7 +720,7 @@
 	.details {
 		background: #f8f8f8;
 	}
-	
+
 	.details .top-box {
 		overflow: hidden;
 		margin: 10px auto;
@@ -820,12 +731,12 @@
 	.details .el-dialog {
 		width: 600px;
 	}
-	
+
 	.details .el-dialog .labelList {
 		overflow: hidden;
 		padding: 10px 30px;
 	}
-	
+
 	.details .el-dialog .labelList span {
 		margin-right: 10px;
 		padding: 2px 8px;
@@ -835,11 +746,11 @@
 		background: #52a2c1;
 		border-radius: 5px;
 	}
-	
+
 	.details .el-dialog .softLabellist {
 		margin: 10px 0;
 	}
-	
+
 	.details .el-dialog .softLabellist span {
 		position: relative;
 		display: inline-block;
@@ -850,7 +761,7 @@
 		background: #f0efef;
 		border-radius: 10px;
 	}
-	
+
 	.details .el-dialog .softLabellist span em {
 		position: absolute;
 		right: -4px;
@@ -861,7 +772,7 @@
 		background: url(../assets/btn/close_1.jpg) no-repeat;
 		cursor: pointer;
 	}*/
-	
+
 	.details .top-box .left-box {
 		position: relative;
 		padding: 10px;
@@ -870,13 +781,13 @@
 		height: 260px;
 		background: #fff;
 	}
-	
+
 	.details .bshare-custom {
 		position: absolute;
 		left: 350px;
 		bottom: 20px;
 	}
-	
+
 	.details .top-box .left-box h2 {
 		width: 100%;
 		font-size: 24px;
@@ -884,7 +795,7 @@
 		line-height: 50px;
 		color: #666;
 	}
-	
+
 	.details .top-box .left-box h2 span {
 		margin-left: 10px;
 		padding: 0 4px;
@@ -895,7 +806,7 @@
 		line-height: 18px;
 		border-radius: 3px;
 	}
-	
+
 	.details .top-box .left-box .label {
 		display: inline-block;
 		margin: 5px 10px 10px 0;
@@ -905,7 +816,7 @@
 		color: #fff;
 		background: #529fd8;
 	}
-	
+
 	.details .top-box .left-box .addlabel {
 		display: inline-block;
 		margin: 5px 10px 10px;
@@ -918,26 +829,26 @@
 		border-radius: 5px;
 		cursor: pointer;
 	}
-	
+
 	.details .top-box .left-box .p {
 		width: 100%;
 		font-size: 14px;
 		color: #666;
 		line-height: 26px;
 	}
-	
+
 	.details .top-box .left-box .p em {
 		font-style: normal;
 		margin-left: 5px;
 		color: #555;
 	}
-	
+
 	.details .top-box .left-box .p a {
 		color: #c86f60;
 		line-height: 14px;
 		text-decoration: underline;
 	}
-	
+
 	.details .top-box .left-box .p span {
 		float: right;
 		margin-right: 10px;
@@ -947,7 +858,7 @@
 		color: #666;
 		line-height: 24px;
 	}
-	
+
 	.details .top-box .left-box .list-tools {
 		position: absolute;
 		left: 10px;
@@ -955,19 +866,19 @@
 		margin-top: 5px;
 		overflow: hidden
 	}
-	
+
 	.sharbox {
 		position: absolute;
 		left: 90px;
 		bottom: 50px;
 		background: #fff;
 	}
-	
+
 	.sharbox .sharbox-over {
 		position: relative;
 		width: 100%;
 	}
-	
+
 	.sharbox .sharbox-over .closebtn {
 		position: absolute;
 		top: -5px;
@@ -977,12 +888,12 @@
 		background: url(../assets/btn/close_1.jpg) no-repeat;
 		cursor: pointer;
 	}
-	
+
 	.details .top-box .left-box .list-tools li {
 		float: left;
 		margin-right: 20px;
 	}
-	
+
 	.details .top-box .left-box .list-tools li a {
 		display: inline-block;
 		padding-left: 6px;
@@ -992,26 +903,26 @@
 		background: #f0efef;
 		border-radius: 2px;
 	}
-	
+
 	.details .top-box .left-box .list-tools li .added {
 		color: #fff;
 		background: #f4b68d;
 	}
-	
+
 	.details .top-box .left-box .list-tools li .added span {
 		color: #fff;
 		border-left: 1px solid #fff;
 		background: #f4b68d;
 	}
-	
+
 	.details .top-box .left-box .list-tools li a:hover {
 		color: #d33c45;
 	}
-	
+
 	.details .top-box .left-box .list-tools li .hover:hover {
 		color: #666;
 	}
-	
+
 	.details .top-box .left-box .list-tools li a span {
 		display: inline-block;
 		margin-left: 6px;
@@ -1021,7 +932,7 @@
 		border-left: 1px solid #dedede;
 		background: #f0efef;
 	}
-	
+
 	.details .top-box .left-box .btn-zhishu {
 		position: absolute;
 		right: 20px;
@@ -1034,22 +945,22 @@
 		background: #fe7300;
 		cursor: pointer;
 	}
-	
+
 	.details .top-box .left-box .btn-zhishu:hover {
 		background: #32aa66;
 	}
-	
+
 	.details .top-box .left-box .list-hub {
 		position: absolute;
 		right: 20px;
 		bottom: 20px;
 		overflow: hidden;
 	}
-	
+
 	.indexbox {
 		opacity: 0;
 	}
-	
+
 	.details .top-box .left-box .list-hub li {
 		float: left;
 		overflow: hidden;
@@ -1060,19 +971,19 @@
 		border: 1px solid #dedede;
 		border-radius: 2px;
 	}
-	
+
 	.details .top-box .left-box .list-hub li img {
 		float: left;
 		margin: 5px 5px;
 	}
-	
+
 	.details .top-box .left-box .list-hub li p {
 		float: left;
 		font-size: 14px;
 		color: #666;
 		line-height: 26px;
 	}
-	
+
 	.details .top-box .left-box .list-hub li i {
 		float: left;
 		display: inline-block;
@@ -1081,35 +992,35 @@
 		height: 26px;
 		background: #dedede;
 	}
-	
+
 	.details .top-box .right-box {
 		float: right;
 		width: 250px;
 		height: 280px;
 	}
-	
+
 	.right-box a {
 		display: block;
 		height: 46px;
 	}
-	
+
 	.details .center-box {
 		overflow: hidden;
+    margin: 0 auto;
 		width: 1200px;
-		min-height: 5px;
 		background: #fff;
 	}
-	
+
 	.details .center-box .left-box {
 		float: left;
 		width: 940px;
 	}
-	
+
 	.details .center-box .left-box .min-height {
 		padding: 20px;
 		min-height: 400px;
 	}
-	
+
 	.details .center-box .left-box .min-height p {
 		padding: 10px 5px 0;
 		font-size: 14px;
@@ -1117,22 +1028,22 @@
 		color: #333;
 		text-indent: 20px;
 	}
-	
+
 	.details .center-box .left-box .min-height p span {
 		font-size: 14px;
 	}
-	
+
 	.details .center-box .left-box .min-height img {
 		margin: 5px auto;
 		max-width: 900px;
 		height: auto;
 	}
-	
+
 	.details .center-box .right-box {
 		float: right;
 		width: 230px;
 	}
-	
+
 	.details .center-box .right-box h3 {
 		margin-top: 20px;
 		display: block;
@@ -1143,7 +1054,7 @@
 		line-height: 30px;
 		font-weight: normal;
 	}
-	
+
 	.details .softlogo {
 		position: absolute;
 		right: 20px;
@@ -1151,35 +1062,35 @@
 		width: 100px;
 		height: auto;
 	}
-	
+
 	.details .center-box .right-box h3 span {
 		margin-right: 10px;
 		float: right;
 		font-size: 14px;
 		color: #d2525b;
 	}
-	
+
 	.details .center-box .right-box h3 a {
 		float: right;
 		display: inline-block;
 	}
-	
+
 	.details .center-box .right-box dl {
 		margin-top: 5px;
 		color: #333;
 		cursor: pointer;
 	}
-	
+
 	.details .center-box .right-box dl:hover span,
 	.details .center-box .right-box dl:hover dd {
 		color: #e33214;
 	}
-	
+
 	.details .center-box .right-box dl dt {
 		font-size: 14px;
 		line-height: 26px;
 	}
-	
+
 	.details .center-box .right-box dl dt span {
 		display: block;
 		width: 220px;
@@ -1188,17 +1099,17 @@
 		white-space: nowrap;
 		/*不换行 */
 	}
-	
+
 	.details .center-box .right-box dl dd {
 		font-size: 12px;
 		color: #999;
 	}
-	
+
 	.details .center-box .right-box dl dd span {
 		margin: 0 10px 0 5px;
 		color: #999;
 	}
-	
+
 	.details .indexbox {
 		position: absolute;
 		right: 100px;
@@ -1209,14 +1120,14 @@
 		z-index: 100;
 		background: #fff;
 	}
-	
+
 	.details .bottom-btn-box {
 		margin: 30px 0 50px 100px;
 		overflow: hidden;
 		text-align: center;
 		width: 800px;
 	}
-	
+
 	.details .bottom-btn-box li {
 		overflow: hidden;
 		display: inline-block;
@@ -1231,17 +1142,17 @@
 		border-radius: 5px;
 		cursor: pointer;
 	}
-	
+
 	.details .bottom-btn-box li:hover {
 		background: #e26556;
 	}
-	
+
 	.details .bottom-btn-box li img {
 		float: left;
 		margin: 6px 15px;
 		width: 36px;
 	}
-	
+
 	.details .bottom-btn-box li p {
 		float: left;
 		line-height: 48px;

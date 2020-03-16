@@ -16,22 +16,24 @@ import 'babel-polyfill'
 import promise from 'es6-promise'
 import Share from 'vue-social-share'
 import 'vue-social-share/dist/client.css';
+import http from '@/util/request'
+import {parseTime} from '@/utils'
 promise.polyfill()
 import 'url-search-params-polyfill';
+import Router from 'vue-router'
 
-/*import Share from 'social-share'*/
-/*import common from '../static/js/common.js'*/
 
-/*import heyui from 'heyui'
-require("heyui/themes/index.less")
-*/
-Vue.prototype.$echarts = echarts 
+Vue.filter('parseTime', function (value, cFormat) {
+  return parseTime(value, cFormat)
+})
 
+Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.prototype.axios = axios;
 Vue.use(Cookies);
 Vue.use(Share)
+Vue.prototype.$http = http
 /*Vue.prototype.common = common*/
 Vue.prototype.messageOpen = function(msg, type) {
 	this.$message({
@@ -44,6 +46,7 @@ var userJsonStr = sessionStorage.getItem('sessionData');
 var userEntity = JSON.parse(userJsonStr);
 
 if(userEntity){
+  window.SITE_CONFIG['token'] = userEntity.token;
 Vue.prototype.token = userEntity.token;
 Vue.prototype.userInfo = userEntity.userInfo;
 Vue.prototype.userId = userEntity.userId;
@@ -62,19 +65,19 @@ console.log("userEntity", userEntity); // => tom
 		Vue.prototype.token=newData.token;
 		Vue.prototype.userInfo=newData.userInfo;
 		Vue.prototype.userId=newData.userId;
-		
-		
+
+
 
 	}
 )*/
 
-/* Vue.prototype.token = "1b5d13b4ac79fada76b39de9c0a85006";
-Vue.prototype.userId = 1;
+ Vue.prototype.token = "76e3debc2778cf569937e7cf31ba55e8";
+Vue.prototype.userId = 10;
 Vue.prototype.userName = "temporary";
 Vue.prototype.userInfo = {
 			trueName:'索隆',
-			cstnetId:'3852555555@qq.com'
-} */
+			cstnetId:'371246735@qq.com'
+}
 
 /*Vue.prototype.token = "";
 Vue.prototype.userId = '';*/

@@ -30,7 +30,7 @@ export default new Router({
       name: 'Enter',
       meta:{title:'首页'},
       component: Enter
-    }, 
+    },
     {
       path: '/header',
       name: '头',
@@ -43,7 +43,7 @@ export default new Router({
       meta:{title:'搜索'},
       component: searchTop
     },
-     
+
     {
       path: '/footer',
       name: 'footBottm',
@@ -55,43 +55,43 @@ export default new Router({
     name:'创意比赛',
     meta:{title:'创意比赛'},
     component:activityGame
-    }, 
+    },
      {
     path:'/agSignUp',
     name:'创意比赛报名',
     meta:{title:'创意比赛报名'},
     component:agSignUp
-    }, 
+    },
     {
     path:'/signUp',
     name:'比赛报名',
     meta:{title:'比赛报名'},
     component:signUp
-    }, 
+    },
     {
     path:'/activityList',
     name:'活动列表',
     meta:{title:'活动列表'},
     component:activityList
-    }, 
+    },
       {
     path:'/hotDetails',
     name:'热门详情',
     meta:{title:'热门详情'},
     component:hotDetails
-    }, 
+    },
      {
     path:'/details',
     name:'软件详情页',
      meta:{title:'软件详情页'},
     component:detailsPage
-    }, 
+    },
     {
     path:'/allClassify',
     name:'全部分类',
      meta:{title:'全部分类'},
     component:allClassify
-    }, 
+    },
     {
     path:'/list',
     name:'分类列表',
