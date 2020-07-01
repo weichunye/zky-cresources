@@ -106,12 +106,12 @@
       <el-form :model="form" ref="form" :rules="rules" :inline="true" class="demo-form-inline" @submit.native.prevent>
         <div class="box-big1">
           <el-form-item prop="name" :label=" $t('lang.nameofsoftware')" :label-width="formLabelWidth">
-            <el-input v-model="form.name" :placeholder="'请输入'+$t('lang.nameofsoftware')" auto-complete="off"></el-input>
+            <el-input v-model="form.name" :placeholder="$t('lang.pleaseenter')+$t('lang.nameofsoftware')" auto-complete="off"></el-input>
           </el-form-item>
         </div>
         <div class="box-small">
           <el-form-item prop="softVersion" :label=" $t('lang.Softwareversion')" :label-width="formLabelWidth">
-            <el-input v-model="form.softVersion" :placeholder="'请输入'+$t('lang.Softwareversion')" auto-complete="off"></el-input>
+            <el-input v-model="form.softVersion" :placeholder="$t('lang.pleaseenter')+$t('lang.Softwareversion')" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item prop="opensourceType" :label=" $t('lang.softwaretype')" :label-width="formLabelWidth">
             <!-- <el-select v-model="form.opensourceType" value-key="id" filterable multiple placeholder="请选择开源类型">
@@ -125,7 +125,7 @@
               clearable></el-cascader>
           </el-form-item>
 
-          <el-form-item prop="softCategory" label="收费方式" :label-width="formLabelWidth">
+          <el-form-item prop="softCategory" :label=" $t('lang.Chargemethod')" :label-width="formLabelWidth">
             <!--    <el-select v-model="form.softCategory" value-key="id" filterable multiple placeholder="请选择软件类别">
                   <el-option v-for="item in softCategoryOption " :key="item.id" :label="item.ctyName" :value="item">
                   </el-option>
@@ -137,7 +137,7 @@
               clearable></el-cascader>
 
           </el-form-item>
-          <el-form-item prop="Language" label="编程语言" :label-width="formLabelWidth">
+          <el-form-item prop="Language" :label=" $t('lang.Programminglanguage')" :label-width="formLabelWidth">
             <!--<el-select v-model="form.Language" value-key="id" filterable multiple placeholder="请选择编程语言">
               <el-option v-for="item in LanguageOption " :key="item.id" :label="item.ctyName" :value="item">
               </el-option>
@@ -150,7 +150,7 @@
           </el-form-item>
         </div>
         <div class="box-small">
-          <el-form-item prop="userInterface" label="学科领域" :label-width="formLabelWidth">
+          <el-form-item prop="userInterface" :label=" $t('lang.academicarea')" :label-width="formLabelWidth">
             <!--<el-select v-model="form.userInterface" value-key="id" filterable multiple placeholder="请选择用户接口">
               <el-option v-for="item in userInterfaceOption " :key="item.id" :label="item.ctyName" :value="item">
               </el-option>
@@ -161,7 +161,7 @@
               :props="{ multiple: true, checkStrictly: true }"
               clearable></el-cascader>
           </el-form-item>
-          <el-form-item prop="applicationField" label="开发领域" :label-width="formLabelWidth">
+          <el-form-item prop="applicationField" :label=" $t('lang.Developmentarea')" :label-width="formLabelWidth">
             <!--<el-select v-model="form.applicationField" value-key="id" filterable multiple placeholder="请选择应用领域">
               <el-option v-for="item in applicationFieldOption " :key="item.id" :label="item.ctyName" :value="item">
               </el-option>
@@ -172,7 +172,7 @@
               :props="{ multiple: true, checkStrictly: true }"
               clearable></el-cascader>
           </el-form-item>
-          <el-form-item prop="openType" label="开源类型" :label-width="formLabelWidth">
+          <el-form-item prop="openType" :label=" $t('lang.Opensourcetype')" :label-width="formLabelWidth">
             <!--<el-select v-model="form.applicationField" value-key="id" filterable multiple placeholder="请选择应用领域">
               <el-option v-for="item in applicationFieldOption " :key="item.id" :label="item.ctyName" :value="item">
               </el-option>
@@ -186,8 +186,8 @@
 
         </div>
         <div class="box-big1">
-          <el-form-item prop="operatingSystem" label="操作平台" :label-width="formLabelWidth">
-            <el-select v-model="form.operatingSystem" value-key="id" filterable multiple placeholder="请选择操作平台">
+          <el-form-item prop="operatingSystem" :label=" $t('lang.operatingsystem')" :label-width="formLabelWidth">
+            <el-select v-model="form.operatingSystem" value-key="id" filterable multiple :placeholder="$t('lang.pleaseenter')+$t('lang.operatingsystem')" >
               <el-option v-for="item in operatingSystemOption " :key="item.id" :label="item.label" :value="item">
               </el-option>
             </el-select>
@@ -197,49 +197,49 @@
 
         <div class="box-big1">
 
-          <el-form-item prop="softUrl" label="代码地址" :label-width="formLabelWidth">
+          <el-form-item prop="softUrl" :label=" $t('lang.Codeaddress')" :label-width="formLabelWidth">
             <el-input v-model="form.softUrl" @blur='checkUrl' placeholder="github或cstos.cstcloud.cn的项目地址，推荐使用cstos.cstcloud.cn" auto-complete="off"></el-input>
-            <p class="diatit">多个地址请用英文","分隔</p>
+            <p class="diatit">{{$t('lang.SaddresseswithEnglish')}}</p>
           </el-form-item>
 
         </div>
 
         <div class="box-big1">
-          <el-form-item prop="jumpUrl" label="跳转地址" :label-width="formLabelWidth">
-            <el-input v-model="form.jumpUrl" placeholder="请输入跳转地址" auto-complete="off"></el-input>
+          <el-form-item prop="jumpUrl" :label=" $t('lang.Jumpaddress')" :label-width="formLabelWidth">
+            <el-input v-model="form.jumpUrl"  :placeholder="$t('lang.pleaseenter')+$t('lang.Jumpaddress')" auto-complete="off"></el-input>
           </el-form-item>
         </div>
         <div class="box-big1">
-          <el-form-item prop="isRun" label="是否立即运行" :label-width="formLabelWidth">
-            <el-radio v-model="form.isRun" label= '0'>否</el-radio>
-            <el-radio v-model="form.isRun" label= '1'>是</el-radio>
+          <el-form-item prop="isRun" :label=" $t('lang.Whethertorunimmediately')" :label-width="formLabelWidth">
+            <el-radio v-model="form.isRun" label= '0'>{{$t('lang.no')}}</el-radio>
+            <el-radio v-model="form.isRun" label= '1'>{{$t('lang.yes')}}</el-radio>
           </el-form-item>
         </div>
         <div class="box-big1" >
-          <el-form-item prop="runUrl" label="立即运行路径" :label-width="formLabelWidth" v-if="this.form.isRun === '1'">
-            <el-input v-model="form.runUrl" placeholder="请输入立即运行路径" auto-complete="off"></el-input>
+          <el-form-item prop="runUrl" :label=" $t('lang.Runpathimmediately')" :label-width="formLabelWidth" v-if="this.form.isRun === '1'">
+            <el-input v-model="form.runUrl" :placeholder="$t('lang.pleaseenter')+$t('lang.Runpathimmediately')"  auto-complete="off"></el-input>
           </el-form-item>
         </div>
 
         <div class="box-big1">
-          <el-form-item v-if="!form.ifSelfStudy" label="开发人员" :label-width="formLabelWidth">
-            <el-input v-model="form.developer" placeholder="请输入内容开发人员" auto-complete="off"></el-input>
+          <el-form-item v-if="!form.ifSelfStudy" :label=" $t('lang.Developer')" :label-width="formLabelWidth">
+            <el-input v-model="form.developer" :placeholder="$t('lang.pleaseenter')+$t('lang.Developer')" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label=" " :label-width="formLabelWidth">
-            <el-checkbox style="width: 100%;" v-model="form.ifSelfStudy">是否为自研</el-checkbox>
+            <el-checkbox style="width: 100%;" v-model="form.ifSelfStudy">{{ $t('lang.ifselfdeveloped')}}</el-checkbox>
           </el-form-item>
         </div>
 
         <div v-if="form.ifSelfStudy">
-          <h3 class="h3">开发人员</h3>
+          <h3 class="h3">{{$t('lang.Developer')}}</h3>
           <table class="singtext" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <th width="20">&nbsp;</th>
-              <th width="100">姓名</th>
-              <th width="110">所在单位</th>
-              <th width="110">软件中承担工作</th>
-              <th width="160">手机</th>
-              <th width="60">操作</th>
+              <th width="100">{{$t('lang.name')}}</th>
+              <th width="110">{{$t('lang.Currentunit')}}</th>
+              <th width="110">{{$t('lang.Workinsoftware')}}</th>
+              <th width="160">{{$t('lang.phone')}}</th>
+              <th width="60">{{$t('lang.operating')}}</th>
             </tr>
             <tr>
               <td class="domainsnum"><span>*</span></td>
@@ -282,19 +282,19 @@
               </td>
               <td>
                 <!--                <div @click="delTr($event)" class="deltrbtn">删除</div>-->
-                <div @click="delTr(index)"  class="deltrbtn">删除</div>
+                <div @click="delTr(index)"  class="deltrbtn">{{$t('lang.delete')}}</div>
               </td>
             </tr>
 
             <tr>
               <td colspan="6">
-                <a href="javascript:;" @click="addDomain" class="addtr">新增一行</a>
-                <el-checkbox style="float: right; margin:10px 10px 0 0 ;color: #999;" v-model="form.ifHsowRealName">是否匿名</el-checkbox>
+                <a href="javascript:;" @click="addDomain" class="addtr">{{$t('lang.Addanewline')}}</a>
+                <el-checkbox style="float: right; margin:10px 10px 0 0 ;color: #999;" v-model="form.ifHsowRealName">{{$t('lang.Isitanonymous')}}</el-checkbox>
               </td>
             </tr>
           </table>
         </div>
-        <el-form-item prop="abstract" label="作品摘要" :label-width="formLabelWidth">
+        <el-form-item prop="abstract" :label=" $t('lang.Worksummary')"  :label-width="formLabelWidth">
           <div class="box-input">
             <tinymce-editor v-model="form.abstract" :disabled=false ref="editor"></tinymce-editor>
           </div>
@@ -304,7 +304,7 @@
           <div class="left-box">
             <el-form-item label=" " :label-width="formLabelWidth">
               <el-checkbox v-model="ifCheckedMzs">
-                <router-link target="_blank" to="page3">软件投递免责协议</router-link>
+                <router-link target="_blank" to="page3">{{$t('lang.SoftwareDeliveryDisclaimer')}}</router-link>
               </el-checkbox>
 
             </el-form-item>
@@ -312,8 +312,8 @@
           </div>
 
           <div class="right">
-            <el-button @click="closePop">取 消</el-button>
-            <el-button type="primary" @click="submitForm('form')">确 定</el-button>
+            <el-button @click="closePop">{{$t('lang.Cancel')}}</el-button>
+            <el-button type="primary" @click="submitForm('form')">{{$t('lang.ok')}}</el-button>
           </div>
 
         </div>
@@ -402,27 +402,32 @@
         rules: {
           name: [{
             required: true,
-            message: '请填写软件名称',
+            /*message: `请填写软件名称`,*/
+            message: this.$t('lang.pleaseenter')+this.$t('lang.nameofsoftware'),
             trigger: 'blur'
           }],
           developer: [{
             required: true,
-            message: '请填写开发人员',
+           /* message: '请填写开发人员',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.Developer'),
             trigger: 'blur'
           }],
           softVersion: [{
             required: true,
-            message: '请填写版本号',
+           /* message: '请填写版本号',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.Softwareversion'),
             trigger: 'blur'
           }],
           opensourceType: [{
             required: true,
-            message: '请填写软件类型',
+           /* message: '请填写软件类型',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.softwaretype'),
             trigger: 'blur'
           }],
           applicationField: [{
             required: true,
-            message: '请填写开发领域',
+           /* message: '请填写开发领域',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.Developmentarea'),
             trigger: 'blur'
           }],
           // openType: [{
@@ -432,17 +437,20 @@
           // }],
           softCategory: [{
             required: true,
-            message: '请选择收费方式',
+           /* message: '请选择收费方式',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
             trigger: 'blur'
           }],
           Language: [{
             required: true,
-            message: '请选择开发语言',
+           /* message: '请选择开发语言',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
             trigger: 'blur'
           }],
           userInterface: [{
             required: true,
-            message: '请填写学科领域',
+           /* message: '请填写学科领域',*/
+            message:  this.$t('lang.pleaseenter')+this.$t('lang.academicarea'),
             trigger: 'blur'
           }],
           // softUrl: [{
@@ -452,19 +460,21 @@
           // }],
           abstract: [{
             required: true,
-            message: '请填写作品摘要',
+          /*  message: '请填写作品摘要',*/
+            message:   this.$t('lang.pleaseenter')+ this.$t('lang.Worksummary'),
             trigger: 'blur'
           }],
           operatingSystem: [{
             required: true,
-            message: '请选择操作平台',
+            /*message: '请选择操作平台',*/
+            message:   this.$t('lang.pleaseenter')+ this.$t('lang.operatingsystem'),
             trigger: 'blur'
           }],
 
         },
         toLoginUrl: '',
         categoryOption: [],
-        formLabelWidth: '120px',
+        formLabelWidth: '200px',
         stepImgSrc: '',
         opensourceTypeOption: [],
         applicationFieldOption: [],
@@ -546,13 +556,13 @@
     },
     methods: {
       toSearchList() {
-        if(this.searchArr.itemType == '软件') {
+        if(this.searchArr.itemType == '软件'||this.searchArr.itemType == 'searchTypesoftware') {
           this.searchArr.itemType = 1
         }
-        if(this.searchArr.itemType == '领域') {
+        if(this.searchArr.itemType == '领域'||this.searchArr.itemType == 'territory') {
           this.searchArr.itemType = 2
         }
-        if(this.searchArr.itemType == '作者') {
+        if(this.searchArr.itemType == '作者'||this.searchArr.itemType == 'author') {
           this.searchArr.itemType = 3
         }
         this.$router.push({
@@ -610,13 +620,13 @@
       },
       /*新增*/
       searchTYpe(){
-        if(this.searchArr.itemType == '软件') {
+        if(this.searchArr.itemType == '软件'||this.searchArr.itemType == 'searchTypesoftware') {
           this.searchArr.itemType = 1
         }
-        if(this.searchArr.itemType == '领域') {
+        if(this.searchArr.itemType == '领域'||this.searchArr.itemType == 'territory') {
           this.searchArr.itemType = 2
         }
-        if(this.searchArr.itemType == '作者') {
+        if(this.searchArr.itemType == '作者'||this.searchArr.itemType == 'author') {
           this.searchArr.itemType = 3
         }
         this.getoHotKeyWords()
@@ -872,13 +882,13 @@
 
       },
       currentSel: function(selVal) {
-        if(selVal == '软件') {
+        if(selVal == '软件'||selVal =='searchTypesoftware') {
           this.searchOptions.value = 1
         }
-        if(selVal == '领域') {
+        if(selVal == '领域'||selVal =='territory') {
           this.searchOptions.value = 2
         }
-        if(selVal == '作者') {
+        if(selVal == '作者'||selVal =='author') {
           this.searchOptions.value = 3
         }
 
@@ -953,7 +963,7 @@
 
   .searchTop .examinedialog .box-input {
     margin-left: 10px;
-    width: 540px;
+    width: 440px;
   }
 
   .searchTop .examinedialog .bottom .right {

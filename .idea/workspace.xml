@@ -19,138 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="个人中心带下拉">
-      <change afterPath="$PROJECT_DIR$/dist.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/banner01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/banner02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/banner03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/bg_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/bottom_logo_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/logo_small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/pin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/text_bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main - 副本.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/checkLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/diff_match_patch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src_20200522.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/code/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/code/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/code/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/codesample/css/prism.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/codesample/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/codesample/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/codesample/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/colorpicker/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/colorpicker/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/colorpicker/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/contextmenu/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/contextmenu/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/contextmenu/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-cool.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-cry.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-frown.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-smile.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-wink.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-yell.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/fullscreen/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/fullscreen/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/fullscreen/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/image/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/image/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/image/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/lists/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/lists/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/lists/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/media/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/media/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/media/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/preview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/preview/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/preview/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/table/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/table/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/table/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/textcolor/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/textcolor/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/textcolor/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/visualblocks/css/visualblocks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/wordcount/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/wordcount/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/plugins/wordcount/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/content.inline.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/content.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/content.mobile.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/anchor.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/object.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/trans.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/skin.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/inlite/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/inlite/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/inlite/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/mobile/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/mobile/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/mobile/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/modern/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/modern/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/themes/modern/theme.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/tinymce/tinymce.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="国际化一半">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/webpack.dev.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.dev.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/bottom_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/bottom_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/activityGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/activityGame.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/activityGameNoStart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/activityGameNoStart.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/agSignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/agSignUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/allClassify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/allClassify.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/details.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/details.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editorImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editorImage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/footer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/new_file.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/new_file.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/personalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personalInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/searchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/lang/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/signUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/softModify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/softModify.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/typeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/typeList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/fetch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/tinymce/langs/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/tinymce/langs/zh_CN.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +163,7 @@
       <workItem from="1592460552516" duration="157000" />
       <workItem from="1592901538899" duration="718000" />
       <workItem from="1592986068294" duration="10000" />
-      <workItem from="1593567350691" duration="21531000" />
+      <workItem from="1593567350691" duration="26413000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -327,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584326159264</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="国际化一半">
+      <created>1593602353395</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1593602353395</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +231,8 @@
     <MESSAGE value="second" />
     <MESSAGE value="加项目" />
     <MESSAGE value="个人中心带下拉" />
-    <option name="LAST_COMMIT_MESSAGE" value="个人中心带下拉" />
+    <MESSAGE value="国际化一半" />
+    <option name="LAST_COMMIT_MESSAGE" value="国际化一半" />
   </component>
   <component name="WindowStateProjectService">
     <state x="609" y="296" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585710120360">
@@ -394,6 +275,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="330" y="69" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585819245709" />
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1593602355901">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593602355901" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590371720849">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
