@@ -6,6 +6,8 @@
 				<img class="logo" src="../assets/img/top_logo.png" alt="logo" />
 				<p class="text">
 					欢迎来到科研软件汇聚平台！
+          <span>中文</span>
+          <span>英文</span>
 				</p>
 				<div class="search-box">
 					<el-select class="classify" v-model="searchArr.itemType" placeholder="请选择">
@@ -21,25 +23,22 @@
 					<button @click="toSearchList"></button>
 
 				</div>
+
 					<div v-if="!showLogin">
 					<a class="right-text" target="_blank" href="https://passport.escience.cn/regist.jsp">注册 </a>
 					<a class="right-text"  :href="toLoginUrl">登录 &nbsp;&nbsp;&nbsp;|</a>
 				</div>
 				<div  v-else="">
-				<a  class="right-text" @click="signOut" href="https://passport.escience.cn/logout?WebServerURL=http://cstsai.cstcloud.cn">退 &nbsp;出 </a>
+				<a  class="right-text" @click="signOut" href="https://passport.escience.cn/logout?WebServerURL=http://www.scihub.cstcloud.cn">退 &nbsp;出 </a>
 				<p @click="toPersonalInfo" class="right-text">{{userInfo.trueName}},&nbsp;&nbsp;个人中心&nbsp;&nbsp;&nbsp;|</p>
 				</div>
-
 			</div>
-
 		</div>
 		<!--//header-top-->
-
 	</div>
 </template>
 
 <script>
-	import baseUrl from '../../config/index.js'
 	export default {
 		name: 'heade',
 		data() {
@@ -72,7 +71,7 @@
 
 		mounted() {
 			var _this = this;
-			_this.toLoginUrl = baseUrl.baseUrl + 'web/auth/login'
+			_this.toLoginUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
 				if(this.userId){
 				_this.showLogin=true;
 			}else{

@@ -30,18 +30,18 @@
 								<p v-if="item.isExpertEvaluate==1&&item.isEvaluate==1" class="state-ps state-pass">评估已通过
 							</p>
 							<el-popover placement="top-start" title="审核提示" width="200" trigger="hover" :content="item.expertEvaluateRejectReason">
-							<p slot="reference" v-if="item.isExpertEvaluate==1&&item.isEvaluate==2" class="state-ps state-nopass">评估未通过 	
+							<p slot="reference" v-if="item.isExpertEvaluate==1&&item.isEvaluate==2" class="state-ps state-nopass">评估未通过
 							</p>
 							</el-popover>
 				<!--	ppp，{{item.isExpertEvaluate}}kkk，{{item.isMatchSoft}}-->
-						
+
 							<!--<p v-if="item.isExpertEvaluate==0" @click="getText(item.softName,item.softUrl,item.id)"  class=" state-zjpg">请专家评估
 							</p>-->
 							</span>
 								<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
 									<h3><p v-if="item.isMatchSoft" class="ifmatchsoft1">竞</p>
 										<p v-else="" class="ifmatchsoft2">投</p>
-									<p class="hp">{{item.softName}}</p>	
+									<p class="hp">{{item.softName}}</p>
 									<p   v-if="item.firstAudit==1">
 
 										<span v-if="item.isHot==1" class="hot-bg">热</span>
@@ -65,7 +65,7 @@
 
 								</router-link>
 								<div v-if="!item.isMatchSoft" class="btn-box">
-								
+
 									<button v-if="item.isExpertEvaluate==0&&!item.isMatchSoft&&item.isSelf==1&&item.firstAudit==1" @click="getText(item.softName,item.softUrl,item.id)" class="button4">请专家评估</button>
 									<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
 										<button class="button1">查看</button>
@@ -176,7 +176,7 @@
 									<template slot-scope="scope">
 										{{scope.row.joinTime.substring(0,10)}}
 									</template>
-									
+
 								</el-table-column>
 
 								<el-table-column header-align="center" prop="activityName" label="活动名称">
@@ -506,7 +506,7 @@
 						<em class="addti">*</em>
 						<el-input v-model="form.frameworkReportName" placeholder="" auto-complete="off"></el-input>
 						<div class="tit">
-						
+
 
 						</div>
 					</el-form-item>
@@ -556,9 +556,9 @@
 				innerVisible: false,
 				ActivityInfoPop: false,
 				innerTitle: '',
-				upUrl: baseUrl.baseUrl + '/sys/upload/uploadForEvaluate/',
-				imgUrlNew: baseUrl.baseUrl + '/sys/upload/uploadForEvaluateImg/',
-				imgUrlVideo: baseUrl.baseUrl + '/sys/upload/uploadForEvaluateVideo/',
+				upUrl: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluate/',
+				imgUrlNew: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateImg/',
+				imgUrlVideo: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateVideo/',
 				form: {
 					name: '',
 					softUrl: '',
@@ -679,7 +679,7 @@
 							type: 'warning'
 						}).then(() => {
 							sessionStorage.clear()
-							var newUrl = baseUrl.baseUrl + '/web/auth/login';
+							var newUrl = baseUrl.baseUrl + '/haoweb/web/auth/login';
 							window.open(newUrl)
 							return false;
 
@@ -790,7 +790,7 @@
 				var codeStype;
 				if(response.code == 0) {
 					codeStype = 'success'
-					
+
 
 				} else {
 					codeStype = 'warning'
@@ -803,7 +803,7 @@
 			analysisDocChange(file) {
 			  	this.analysisCheck=file.name
 			  	console.log("this.analysisCheck",this.analysisCheck)
-       			 
+
       			},
 			//项目规格书
 			submitItemBook() {
@@ -1425,128 +1425,128 @@
 	.personalInfo {
 		background: #f8f8f8;
 	}
-	
+
 	.activityInfo {
 		width: 700px;
 	}
-	
+
 	.activityInfo .acInfo-box {
 		margin: 10px auto;
 		width: 610px;
 	}
-	
+
 	.activityInfo .el-dialog__body {
 		padding-top: 0px;
 	}
-	
+
 	.activityInfo .acInfo-box .libor {
 		overflow: hidden;
 		width: 100%;
 		line-height: 40px;
 		border-bottom: 1px dashed #dedede;
 	}
-	
+
 	.activityInfo .acInfo-box li .el-table th.is-leaf {
 		padding: 0;
 		height: 40px;
 		line-height: 40px;
 		background: #d5e6f3;
 	}
-	
+
 	.activityInfo .el-button--small {
 		float: left;
 	}
-	
+
 	.activityInfo .acInfo-box li h4 {
 		width: 100px;
 		font-size: 14px;
 		float: left;
 		color: #888;
 	}
-	
+
 	.activityInfo .acInfo-box li p {
 		font-size: 14px;
 		float: left;
 		color: #888;
 	}
-	
+
 	.activityInfo .acInfo-box li p a {
 		color: #009cd2;
 		text-decoration: underline;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron {
 		margin: 10px 0 20px;
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron img {
 		display: block;
 		margin: 10px auto;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron p {
 		font-size: 14px;
 		line-height: 24px;
 		color: #666;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h1 {
 		width: 100%;
 		font-size: 24px;
 		line-height: 36px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h2 {
 		width: 100%;
 		font-size: 22px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h3 {
 		width: 100%;
 		font-size: 20px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .ifniming {
 		float: right;
 		font-size: 12px;
 		color: #666;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h4 {
 		width: 100%;
 		font-size: 18px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h5 {
 		width: 100%;
 		font-size: 16px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h6 {
 		width: 100%;
 		font-size: 14px;
 		line-height: 30px;
 	}
-	
+
 	.personalInfo .examinedialog {
 		width: 800px;
 	}
-	
+
 	.personalInfo .examinedialog input {
 		width: 220px;
 	}
-	
+
 	.personalInfo .examinedialog .box {
 		overflow: hidden;
 		width: 100%;
 	}
-	
+
 	.personalInfo .examinedialog .tit {
 		margin-top: 5px;
 		overflow: hidden;
@@ -1554,7 +1554,7 @@
 		height: 30px;
 		width: 80px;
 	}
-	
+
 	.personalInfo .examinedialog .tit button {
 		float: left;
 		margin: 10px 0 0 15px;
@@ -1565,7 +1565,7 @@
 		background: #fdd765;
 		border-radius: 3px;
 	}
-	
+
 	.personalInfo .examinedialog .tit p {
 		float: left;
 		margin-left: 20px;
@@ -1573,67 +1573,67 @@
 		line-height: 24px;
 		color: #cc0000;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo {
 		position: relative;
 		width: 350px;
 		display: inline-block;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--primary {
 		background: #67C23A;
 		border: 1px solid #67C23A;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--success {
 		background: #46c3a1;
 		border: 1px solid #46c3a1;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--primary span,
 	.personalInfo .examinedialog .upload-demo .el-button--success span {
 		color: #fff;
 	}
-	
+
 	.personalInfo .examinedialog .bottom {
 		padding-top: 20px;
 		overflow: hidden;
 		border-top: 1px dashed #dedede;
 	}
-	
+
 	.personalInfo .examinedialog .bottom .right {
 		overflow: hidden;
 		margin: 0 auto;
 		width: 300px;
 	}
-	
+
 	.personalInfo .examinedialog .bottom .right button {
 		padding: 10px 50px;
 		line-height: 30px;
 	}
-	
+
 	.personalInfo .content {
 		margin-top: 10px;
 		background: #fff;
 		padding: 0 10px;
 		width: 1180px;
 	}
-	
+
 	.personalInfo .content .min-height {
 		margin-top: 10px;
 		min-height: 400px;
 	}
-	
+
 	.personalInfo .content .min-height table td {
 		text-align: center;
 	}
-	
+
 	.personalInfo .top-box {
 		padding: 15px 0;
 		margin: 10px 0;
 		width: 100%;
 	}
-	
+
 	.personalInfo .top-box p {
 		width: 100%;
 		font-size: 14px;
@@ -1641,7 +1641,7 @@
 		color: #666;
 		text-indent: 20px;
 	}
-	
+
 	.personalInfo .avatar-uploader .el-upload {
 		border: 1px dashed #d9d9d9;
 		border-radius: 6px;
@@ -1649,11 +1649,11 @@
 		position: relative;
 		overflow: hidden;
 	}
-	
+
 	.personalInfo .avatar-uploader .el-upload:hover {
 		border-color: #409EFF;
 	}
-	
+
 	.personalInfo .avatar-uploader-icon {
 		font-size: 28px;
 		color: #8c939d;
@@ -1662,55 +1662,55 @@
 		line-height: 100px;
 		text-align: center;
 	}
-	
+
 	.personalInfo .upload-box {
 		margin: 20px;
 		float: left;
 	}
-	
+
 	.personalInfo .upload-box p {
 		width: 100%;
 		text-align: center;
 	}
-	
+
 	.personalInfo .avatar {
 		width: 100px;
 		height: 100px;
 		display: block;
 	}
-	
+
 	.avatar-uploader {
 		position: relative;
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list {
 		position: absolute;
 		left: 0;
 		top: 0;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item {
 		margin: 0;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item-thumbnail {
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item.is-success .el-upload-list__item-name {
 		width: 0;
 		margin: 0;
 	}
-	
+
 	.personalInfo .wordlist {
 		padding: 10px;
 		border-collapse: collapse;
 	}
-	
+
 	.personalInfo .wordlist th,
 	.personalInfo .wordlist td {
 		text-align: center;
@@ -1719,7 +1719,7 @@
 		color: #666;
 		border: 1px solid #EBEEF5;
 	}
-	
+
 	.personalInfo .wordlist td a {
 		display: block;
 		padding: 8px 8px;
@@ -1730,17 +1730,17 @@
 		border-radius: 5px;
 		margin: 10px 5px;
 	}
-	
+
 	.personalInfo .wordlist td a:hover {
 		background: #009cd2;
 		color: #fff;
 	}
-	
+
 	.personalInfo .imglist {
 		margin-top: 10px;
 		overflow: hidden;
 	}
-	
+
 	.personalInfo .imglist img {
 		float: left;
 		margin: 5px;
@@ -1748,11 +1748,11 @@
 		height: 150px;
 		border: 1px solid #EBEEF5;
 	}
-	
+
 	.personalInfo .content .min-height .myfeedbacktable td {
 		text-align: left;
 	}
-	
+
 	.personalInfo .addti {
 		float: left;
 		font-style: normal;
@@ -1760,19 +1760,19 @@
 		font-weight: bold;
 		color: #F56C6C;
 	}
-	
+
 	.personalInfo .box-big .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 150px;
 	}
-	
+
 	.personalInfo .box .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 150px;
 	}
-	
+
 	.personalInfo .uploadtit {
 		display: block;
 		margin-bottom: 20px;
@@ -1782,7 +1782,7 @@
 		color: #606266;
 		line-height: 16px;
 	}
-	
+
 	.personalInfo .ifmatchsoft1 {
 		margin: 5px 10px 0 0px;
 		float: left;
@@ -1795,7 +1795,7 @@
 		border-radius: 5px;
 		background: url(../assets/bg/bg_1.png) no-repeat
 	}
-	
+
 	.personalInfo .ifmatchsoft2 {
 		margin: 5px 10px 0 0px;
 		float: left;
@@ -1813,7 +1813,7 @@
 		width: 100%;
 		font-size: 12px;
 		color: #F56C6C;
-		
+
 	}
 	.personalInfo .el-upload-list--picture .el-upload-list__item-status-label{
 		z-index: 10;

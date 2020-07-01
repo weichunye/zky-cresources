@@ -113,6 +113,7 @@
        	width: 130px;
        	height: 36px;
        	line-height: 36px;
+
        	font-size: 16px;
        	color: #fff;
        	text-align: center;
@@ -124,18 +125,19 @@
     <script>
       window.SITE_CONFIG = {};
     </script>
-    <% if (process.env.NODE_ENV === 'development') { %>
+    <% if (process.env.NODE_ENV === 'production') { %>
         <script>window.SITE_CONFIG['apiURL'] = 'http://192.168.1.8:8088';</script>
+        <script>window.SITE_CONFIG['imgURL'] = 'http://192.168.1.8:8088/haoweb/upload/';</script>
     <!--    <script>window.SITE_CONFIG['apiURL'] = 'http://portal.cstcloud.cn';</script>-->
-
     <!--退出登录回调地址-->
-    <script>window.SITE_CONFIG['backURL'] = 'http://192.168.1.8:8088';</script>
+    <script>window.SITE_CONFIG['backURL'] = 'http://192.168.1.8:8088/';</script>
     <% } %>
     <!-- 生产环境 -->
-    <% if (process.env.NODE_ENV === 'production') { %>
-    <script>window.SITE_CONFIG['apiURL'] = 'http://portal.cstcloud.cn';</script>
+    <% if (process.env.NODE_ENV === 'development') { %>
+    <script>window.SITE_CONFIG['apiURL'] = 'http://www.scihub.cstcloud.cn/';</script>
+    <script>window.SITE_CONFIG['imgURL'] = 'http://www.scihub.cstcloud.cn/haoweb/upload/';</script>
     <!--退出登录回调地址-->
-    <script>window.SITE_CONFIG['backURL'] = 'http://portal.cstcloud.cn';</script>
+    <script>window.SITE_CONFIG['backURL'] = 'http://www.scihub.cstcloud.cn/haoweb/web/auth/callback';</script>
     <% } %>
 	</head>
 
@@ -147,7 +149,6 @@
 			<h2>是时候升级你的浏览器了<span></span></h2>
 			<p>
 				你正在使用旧版 Internet Explorer（IE11以下版本或使用该内核的浏览器）。这意味着在升级浏览器前， 你将无法正常访问此网站。
-
 			</p>
 			<h4>
 			<span>请注意：</span>Windows XP 及旧版 Internet Explorer 的支持服务已终止

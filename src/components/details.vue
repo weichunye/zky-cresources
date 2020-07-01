@@ -15,10 +15,10 @@
 		<div class="top-box">
 			<div class="left-box">
 
-				<h2>{{softData.softName}} 	<span v-if="softData.isHot==1" class="hot-bg">热</span>
-   	   					<span v-if="softData.isRecommend==1" class="jian-bg">荐</span>
-   	   					<span v-if="softData.isChina==1" class="guo-bg">国</span>
-   	   						<span v-if="softData.isEvaluate==1" class="xin-bg">已评估</span></h2>
+				<h2>{{softData.softName}} 	<sup v-if="softData.isHot==1" class="sub">热</sup>
+   	   					<sup v-if="softData.isRecommend==1" class="suba">荐</sup>
+   	   					<sup v-if="softData.isChina==1" class="subchania">国</sup>
+   	   						<sup v-if="softData.isEvaluate==1" class="subping">信</sup></h2>
 
 				<!--		<p v-for="item in labelInfo" class="label">
 					{{item.softLabel}}
@@ -29,26 +29,43 @@
 				</p>-->
 
 				<p class="p">
-					开源类型: <em>|&nbsp;&nbsp;{{softData.opensourceType}}</em> <span>用户接口： <em>{{softData.userInterface}}</em></span>
+          {{$t('lang.softwaretype')}}: <em>|&nbsp;&nbsp;{{softData.softType}}</em>
+<!--          <span>用户接口： <em>{{softData.userInterface}}</em></span>-->
+          <span>  {{$t('lang.Inclusiontime')}}： <em>{{softData.createTime}}</em></span>
 				</p>
+        <p class="p">
+          {{$t('lang.Chargemethod')}}: <em> |&nbsp;&nbsp;{{softData.chargingMethod}} </em>
+          <span>  {{$t('lang.operatingsystem')}}： <em>{{softData.operatingSystem}}</em></span>
+        </p>
 
-				<p class="p">应用领域: <em>|&nbsp;&nbsp;{{softData.applicationField}} </em> <span> 收录时间： <em>{{softData.createTime}}</em></span> </p>
-				<p class="p">编程语言: <em>|&nbsp;&nbsp;{{softData.programmingLanguage}}</em>
-					<span>操作系统： <em>{{softData.operatingSystem}}</em></span>
+				<p class="p">  {{$t('lang.academicarea')}}: <em>|&nbsp;&nbsp;{{softData.applicationField}} </em>
+<!--          <span> 收录时间： <em>{{softData.createTime}}</em></span>-->
+          <span> {{$t('lang.Submitter')}}： <em>{{softData.createUser}}</em></span>
+        </p>
+				<p class="p">{{$t('lang.Programminglanguage')}}: <em>|&nbsp;&nbsp;{{softData.programmingLanguage}}</em>
+<!--					<span>操作系统： <em>{{softData.operatingSystem}}</em></span>-->
+          <span v-if="softData.developers">{{$t('lang.Developer')}}： <em>{{softData.developers}}</em></span>
 				</p>
 				<p class="p">
-					软件版本: <em>|&nbsp;&nbsp;{{softData.softVersion}}</em>
-					<span>提&nbsp;交&nbsp;&nbsp;者： <em>{{softData.createUser}}</em></span>
+          {{$t('lang.Softwareversion')}}: <em>|&nbsp;&nbsp;{{softData.softVersion}}</em>
+<!--					<span>提&nbsp;交&nbsp;&nbsp;者： <em>{{softData.createUser}}</em></span>-->
+          <span v-if="softData.opensourceType != ''">{{$t('lang.Opensourcetype')}}： <em>{{softData.opensourceType}}</em></span>
 				</p>
-				<p class="p">软件类别: <em> |&nbsp;&nbsp;{{softData.softCategoryName}} </em>
-					<span v-if="softData.isShowDeveloperName">开&nbsp;发&nbsp;&nbsp;者： <em>{{softData.developers}}</em></span></p>
-				<p class="p">软件来源:
+				<p class="p"> {{$t('lang.Developmentarea')}}: <em> |&nbsp;&nbsp;{{softData.softCategoryName}} </em>
+<!--					<span v-if="softData.isShowDeveloperName">开&nbsp;发&nbsp;&nbsp;者： <em>{{softData.developers}}</em></span>-->
+
+        </p>
+				<p v-if="softData.softUrl" class="p">{{$t('lang.Softwaresource')}}:
 					<a target="_blank" :href="newSoftUrl">{{softData.softUrl}}</a>
 				</p>
+     <!--   <p class="p">跳转地址:
+					<a target="_blank" :href="softData.jumpUrl">{{softData.jumpUrl}}</a>
+				</p>-->
+        <a   v-if="softData.jumpUrl" class="to-soft-link" target="_blank" :href="softData.jumpUrl"> <i class="el-icon-link"></i>{{$t('lang.Jumplink')}}</a>
 				<ul class="list-tools">
 					<li>
 						<a @click="saveFollow(1)" href="javascript:;">
-							收藏 <span>{{statInfo.collectionNum}} </span>
+              {{$t('lang.Collect')}} <span>{{statInfo.collectionNum}} </span>
 						</a>
 						<!--<a @click="saveFollow(1)" class="added" href="javascript:;">
 							已收藏 <span>{{statInfo.collectionNum}} </span>
@@ -56,23 +73,23 @@
 					</li>
 					<li>
 						<a @click="saveFollow(2)" href="javascript:;">
-							分享<span>{{statInfo.enjoyNum}} </span>
+              {{$t('lang.share')}}<span>{{statInfo.enjoyNum}} </span>
 						</a>
 
 					</li>
 					<li v-if="userIdData">
 						<a @click="saveFollow(3)" href="javascript:;">
-							下载<span>{{statInfo.downloadNum}} </span>
+              {{$t('lang.download')}}<span>{{statInfo.downloadNum}} </span>
 						</a>
 					</li>
 					<li v-else="">
 						<a @click="saveFollow(3)" target="_blank">
-							下载<span>{{statInfo.downloadNum}} </span>
+              {{$t('lang.download')}}<span>{{statInfo.downloadNum}} </span>
 						</a>
 					</li>
 					<li>
 						<a href="javascript:;" class="hover">
-							浏览<span>{{statInfo.browseNum}} </span>
+              {{$t('lang.Browse')}}<span>{{statInfo.browseNum}} </span>
 						</a>
 					</li>
 				</ul>
@@ -80,18 +97,15 @@
 					<div class="sharbox-over">
 						<share :config="config"></share>
 					</div>
-
 				</div>
-
 				<button class="btn-zhishu">
-  						指数
+          {{$t('lang.index')}}
   					</button>
 				<div class="indexbox">
 					<div id="oscilloGram" style="height:300px"></div>
-
 				</div>
-				<img v-if="softData.softLogo" class="softlogo" :src="softLogoUrl+softData.softLogo" />
-
+<!--				<img v-if="softData.softLogo" class="softlogo" :src="softLogoUrl+'/'+softData.softLogo" />-->
+        <img class="softlogo" v-if="softData.softLogo" :src="imgUrl+'/'+softData.softLogo" />
 				<!--<ul class="list-hub">
 					<li>
 						<img src="../assets/icon/icon_1.jpg" />
@@ -113,10 +127,17 @@
 					</li>
 				</ul>-->
 			</div>
+      <div class="right-box">
+        <h3> {{$t('lang.Popularsoftwarerecommendation')}}
+          <router-link :to="{path:'/typeList',query:{typeId:'isHot',categoryName:'热门软件',ParentName:'首页'}}"><span>更多</span></router-link>
+        </h3>
 
-			<router-link target="_blank" :to="'activityGame?id='+activityIngId">
-				<img class="right-box" src="../assets/bg/advertising_small.jpg" title="活动" />
-			</router-link>
+        <dl v-for="(item , index) in hotList" @click="upData(item.id)" :key="index" :style="{'border-width':index==hotList.length-1?0:'1px'}">
+          <dt ><span>{{item.softName}}</span> </dt>
+        <!--  <dd>收藏: <span>{{item.collectionNum}} </span> 下载: <span> {{item.downloadNum}}</span>运行： <span>{{item.runNum}}</span></dd>-->
+        </dl>
+
+      </div>
 		</div>
 		<!--//top-box-->
 		<!--content-->
@@ -124,7 +145,7 @@
 			<!--left-box-->
 			<div class="left-box">
 				<el-tabs type="border-card">
-					<el-tab-pane label="软件介绍">
+					<el-tab-pane :label="$t('lang.Softwareintroduction')">
 						<div v-html="softData.softIntroduce" class="min-height">
 
 						</div>
@@ -139,20 +160,10 @@
 			</div>
 			<!--left-box-->
 			<!--right-box-->
-			<div class="right-box">
-				<h3>热门软件推荐
-				<router-link :to="{path:'/typeList',query:{typeId:'isHot',categoryName:'热门软件',ParentName:'首页'}}"><span>更多</span></router-link>
-				</h3>
 
-				<dl v-for="item in hotList" @click="upData(item.id)">
-					<dt><span>{{item.softName}}</span> </dt>
-					<dd>收藏: <span>{{item.collectionNum}} </span> 下载: <span> {{item.downloadNum}}</span>运行： <span>{{item.runNum}}</span></dd>
-				</dl>
-
-			</div>
 			<!--right-box-->
 			<ul class="bottom-btn-box">
-				<li v-if="userIdData&&ifDownWordUrl">
+			<!--	<li v-if="userIdData&&ifDownWordUrl">
 					<a class="DownWorlds" :href="DownWordUrl">
 						<img src="../assets/icon/float_nav_2.png" alt="" />
 						<p>文档下载</p>
@@ -163,19 +174,19 @@
 						<img src="../assets/icon/float_nav_2.png" alt="" />
 						<p>文档下载</p>
 					</a>
-				</li>
+				</li>-->
 				<li v-if="userIdData&&runUrl" @click="runThisSoft">
 					<img src="../assets/icon/float_nav_3.png" alt="" />
-					<p>立即运行</p>
+					<p>{{$t('lang.Runimmediately')}}</p>
 				</li>
 				<li v-if="!userIdData&&runUrl" @click="ifLogin">
 					<img src="../assets/icon/float_nav_3.png" alt="" />
-					<p>立即运行</p>
+          <p>{{$t('lang.Runimmediately')}}</p>
 				</li>
-				<li>
+				<li v-if="newSoftUrl != ''">
 					<a target="_blank" :href="newSoftUrl">
 						<img src="../assets/icon/float_nav_4.png" alt="" />
-						<p>查看源码</p>
+						<p>{{$t('lang.Viewsourcecode')}}</p>
 					</a>
 				</li>
 			</ul>
@@ -255,11 +266,13 @@
 				activityIngId: '',
 				DownWordUrl: '',
 				userIdData: '',
+        userId:'',
 				indexeCharts: false,
 				softLogoUrl: '',
 				ifDownWordUrl: '',
 				newSoftUrl: '',
 				runUrl: '',
+        imgUrl:window.SITE_CONFIG['imgURL'],
 				config: {
 
 					url: window.location.href,
@@ -343,28 +356,22 @@
 		},
 		mounted() {
 			//悬浮导航
-
-
 			this.softId = this.$route.query.id;
-			this.userIdData = this.userId;
+			this.userIdData = window.SITE_CONFIG['userId']
+			this.userId=window.SITE_CONFIG['userId']
 			/*console.log("baseUrl",baseUrl)*/
 			this.softLogoUrl = baseUrl.baseUrlImg
 			this.parentNamenew = this.$route.query.ParentName == "首页" ? '' : this.$route.query.ParentName;
 			this.activityIng()
 
 			//获取热门软件
-			var params1 = new URLSearchParams();
-			params1.append("page", 1);
-			params1.append("limit", 10);
-			this.axios.post(baseUrl.baseUrl + '/web/soft/queryHotSoftListByCondition', params1)
-				.then(function(response) {
-					this.hotList = response.data.page.list;
-				})
+      this.getHotSoft(3)
+
 			//获取标签列表
-			this.getSoftLabel()
+			/*this.getSoftLabel()*/
 			this.getSoftInfo()
-			this.getSoftLabelList()
-			this.DownWorlds()
+			/*this.getSoftLabelList()*/
+			/*this.DownWorlds()*/
 			this.$nextTick(function() {
 				this.myChart = this.$echarts.init(document.getElementById('oscilloGram'))
 
@@ -375,9 +382,9 @@
 					var e = e || e.Element;
 					var tar = e.target || e.srcElement;
 					if(tar.className == 'btn-zhishu') {
-						$('.indexbox').css('opacity', '1')
+						$('.indexbox').css({'opacity': '1','z-index':'100'})
 					} else {
-						$('.indexbox').css('opacity', '0')
+						$('.indexbox').css({'opacity': '0','z-index':'0'})
 					}
 					/*else if($(event.target).is($('canvas'))) {
 						$('.indexbox').css('opacity','1')
@@ -386,6 +393,14 @@
 			})
 
 		},
+    watch: {
+      '$route'(to, from) {
+        this.softId=this.$route.query.id?this.$route.query.id:''
+        console.log("监控")
+        this.getSoftInfo()
+        //监控路由，更新tab
+      }
+    },
 		methods: {
 			getSoftInfo: function() {
 				//获取信息
@@ -394,6 +409,7 @@
 				params.append("labelNum", 5);
 				this.$http.post( '/haoweb/web/soft/querySoftInfoById', params)
 					.then((response)=>{
+					  console.log("response********",response)
 						this.softData = response.data.softInfo;
 						this.statInfo = response.data.statInfo;
 						this.runUrl = response.data.softInfo.runUrl;
@@ -435,35 +451,32 @@
 						}
 					})
 			},
-
+     //获取热门数据
+      getHotSoft(type){
+        var params = new URLSearchParams();
+        params.append("type", 2);
+        params.append("limit",8);
+        params.append("page", 1);
+        this.$http.post('/haoweb/web/soft/querySoftListByConditionForBrowseNum',params)
+          .then(({data:res })=>{
+            this.hotList=res.page.records
+            // this.recommendedList=res.page.records
+            console.log("推荐",res)
+          })
+      },
 			runThisSoft: function() {
+			  console.log("11111111111111")
 				var params = new URLSearchParams();
 				params.append("softId", this.$route.query.id);
 				params.append("userId", this.userId);
-				this.axios.post(baseUrl.baseUrl + '/web/softrun/clickSoftInfoRunTime', params)
+				this.axios.post(window.SITE_CONFIG['apiURL'] + '/haoweb/web/softrun/clickSoftInfoRunTime', params)
 					.then(function(response) {
 						window.open(response.data.url)
 					})
-
 			},
 			//收藏下载操作
 			saveFollow: function(type) {
-				if(!this.userId) {
-					this.$confirm('请登录', '提示', {
-						confirmButtonText: '确定',
-						cancelButtonText: '取消',
-						type: 'warning'
-					}).then(() => {
-						var newUrl = baseUrl.baseUrl + '/web/auth/login';
-						window.open(newUrl)
-
-					}).catch(() => {
-
-					});
-					return false
-				}
-
-				this.axios.defaults.headers.common['token'] = this.token;
+			  var _this=this;
 				var softFollowHistory = {
 					createTime: "",
 					id: 0,
@@ -473,48 +486,34 @@
 
 				}
 
-				this.axios.post(baseUrl.baseUrl + '/web/user/saveFollow', softFollowHistory)
+				this.$http.post('/haoweb/web/user/saveFollow', softFollowHistory)
 					.then(function(response) {
 						//验证token是否过期
-						if(response.data.code == 401) {
-							this.$confirm(response.data.msg, '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
-								type: 'warning'
-							}).then(() => {
-								sessionStorage.clear()
-								var newUrl = baseUrl.baseUrl + '/web/auth/login';
-								window.open(newUrl)
-								return false;
-
-							}).catch(() => {
-
-							});
-						} else if(response.data.code == 0) {
+		       if(response.data.code == 0) {
 							if(type == 1) {
-
-								this.statInfo.collectionNum = this.statInfo.collectionNum + 1;
-								this.$alert(
+                _this.statInfo.collectionNum = _this.statInfo.collectionNum + 1;
+                _this.$alert(
 									response.data.msg, '提示信息', {
 										confirmButtonText: '确定',
 									});
 
 							}
-							if(type == 2 && !this.sharShow) {
-								this.sharShow = true;
+							if(type == 2 && !_this.sharShow) {
+                _this.sharShow = true;
 								$('.sharbox-over a').each(function(index, item) {
 									$(item).unbind().bind('click', function() {
-										this.statInfo.enjoyNum = this.statInfo.enjoyNum + 1;
-										this.sharShow = false;
+                    _this.statInfo.enjoyNum = _this.statInfo.enjoyNum + 1;
+                    _this.sharShow = false;
 									})
 								})
 
 							}
 							if(type == 3) {
-								this.statInfo.downloadNum = this.statInfo.downloadNum + 1;
+							  console.log("this.statInfo",_this.statInfo)
+                _this.statInfo.downloadNum = _this.statInfo.downloadNum + 1;
 
 								var tempwindow = window.open('_blank'); // 先打开页面
-								tempwindow.location = this.newSoftUrl; // 后更改页面地址
+								tempwindow.location = _this.newSoftUrl; // 后更改页面地址
 								/*var openSoftUrl=this.newSoftUrl.substr(0,6)
 								if(openSoftUrl!='https:'&&openSoftUrl!='http:/'){
 									this.newSoftUrl='http://'+this.newSoftUrl
@@ -522,10 +521,10 @@
 								window.open(this.newSoftUrl,'_blank')*/
 
 								/*'http://'*/
-							}
+							}saveFollow
 
 						} else {
-							this.$alert(
+             _this.$alert(
 								response.data.msg, '提示信息', {
 									confirmButtonText: '确定',
 								});
@@ -554,10 +553,9 @@
 
 			},
 			upData: function(newId) {
-
 				this.softId = newId;
 				this.$router.push({
-					path: '/hotDetails',
+					path: '/details',
 					query: {
 						id: this.softId,
 						ParentName: '首页'
@@ -573,7 +571,7 @@
 			//获取当前正在进行中活动
 			activityIng: function() {
 
-				this.axios.get(baseUrl.baseUrl + 'web/activity/config/2')
+				this.axios.get(window.SITE_CONFIG['apiURL'] + '/haoweb/web/activity/config/2')
 					.then(function(response) {
 						if(response.data.config) {
 							this.activityIngId = response.data.config.paramValue;
@@ -586,14 +584,12 @@
 					})
 			},
 			getSoftLabelList: function() {
-
 				var params2 = new URLSearchParams();
 				params2.append("softId", this.softId);
 				params2.append("page", 1);
 				params2.append("limit", 5);
-				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
+				this.axios.post(window.SITE_CONFIG['apiURL'] + '/haoweb/web/soft/getSoftLabelBySoftId', params2)
 					.then(function(response) {
-
 						this.labelInfo = response.data.page.list;
 
 					})
@@ -612,21 +608,22 @@
 				params2.append("softId", this.softId);
 				params2.append("limit", 10);
 				params2.append("page", 1);
-				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftLabelBySoftId', params2)
+				this.axios.post(window.SITE_CONFIG['apiURL'] + '/haoweb/web/soft/getSoftLabelBySoftId', params2)
 					.then(function(response) {
 						this.labelInfoAdd = response.data.page.list;
 
 					})
 			},
 			ifLogin: function() {
-
-				if(!this.userId) {
+			  console.log("000000000000000000000")
+			  var _this=this
+				if(!_this.userId) {
 					this.$confirm('请登录', '提示', {
 						confirmButtonText: '确定',
 						cancelButtonText: '取消',
 						type: 'warning'
 					}).then(() => {
-						var newUrl = baseUrl.baseUrl + '/web/auth/login';
+						var newUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login';
 						window.open(newUrl)
 
 					}).catch(() => {
@@ -671,7 +668,7 @@
 				params.append("softId", this.softId);
 				params.append("softLabel", this.softLabelArr);
 
-				this.axios.post(baseUrl.baseUrl + '/web/soft/addSoftLabel', params)
+				this.axios.post(window.SITE_CONFIG['apiURL'] + '/haoweb/web/soft/addSoftLabel', params)
 					.then(function(response) {
 						if(response.data.code == 0) {
 							this.$alert(response.data.msg, '提示信息', {
@@ -680,7 +677,7 @@
 							this.dialogTit = false;
 							this.softLabelArr = []
 							this.checkedCities1 = []
-							this.getSoftLabelList()
+						/*	this.getSoftLabelList()*/
 
 						}
 
@@ -698,10 +695,9 @@
 			},
 			//下载比赛文档
 			DownWorlds: function() {
-
 				var params = new URLSearchParams();
 				params.append("softId", this.$route.query.id);
-				this.axios.post(baseUrl.baseUrl + '/web/soft/getSoftDocPackage', params)
+				this.axios.post(window.SITE_CONFIG['apiURL'] + '/haoweb/web/soft/getSoftDocPackage', params)
 					.then(function(response) {
 						if(response.data.code == 0) {
 							this.DownWordUrl = baseUrl.baseUrlImg + response.data.packageUrl;
@@ -725,7 +721,6 @@
 		overflow: hidden;
 		margin: 10px auto;
 		width: 1200px;
-		background: #fff;
 	}
 	/*
 	.details .el-dialog {
@@ -773,14 +768,22 @@
 		cursor: pointer;
 	}*/
 
-	.details .top-box .left-box {
-		position: relative;
-		padding: 10px;
-		float: left;
-		width: 920px;
-		height: 260px;
-		background: #fff;
-	}
+	/*.details .top-box .left-box {*/
+	/*	position: relative;*/
+	/*	padding: 10px;*/
+	/*	float: left;*/
+	/*	width: 920px;*/
+	/*	height: 260px;*/
+	/*	background: #fff;*/
+	/*}*/
+  .details .top-box .left-box {
+    position: relative;
+    padding: 10px;
+    float: left;
+    width: 920px;
+    height:336px!important;
+    background: #fff;
+  }
 
 	.details .bshare-custom {
 		position: absolute;
@@ -806,7 +809,68 @@
 		line-height: 18px;
 		border-radius: 3px;
 	}
+  .details .top-box .left-box h2 sup{
+    display:inline-block;
+    margin: 0 5px 0 0;
+    padding:1px 3px 5px 3px;
+    height: 16px;
+    font-style: normal;
+    text-align: center;
+    line-height: 16px;
+    position: relative;
+  }
+  .details .top-box .left-box h2 sup::after{
+    position: absolute;
+    left:50%;
+    margin-left:-7px;
+    bottom:0;
+    width:0;
+    height:0;
+    border-right:7px solid transparent;
+    border-left:7px solid transparent;
+    content:"";
+  }
+  /*新增*/
 
+  .details .top-box .left-box h2 .suba{
+    color:#fff;
+    font-size: 12px;
+    background:#ec9d2f;
+  }
+  .details .top-box .left-box h2 .subchania{
+    color:#fff;
+    font-size: 12px;
+    background:#07b62c;
+  }
+  .details .top-box .left-box h2 .subchania::after{
+    border-bottom:7px solid #fff;
+  }
+  .details .top-box .left-box h2 .subping{
+    color:#fff;
+    font-size: 12px;
+    background:#672fd9;
+  }
+  .details .top-box .left-box h2 .subping::after{
+    border-bottom:7px solid #fff;
+  }
+  .details .top-box .left-box h2 .sub{
+    color:#fff;
+    font-size: 12px;
+    background:#ff0000;
+  }
+  .details .top-box .left-box h2 .sub::after{
+    border-bottom:7px solid #fff;
+  }
+  .details .top-box .left-box h2 .suba{
+    color:#fff;
+    font-size: 12px;
+    background:#ec9d2f;
+  }
+  .details .top-box .left-box h2 .suba::after{
+    border-bottom:7px solid #fff;
+  }
+
+  /*新增*/
 	.details .top-box .left-box .label {
 		display: inline-block;
 		margin: 5px 10px 10px 0;
@@ -831,10 +895,12 @@
 	}
 
 	.details .top-box .left-box .p {
+    position: relative;
 		width: 100%;
 		font-size: 14px;
 		color: #666;
-		line-height: 26px;
+		line-height: 30px!important;
+    z-index: 1;
 	}
 
 	.details .top-box .left-box .p em {
@@ -848,7 +914,24 @@
 		line-height: 14px;
 		text-decoration: underline;
 	}
-
+  .details .top-box .left-box  .to-soft-link{
+    position: relative;
+    float: right;
+    display: block;
+    width: 100px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    background: #6e64e7;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .details .top-box .left-box  .to-soft-link i{
+    margin-right: 5px;
+    color: #fff;
+  }
 	.details .top-box .left-box .p span {
 		float: right;
 		margin-right: 10px;
@@ -993,11 +1076,24 @@
 		background: #dedede;
 	}
 
-	.details .top-box .right-box {
-		float: right;
-		width: 250px;
-		height: 280px;
-	}
+	/*.details .top-box .right-box {*/
+  /*  padding:0 10px ;*/
+	/*	float: right;*/
+	/*	width: 230px;*/
+	/*	height: 280px;*/
+  /*  background: #fff;*/
+	/*}*/
+  .details .top-box .right-box {
+    float: right;
+    width: 250px;
+    height: 356px!important;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    overflow: hidden;
+  }
 
 	.right-box a {
 		display: block;
@@ -1012,8 +1108,7 @@
 	}
 
 	.details .center-box .left-box {
-		float: left;
-		width: 940px;
+		width: 1196px;
 	}
 
 	.details .center-box .left-box .min-height {
@@ -1039,20 +1134,22 @@
 		height: auto;
 	}
 
-	.details .center-box .right-box {
+	.details .right-box {
 		float: right;
 		width: 230px;
 	}
 
-	.details .center-box .right-box h3 {
-		margin-top: 20px;
+	.details  .right-box h3 {
 		display: block;
 		overflow: hidden;
-		width: 100%;
+    padding: 0 3%;
+		width: 94%;
 		font-size: 18px;
-		color: #666;
-		line-height: 30px;
+		color: #fff;
+    height: 46px;
+		line-height: 46px;
 		font-weight: normal;
+    background: #4178ec;
 	}
 
 	.details .softlogo {
@@ -1063,35 +1160,37 @@
 		height: auto;
 	}
 
-	.details .center-box .right-box h3 span {
+	.details  .right-box h3 span {
 		margin-right: 10px;
 		float: right;
 		font-size: 14px;
-		color: #d2525b;
+		color: #d1d4ef;
 	}
 
-	.details .center-box .right-box h3 a {
+	.details .right-box h3 a {
 		float: right;
 		display: inline-block;
 	}
 
-	.details .center-box .right-box dl {
-		margin-top: 5px;
+	.details .right-box dl {
+    margin: 5px 10px;
+    padding-bottom:5px ;
 		color: #333;
 		cursor: pointer;
+    border-bottom: 1px #e9e9e9 dashed;
 	}
 
-	.details .center-box .right-box dl:hover span,
-	.details .center-box .right-box dl:hover dd {
+	.details .right-box dl:hover span,
+	.details  .right-box dl:hover dd {
 		color: #e33214;
 	}
 
-	.details .center-box .right-box dl dt {
+	.details  .right-box dl dt {
 		font-size: 14px;
 		line-height: 26px;
 	}
 
-	.details .center-box .right-box dl dt span {
+	.details  .right-box dl dt span {
 		display: block;
 		width: 220px;
 		overflow: hidden;
@@ -1100,12 +1199,12 @@
 		/*不换行 */
 	}
 
-	.details .center-box .right-box dl dd {
+	.details  .right-box dl dd {
 		font-size: 12px;
 		color: #999;
 	}
 
-	.details .center-box .right-box dl dd span {
+	.details  .right-box dl dd span {
 		margin: 0 10px 0 5px;
 		color: #999;
 	}
@@ -1126,13 +1225,14 @@
 		overflow: hidden;
 		text-align: center;
 		width: 800px;
+    float:left;
 	}
 
 	.details .bottom-btn-box li {
 		overflow: hidden;
 		display: inline-block;
 		margin-right: 10px;
-		width: 150px;
+    padding-right: 20px;
 		height: 48px;
 		line-height: 48px;
 		text-align: center;
@@ -1158,4 +1258,19 @@
 		line-height: 48px;
 		color: #fff;
 	}
+  .details .el-tabs--border-card>.el-tabs__header{
+    height: 48px;
+    background: #4178ec;
+    border-radius: 6px 6px 0 0;
+  }
+  .details .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active{
+    margin: 9px 0 0 50px;
+    font-size: 16px;
+    background: #ffffff;
+    border: none;
+    border-radius: 6px 6px 0 0;
+  }
+  .details .el-tabs--border-card{
+    border: none;
+  }
 </style>

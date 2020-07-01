@@ -120,10 +120,10 @@
 
 						<img :src="item.imgUrl" />
 					</li>-->
-						<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>
+						<!--<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>
 			<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>
 			<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>
-			<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>
+			<li><img src="http://39.105.190.39:8080/rossc/upload/20190418/023bff7f9a7742febb084f558bf1f7f3.jpg"></li>-->
 
 				</ul>
 
@@ -534,7 +534,7 @@
 			_this.ifMobile = _this.ismobile()
 			var params = new URLSearchParams();
 			params.append("activityId", _this.$route.query.id);
-			_this.axios.post(baseUrl.baseUrl + '/web/activity/activityInfo ', params)
+			_this.axios.post(baseUrl.baseUrl + '/haoweb/web/activity/activityInfo ', params)
 				.then(function(response) {
 					_this.activityData = response.data.activity;
 					_this.activityInfo = _this.activityData.activityInfo
@@ -572,7 +572,7 @@
 			//下载比赛文档
 			getWorldUrl: function() {
 				var _this = this;
-				_this.axios.post(baseUrl.baseUrl + '/web/join/joinDocPackageDownload')
+				_this.axios.post(baseUrl.baseUrl + '/haoweb/web/join/joinDocPackageDownload')
 					.then(function(response) {
 						_this.wordUrl = baseUrl.baseUrlImg + response.data.packageUrl
 
@@ -591,7 +591,7 @@
 				if(this.userId) {
 					//验证token是否过期
 					_this.axios.defaults.headers.common['token'] = this.token;
-					_this.axios.post(baseUrl.baseUrl + '/web/user/checkingToken')
+					_this.axios.post(baseUrl.baseUrl + '/haoweb/web/user/checkingToken')
 						.then(function(response) {
 							if(response.data.code == 401) {
 								_this.$confirm(response.data.msg, '提示', {
@@ -600,7 +600,7 @@
 									type: 'warning'
 								}).then(() => {
 									sessionStorage.clear()
-									var newUrl = baseUrl.baseUrl + '/web/auth/login';
+									var newUrl = baseUrl.baseUrl + '/haoweb/web/auth/login';
 									window.open(newUrl)
 									return false;
 
@@ -627,7 +627,7 @@
 						cancelButtonText: '取消',
 						type: 'warning'
 					}).then(() => {
-						var newUrl = baseUrl.baseUrl + '/web/auth/login';
+						var newUrl = baseUrl.baseUrl + '/haoweb/web/auth/login';
 						window.open(newUrl)
 
 					}).catch(() => {
@@ -883,7 +883,7 @@
 						}
 						var _this = this;
 						_this.axios.defaults.headers.common['token'] = _this.token;
-						_this.axios.post(baseUrl.baseUrl + '/web/join/saveJoinInfo', joinVo)
+						_this.axios.post(baseUrl.baseUrl + '/haoweb/web/join/saveJoinInfo', joinVo)
 							.then(function(response) {
 
 								_this.$alert(response.data.msg, '提示信息', {
@@ -969,7 +969,7 @@
 			//获取报名表单下拉内容
 			getListOption: function() {
 				var _this = this;
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/softCtyAllList')
+				_this.axios.post(baseUrl.baseUrl + '/haoweb/web/soft/softCtyAllList')
 					.then(function(response) {
 						var newResponse = response.data.list
 

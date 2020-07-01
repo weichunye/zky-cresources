@@ -4,14 +4,14 @@
 		<!--content-->
 		<div class="content">
 			<div class="top-box">
-				<p>昵称：{{userInfo.trueName}}</p>
-				<p>邮箱：{{userInfo.cstnetId}}</p>
+				<p>{{$t('lang.nickname')}}：{{userInfo.trueName}}</p>
+				<p>{{$t('lang.email')}}：{{userInfo.cstnetId}}</p>
 			</div>
 		</div>
 		<!--//content-->
 		<div class="content">
-			<el-tabs @tab-click="handleClick">
-				<el-tab-pane label="我的软件">
+			<el-tabs type="card" @tab-click="handleClick">
+				<el-tab-pane :label="$t('lang.Mysoftware')">
 					<div class="min-height">
 						<!--软件信息-->
 						<div v-if="mySoftList.length>0">
@@ -30,24 +30,23 @@
 								<p v-if="item.isExpertEvaluate==1&&item.isEvaluate==1" class="state-ps state-pass">评估已通过
 							</p>
 							<el-popover placement="top-start" title="审核提示" width="200" trigger="hover" :content="item.expertEvaluateRejectReason">
-							<p slot="reference" v-if="item.isExpertEvaluate==1&&item.isEvaluate==2" class="state-ps state-nopass">评估未通过 	
+							<p slot="reference" v-if="item.isExpertEvaluate==1&&item.isEvaluate==2" class="state-ps state-nopass">评估未通过
 							</p>
 							</el-popover>
 				<!--	ppp，{{item.isExpertEvaluate}}kkk，{{item.isMatchSoft}}-->
-						
+
 							<!--<p v-if="item.isExpertEvaluate==0" @click="getText(item.softName,item.softUrl,item.id)"  class=" state-zjpg">请专家评估
 							</p>-->
 							</span>
 								<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-									<h3><p v-if="item.isMatchSoft" class="ifmatchsoft1">竞</p>
-										<p v-else="" class="ifmatchsoft2">投</p>
-									<p class="hp">{{item.softName}}</p>	
+									<h3><!--<p v-if="item.isMatchSoft" class="ifmatchsoft1">竞</p>
+										<p v-else="" class="ifmatchsoft2">投</p>-->
+									<p class="hp">{{item.softName}}</p>
 									<p   v-if="item.firstAudit==1">
-
-										<span v-if="item.isHot==1" class="hot-bg">热</span>
-										<span v-if="item.isRecommend==1" class="jian-bg">荐</span>
-										<span v-if="item.isChina==1" class="guo-bg">国</span>
-										<!--<span v-if="item.isEvaluate==1" class="xin-bg">已评估</span>-->
+                    <sup v-if="item.isHot == 1" class="suba">热</sup>
+										<sup v-if="item.isRecommend==1" class="sub">荐</sup>
+										<sup v-if="item.isChina==1" class="subchania">国</sup>
+										<sup v-if="item.isEvaluate==1" class="subping">信</sup>
 									</p>
 									 </h3>
 									<p class="p">{{item.softIntroduce}}</p>
@@ -65,7 +64,7 @@
 
 								</router-link>
 								<div v-if="!item.isMatchSoft" class="btn-box">
-								
+
 									<!--<button v-if="item.isExpertEvaluate==0&&!item.isMatchSoft&&item.isSelf==1&&item.firstAudit==1" @click="getText(item.softName,item.softUrl,item.id)" class="button4">请专家评估</button>-->
 									<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
 										<button class="button1">查看</button>
@@ -97,16 +96,22 @@
 							</div>
 						</div>
 
-						<el-pagination layout="total, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange" :total="mySoftObj.total" :current-page.sync="mySoftObj.page" :page-size="limit">
+						<el-pagination layout="total, prev, pager, next, jumper" style="margin:30px 0; text-align: center" @size-change="handleSizeChange" @current-change="handleCurrentChange" :total="mySoftObj.total" :current-page.sync="mySoftObj.page" :page-size="limit">
 						</el-pagination>
 					</div>
 
 				</el-tab-pane>
-				<el-tab-pane label="下载">
+				<el-tab-pane :label="$t('lang.download')">
 					<div class="min-height">
 						<div v-if="myDownList.dataList.length>0" class="personal-info-box" v-for="item in myDownList.dataList">
 							<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-								<h3><p class="hp">{{item.softName}}</p> <span v-if="item.isRecommend" class="jian-bg">荐</span> <span v-if="item.isHot==1" class="hot-bg">热</span><span v-if="item.isChina" class="guo-bg">国</span> <span v-if="item.isEvaluate" class="xin-bg">已评估</span> </h3>
+								<h3>
+                  <p class="hp">{{item.softName}}</p>
+                  <sup v-if="item.isRecommend" class="suba">荐</sup>
+                  <sup v-if="item.isHot" class="sub">热</sup>
+                  <sup v-if="item.isChina==1" class="subchania">国</sup>
+                  <sup v-if="item.isEvaluate==1" class="subping">信</sup>
+                </h3>
 								<p class="p">{{item.softIntroduce}}...</p>
 								<!--	<p class="rj-infor">
 									<span>收藏：&nbsp; 5</span>
@@ -124,16 +129,21 @@
 
 							</div>
 						</div>
-						<el-pagination layout="total, prev, pager, next, jumper" @size-change="myDownListSizeChange" @current-change="myDownListCurrentChange" :total="myDownList.total" :current-page.sync="myDownList.page" :page-size="limit">
+						<el-pagination layout="total, prev, pager, next, jumper" style="margin:30px 0;text-align: center" @size-change="myDownListSizeChange" @current-change="myDownListCurrentChange" :total="myDownList.total" :current-page.sync="myDownList.page" :page-size="limit">
 						</el-pagination>
 					</div>
 				</el-tab-pane>
 
-				<el-tab-pane label="收藏">
+				<el-tab-pane :label="$t('lang.Collect')">
 					<div class="min-height">
 						<div v-if="collecTionNum.dataList.length>0" class="personal-info-box" v-for="item in collecTionNum.dataList">
 							<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-								<h3><p class="hp">{{item.softName}}</p> <span v-if="item.isRecommend" class="jian-bg">荐</span> <span v-if="item.isHot==1" class="hot-bg">热</span><span v-if="item.isChina" class="guo-bg">国</span> <span v-if="item.isEvaluate" class="xin-bg">已评估</span> </h3>
+								<h3><p class="hp">{{item.softName}}</p>
+                  <sup v-if="item.isRecommend" class="suba">荐</sup>
+                  <sup v-if="item.isHot==1" class="sub">热</sup>
+                  <sup v-if="item.isChina==1" class="subchania">国</sup>
+                  <sup v-if="item.isEvaluate==1" class="subping">信</sup>
+                </h3>
 								<p class="p">{{item.softIntroduce}}...</p>
 								<p class="rj-time">
 									{{item.createTime}}
@@ -145,15 +155,20 @@
 
 							</div>
 						</div>
-						<el-pagination layout="total, prev, pager, next, jumper" @size-change="collecTionNumSizeChange" @current-change="collecTionNumCurrentChange" :total="collecTionNum.total" :current-page.sync="collecTionNum.page" :page-size="limit">
+						<el-pagination layout="total, prev, pager, next, jumper" style="margin:30px 0;text-align: center" @size-change="collecTionNumSizeChange" @current-change="collecTionNumCurrentChange" :total="collecTionNum.total" :current-page.sync="collecTionNum.page" :page-size="limit">
 						</el-pagination>
 					</div>
 				</el-tab-pane>
-				<el-tab-pane label="分享">
+				<el-tab-pane :label="$t('lang.share')">
 					<div class="min-height">
 						<div v-if="enjoyNum.dataList.length>0" class="personal-info-box" v-for="item in enjoyNum.dataList">
 							<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-								<h3><p class="hp">{{item.softName}}</p> <span v-if="item.isRecommend" class="jian-bg">荐</span> <span v-if="item.isHot==1" class="hot-bg">热</span><span v-if="item.isChina" class="guo-bg">国</span> <span v-if="item.isEvaluate" class="xin-bg">已评估</span> </h3>
+								<h3><p class="hp">{{item.softName}}</p>
+                  <sup v-if="item.isRecommend" class="suba">荐</sup>
+                  <sup v-if="item.isHot==1" class="sub">热</sup>
+                  <sup v-if="item.isChina==1" class="subchania">国</sup>
+                  <sup v-if="item.isEvaluate==1" class="subping">信</sup>
+                </h3>
 								<p class="p">{{item.softIntroduce}}...</p>
 								<p class="rj-time">
 									{{item.createTime}}
@@ -164,61 +179,11 @@
 							<div class="empty-tit">
 							</div>
 						</div>
-						<el-pagination layout="total, prev, pager, next, jumper" @size-change="enjoyNumSizeChange" @current-change="enjoyNumCurrentChange" :total="enjoyNum.total" :current-page.sync="enjoyNum.page" :page-size="limit">
+						<el-pagination layout="total, prev, pager, next, jumper"  style="margin:30px 0; text-align: center" @size-change="enjoyNumSizeChange" @current-change="enjoyNumCurrentChange" :total="enjoyNum.total" :current-page.sync="enjoyNum.page" :page-size="limit">
 						</el-pagination>
 					</div>
 				</el-tab-pane>
-				<el-tab-pane label="我的报名">
-					<div class="min-height">
-						<template>
-							<el-table :data="myJoinList" border style="width: 100%;">
-								<el-table-column header-align="center" prop="joinTime" label="活动时间" width="140">
-									<template slot-scope="scope">
-										{{scope.row.joinTime.substring(0,10)}}
-									</template>
-									
-								</el-table-column>
-
-								<el-table-column header-align="center" prop="activityName" label="活动名称">
-								</el-table-column>
-								<el-table-column header-align="center" prop="softName" label="软件名称" >
-								</el-table-column>
-								<el-table-column header-align="center" prop="status" label="状态" width="150">
-									<template slot-scope="scope">
-										{{scope.row.status==3?'已结束':'正在进行'}}
-
-									</template>
-								</el-table-column>
-								<el-table-column header-align="center" prop="rank==0?'暂无':rank" label="我的名次" width="120">
-									<template slot-scope="scope">
-										{{scope.row.rank==0?'暂无':scope.row.rank}}
-
-									</template>
-								</el-table-column>
-
-								<el-table-column header-align="left" fixed="right" label="操  作" width="420">
-									<template slot-scope="scope">
-
-										<el-button style='float: left; margin-right: 5px;' @click="getActivityInfo(scope.row)" size="small">查看报名详情</el-button>
-										<router-link target="_blank" :to="{path:'/activityGame',query:{id:scope.row.id}}">
-
-											<el-button style='float: left; margin-right: 5px;' size="small">查看活动详情</el-button>
-
-										</router-link>
-										<el-button style='float: left;' v-if="scope.row.firstAudit!=1" type="primary" @click="toModify(scope.row)" size="small">修改</el-button>
-										<el-button style='float: left;' type="danger" @click="delSoft(scope.row)" size="small">删除</el-button>
-										<!--<el-button @click="getText(scope.row.activityName,scope.row.softUrl,scope.row.id)"  type="primary" size="small">请专家评估</el-button>-->
-
-									</template>
-								</el-table-column>
-
-							</el-table>
-						</template>
-						<el-pagination layout="total, prev, pager, next, jumper" @size-change="myJoinSizeChange" @current-change="myJoinCurrentChange" :total="myJoinObj.total" :current-page.sync="myJoinObj.page" :page-size="limit">
-						</el-pagination>
-					</div>
-				</el-tab-pane>
-				<el-tab-pane label="我的反馈">
+		<!--		<el-tab-pane label="我的反馈">
 					<div class="min-height">
 						<el-table class="myfeedbacktable" :data="myfeedbackList" border style="width: 100%; text-align: left;">
 							<el-table-column prop="createTime" label="反馈日期" width="180">
@@ -245,7 +210,7 @@
 
 					</div>
 				</el-tab-pane>
-
+-->
 			</el-tabs>
 
 		</div>
@@ -492,7 +457,7 @@
 						<p></p>
 
 					</el-form-item>
-					<p class="uploadtit"> 包括软件界面展示、运行结果展示或其他能够展示软件图片或视频，图片格式为jpg，单个图片不大于1M，视频时长不超过5分钟。
+					<p class="uploadtit"> 包括软件界面展示、运行结果展示或其他能够展示软件图片或视频，图片格式为jpg或png，单个图片不大于1M，视频时长不超过5分钟。
 					</p>
 					<!--<el-upload class="upload-demo" ref="softResultDocRef" :action=upUrl multiple :on-success='softResultDocSuccess' :limit="1" alllist-con :auto-upload="false">
 						<el-button slot="trigger" size="small" type="primary">选取文件</el-button>
@@ -506,7 +471,7 @@
 						<em class="addti">*</em>
 						<el-input v-model="form.frameworkReportName" placeholder="" auto-complete="off"></el-input>
 						<div class="tit">
-						
+
 
 						</div>
 					</el-form-item>
@@ -552,13 +517,14 @@
 					state: '进行中',
 					ranking: '纪念奖'
 				}],
+        userId:window.SITE_CONFIG['userId'],
 				dialogReview: false,
 				innerVisible: false,
 				ActivityInfoPop: false,
 				innerTitle: '',
-				upUrl: baseUrl.baseUrl + '/sys/upload/uploadForEvaluate/',
-				imgUrlNew: baseUrl.baseUrl + '/sys/upload/uploadForEvaluateImg/',
-				imgUrlVideo: baseUrl.baseUrl + '/sys/upload/uploadForEvaluateVideo/',
+				upUrl:window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluate/',
+				imgUrlNew: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateImg/',
+				imgUrlVideo: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateVideo/',
 				form: {
 					name: '',
 					softUrl: '',
@@ -588,7 +554,6 @@
 				mySoftList: [],
 				myollectionList: [],
 				mySharList: [],
-				myJoinList: [], //我的报名
 				limit: 5,
 				myDownList: {
 					dataList: [],
@@ -655,40 +620,39 @@
 			}
 		},
 		mounted() {
-			var _this = this;
+      $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
+        console.log("科技云验证是否登录",data.result)
+        //本地缓存有数据，但是是未登录状态，验证是否退出
+        if(!data.result)
+          window.location.href=window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
+      })
 			//我的软件
-			_this.getMySoft()
-			//获取下载数据
-			/*		_this.getFollowList('collecTionNum', 1)
-					_this.getFollowList('enjoyNum', 2)
-					_this.getFollowList('myDownList', 3)
-					//我的报名
-					_this.getMyJoinList()
-					_this.getmyfeedbackList()*/
-			_this.userInfoNew = this.userInfo.trueName;
-			_this.cstnetIdNew = this.userInfo.cstnetId
+			this.getMySoft()
+      console.log("userId个人中心",this.userId)
+
+			this.userInfoNew = this.userInfo.trueName;
+			this.cstnetIdNew = this.userInfo.cstnetId
 
 			//验证token是否过期
-			_this.axios.defaults.headers.common['token'] = this.token;
-			_this.axios.post(baseUrl.baseUrl + '/web/user/checkingToken')
-				.then(function(response) {
-					if(response.data.code == 401) {
-						_this.$confirm(response.data.msg, '提示', {
-							confirmButtonText: '确定',
-							cancelButtonText: '取消',
-							type: 'warning'
-						}).then(() => {
-							sessionStorage.clear()
-							var newUrl = baseUrl.baseUrl + '/web/auth/login';
-							window.open(newUrl)
-							return false;
+			this.axios.defaults.headers.common['token'] = this.token;
+			this.$http.post('haoweb/web/user/checkingToken')
+				.then((response)=>{
+          if(response.data.code == 401) {
+            this.$confirm(response.data.msg, '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              sessionStorage.clear()
+              var newUrl = baseUrl.baseUrl + '/web/auth/login';
+              window.open(newUrl)
+              return false;
 
-						}).catch(() => {
+            }).catch(() => {
 
-						});
-					}
-
-				})
+            });
+          }
+        })
 				.catch(function(error) {
 					console.log(error);
 				})
@@ -697,36 +661,34 @@
 		methods: {
 			//我的软件
 			getMySoft: function() {
-				var _this = this;
 				var params1 = new URLSearchParams();
 				params1.append("userId", this.userId);
-				params1.append("token", this.token);
-				params1.append("page", _this.mySoftObj.page);
-				params1.append("limit", _this.limit);
-				_this.axios.post(baseUrl.baseUrl + '/web/user/mySoftList', params1)
-					.then(function(response) {
-						_this.mySoftList = response.data.page.list;
-						_this.mySoftObj.page = response.data.page.currPage;
-						_this.mySoftObj.total = response.data.page.totalCount;
-					})
+				params1.append("page", this.mySoftObj.page);
+				params1.append("limit", this.limit);
+				this.$http.post('/haoweb/web/user/mySoftList', params1)
+					.then((response)=>{
+					  console.log("response**********",response)
+            this.mySoftList = response.data.page.list;
+            this.mySoftObj.page = response.data.page.currPage;
+            this.mySoftObj.total = response.data.page.totalCount;
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
 			},
 			//我的投递
 			getmyfeedbackList: function() {
-				var _this = this;
 				var params1 = new URLSearchParams();
 				params1.append("userId", this.userId);
 				params1.append("token", this.token);
-				params1.append("page", _this.myfeedbackObj.page);
-				params1.append("limit", _this.limit);
-				_this.axios.post(baseUrl.baseUrl + '/web/user/listMyFeedback', params1)
-					.then(function(response) {
-						_this.myfeedbackList = response.data.page.list;
-						_this.myfeedbackObj.page = response.data.page.currPage;
-						_this.myfeedbackObj.total = response.data.page.totalCount;
-					})
+				params1.append("page", this.myfeedbackObj.page);
+				params1.append("limit", this.limit);
+				this.$http.post( '/haoweb/web/user/listMyFeedback', params1)
+					.then((response)=>{
+            this.myfeedbackList = response.data.page.list;
+            this.myfeedbackObj.page = response.data.page.currPage;
+            this.myfeedbackObj.total = response.data.page.totalCount;
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
@@ -738,37 +700,16 @@
 				this.dialogVisible = true;
 			},
 			getFollowList: function(ele, type) {
-				var _this = this;
 				var params = new URLSearchParams();
 				params.append("userId", this.userId);
-				params.append("token", this.token);
-				params.append("page", _this[ele].page);
-				params.append("limit", _this.limit);
+				params.append("page", this[ele].page);
+				params.append("limit", this.limit);
 				params.append("operationType", type);
-				_this.axios.post(baseUrl.baseUrl + '/web/user/followList', params)
-					.then(function(response) {
-						_this[ele].dataList = response.data.page.records;
-						_this[ele].total = response.data.page.total;
-					})
-					.catch(function(error) {
-						console.log(error);
-					})
-
-			},
-			getMyJoinList: function() {
-				var _this = this;
-				var params = new URLSearchParams();
-				params.append("userId", this.userId);
-				params.append("token", this.token);
-				params.append("page", _this.myJoinObj.page);
-				params.append("limit", _this.limit);
-				_this.axios.post(baseUrl.baseUrl + '/web/user/myJoinList', params)
-					.then(function(response) {
-						_this.myJoinList = response.data.page.records;
-						_this.myJoinObj.page = response.data.page.current;
-						_this.myJoinObj.total = response.data.page.total;
-
-					})
+				this.$http.post('/haoweb/web/user/followList', params)
+					.then((response)=>{
+            this[ele].dataList = response.data.page.records;
+            this[ele].total = response.data.page.total;
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
@@ -785,7 +726,7 @@
 				var codeStype;
 				if(response.code == 0) {
 					codeStype = 'success'
-					
+
 
 				} else {
 					codeStype = 'warning'
@@ -796,7 +737,7 @@
 			},
 			analysisDocChange(file) {
 			  	this.analysisCheck=file.name
-       			 
+
       			},
 			//项目规格书
 			submitItemBook() {
@@ -956,57 +897,51 @@
 			},
 			//tabs
 			handleClick: function(tab, event) {
-				var _this = this;
+
 
 				if(tab.index == 0) {
-					_this.getMySoft()
+					this.getMySoft()
 				}
 				if(tab.index == 1) {
-					_this.getFollowList('myDownList', 3)
+					this.getFollowList('myDownList', 3)
 				}
 				if(tab.index == 2) {
-					_this.getFollowList('collecTionNum', 1)
+					this.getFollowList('collecTionNum', 1)
 				}
 				if(tab.index == 3) {
-					_this.getFollowList('enjoyNum', 2)
+					this.getFollowList('enjoyNum', 2)
 				}
 				if(tab.index == 4) {
-					_this.getMyJoinList()
-				}
-				if(tab.index == 5) {
-					_this.getmyfeedbackList()
+					this.getmyfeedbackList()
 				}
 
 			},
 
 			//获取参赛人信息
 			getActivityInfo: function(row) {
-				var _this = this;
-				_this.ActivityInfoPop = true;
+				this.ActivityInfoPop = true;
 				var params = new URLSearchParams();
-				/*_this.axios.defaults.headers.common['token'] = this.token;*/
+				/*this.axios.defaults.headers.common['token'] = this.token;*/
 				params.append("token", this.token);
 				params.append("userId", row.userId);
 				params.append("softId", row.softId);
 				params.append("activityId", row.id);
-				_this.axios.post(baseUrl.baseUrl + '/web/user/getJoinDetail', params)
-					.then(function(response) {
-						_this.singInfo = response.data.softInfo;
-						_this.teacherInfo = response.data.teacher;
-						_this.singuserList = response.data.userList;
-						_this.softDocObg = response.data.softDoc;
-
-						_this.analysisDocUrl = baseUrl.baseUrlImg + _this.softDocObg.analysisDoc
-						_this.frameworkReportDocUrl = baseUrl.baseUrlImg + _this.softDocObg.frameworkReportDoc
-						_this.itemBookDocUrl = baseUrl.baseUrlImg + _this.softDocObg.itemBookDoc
-						_this.testDocUrl = baseUrl.baseUrlImg + _this.softDocObg.testDoc
-						_this.userDocUrl = baseUrl.baseUrlImg + _this.softDocObg.userDoc
-						_this.softImgOneUrl = baseUrl.baseUrlImg + _this.softDocObg.softImgOne
-						_this.softImgTwoUrl = baseUrl.baseUrlImg + _this.softDocObg.softImgTwo
-						_this.softImgThreeUrl = baseUrl.baseUrlImg + _this.softDocObg.softImgThree
-						_this.softVideoUrl = baseUrl.baseUrlImg + _this.softDocObg.softVideo
-
-					})
+				this.$http.post( '/haoweb/web/user/getJoinDetail', params)
+					.then((response)=>{
+            this.singInfo = response.data.softInfo;
+            this.teacherInfo = response.data.teacher;
+            this.singuserList = response.data.userList;
+            this.softDocObg = response.data.softDoc;
+            this.analysisDocUrl = baseUrl.baseUrlImg + this.softDocObg.analysisDoc
+            this.frameworkReportDocUrl = baseUrl.baseUrlImg + this.softDocObg.frameworkReportDoc
+            this.itemBookDocUrl = baseUrl.baseUrlImg + this.softDocObg.itemBookDoc
+            this.testDocUrl = baseUrl.baseUrlImg + this.softDocObg.testDoc
+            this.userDocUrl = baseUrl.baseUrlImg + this.softDocObg.userDoc
+            this.softImgOneUrl = baseUrl.baseUrlImg + this.softDocObg.softImgOne
+            this.softImgTwoUrl = baseUrl.baseUrlImg + this.softDocObg.softImgTwo
+            this.softImgThreeUrl = baseUrl.baseUrlImg + this.softDocObg.softImgThree
+            this.softVideoUrl = baseUrl.baseUrlImg + this.softDocObg.softVideo
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
@@ -1014,30 +949,26 @@
 			},
 			//修改参赛餐料
 			toModify: function(row) {
-				var _this = this;
 				var params = new URLSearchParams();
-				params.append("token", this.token);
 				params.append("softId", row.softId);
-				_this.axios.post(baseUrl.baseUrl + 'web/join/checkIsUpdate', params)
-					.then(function(response) {
-						if(response.data == 1) {
-							_this.$alert(response.data.msg, '提示信息', {
-								confirmButtonText: '确定',
-							});
-						} else {
-							var toModifyObj = {
-								activityId: row.id,
-								softId: row.softId,
-								check: true,
-							}
-							_this.$router.push({
-								path: '/agSignUp',
-								query: toModifyObj
-							});
-
-						}
-
-					})
+				this.$http.post( '/haoweb/web/join/checkIsUpdate', params)
+					.then((response)=>{
+            if(response.data == 1) {
+              this.$alert(response.data.msg, '提示信息', {
+                confirmButtonText: '确定',
+              });
+            } else {
+              var toModifyObj = {
+                activityId: row.id,
+                softId: row.softId,
+                check: true,
+              }
+              this.$router.push({
+                path: '/agSignUp',
+                query: toModifyObj
+              });
+            }
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
@@ -1045,50 +976,32 @@
 			},
 			//删除软件
 			delSoft: function(row) {
-				var _this = this;
-
 				this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
 					var params = new URLSearchParams();
-					params.append("token", this.token);
 					params.append("userId", this.userId);
 					params.append("softId", row.softId);
 					params.append("activityId", row.id);
-					_this.axios.post(baseUrl.baseUrl + 'web/join/joinInfoDelete', params)
-						.then(function(response) {
-							var titStype = response.data.code == 0 ? 'success' : 'warning'
+					this.$http.post( 'haoweb/web/join/joinInfoDelete', params)
+						.then((response)=>{
+              var titStype = response.data.code == 0 ? 'success' : 'warning'
+              if(response.data.code == 0) {
+                /*this.getMyJoinList()*/
+                this.$message({
+                  type: titStype,
+                  message: response.data.msg
+                });
+              }  else {
+                this.$message({
+                  type: titStype,
+                  message: response.data.msg
+                });
+              }
 
-							if(response.data.code == 0) {
-								_this.getMyJoinList()
-								_this.$message({
-									type: titStype,
-									message: response.data.msg
-								});
-							} else if(response.data.code == 401) {
-								_this.$confirm(response.data.msg, '提示', {
-									confirmButtonText: '确定',
-									cancelButtonText: '取消',
-									type: 'warning'
-								}).then(() => {
-									sessionStorage.clear()
-									var newUrl = baseUrl.baseUrl + '/web/auth/login';
-									window.open(newUrl)
-									return false;
-
-								}).catch(() => {
-
-								});
-							} else {
-								_this.$message({
-									type: titStype,
-									message: response.data.msg
-								});
-							}
-
-						})
+            })
 						.catch(function(error) {
 							console.log(error);
 						})
@@ -1103,52 +1016,33 @@
 			},
 			//
 			delSoftOrdinary: function(row) {
-				var _this = this;
+
 				this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
-				}).then(() => {
-
+				}).then((response) => {
 					var params = new URLSearchParams();
-					params.append("token", this.token);
 					params.append("userId", this.userId);
 					params.append("softId", row.id);
 					params.append("isSelf", row.isSelf);
-					_this.axios.post(baseUrl.baseUrl + 'web/user/softInfoDelete', params)
-						.then(function(response) {
-							var titStype = response.data.code == 0 ? 'success' : 'warning'
+					this.$http.post( '/haoweb/web/user/softInfoDelete', params)
+						.then((response)=>{
+              var titStype = response.data.code == 0 ? 'success' : 'warning'
+              if(response.data.code == 0) {
+                this.getMySoft()
+                this.$message({
+                  type: titStype,
+                  message: response.data.msg
+                });
+              }  else {
+                this.$message({
+                  type: titStype,
+                  message: response.data.msg
+                });
+              }
 
-							if(response.data.code == 0) {
-								_this.getMySoft()
-
-								_this.$message({
-									type: titStype,
-									message: response.data.msg
-								});
-							} else if(response.data.code == 401) {
-								_this.$confirm(response.data.msg, '提示', {
-									confirmButtonText: '确定',
-									cancelButtonText: '取消',
-									type: 'warning'
-								}).then(() => {
-									sessionStorage.clear()
-									var newUrl = baseUrl.baseUrl + '/web/auth/login';
-									window.open(newUrl)
-									return false;
-
-								}).catch(() => {
-
-								});
-							} else {
-
-								_this.$message({
-									type: titStype,
-									message: response.data.msg
-								});
-							}
-
-						})
+            })
 						.catch(function(error) {
 							console.log(error);
 						})
@@ -1163,11 +1057,11 @@
 			},
 
 			toActivity(row) {
-				var _this = this;
+
 				var newObj = {
 					id: row.id
 				}
-				_this.$router.push({
+				this.$router.push({
 					path: '/activityGame',
 					query: newObj
 				});
@@ -1205,14 +1099,7 @@
 				this.enjoyNum.pageNum = val;
 				this.getFollowList('enjoyNum', 2)
 			},
-			myJoinSizeChange(val) {
-				this.myJoinObj.pageSize = val;
-				this.getMyJoinList()
-			},
-			myJoinCurrentChange(val) {
-				this.myJoinObj.pageNum = val;
-				this.getMyJoinList()
-			},
+
 			myfeedbackObjSizeChange(val) {
 				this.myfeedbackObj.pageSize = val;
 				this.getmyfeedbackList()
@@ -1258,10 +1145,9 @@
 				this.fileList6=[];
 				this.fileList7=[];
 				this.fileList8=[];
-				
+
 			},
 			expertReview: function(softId) {
-				var _this = this;
 				var softDoc = {
 					analysisDoc: this.form.analysisDoc,
 					analysisDocOriginalName: this.form.analysisName,
@@ -1288,45 +1174,29 @@
 					softVideoOriginalName: this.form.softVideoName,
 					isMatchSoft: 1
 				}
+				this.$http.post('/haoweb/web/soft/startEvaluate', softDoc)
+					.then((response)=>{
+            if(response.data.code == 0) {
+              this.$alert(response.data.msg, '提示信息', {
+                confirmButtonText: '确定',
+              });
+              this.dialogReview = false;
+              this.getMySoft()
 
-				_this.axios.defaults.headers.common['token'] = this.token;
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/startEvaluate', softDoc)
-					.then(function(response) {
-						if(response.data.code == 0) {
-							_this.$alert(response.data.msg, '提示信息', {
-								confirmButtonText: '确定',
-							});
-							_this.dialogReview = false;
-							_this.getMySoft()
+            }  else {
+              this.$alert(response.data.msg, '提示信息', {
+                confirmButtonText: '确定',
+              });
+            }
 
-						} else if(response.data.code == 401) {
-							_this.$confirm(response.data.msg, '提示', {
-								confirmButtonText: '确定',
-								cancelButtonText: '取消',
-								type: 'warning'
-							}).then(() => {
-								sessionStorage.clear()
-								var newUrl = baseUrl.baseUrl + '/web/auth/login';
-								window.open(newUrl)
-								return false;
-
-							}).catch(() => {
-
-							});
-						} else {
-							_this.$alert(response.data.msg, '提示信息', {
-								confirmButtonText: '确定',
-							});
-						}
-
-					})
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
 
 			},
 			submitForm: function(formName) {
-				var _this = this;
+
 				var softDoc = {
 					analysisDoc: this.form.analysisDoc,
 					analysisDocOriginalName: this.form.analysisName,
@@ -1355,65 +1225,50 @@
 				}
 
 				if(!this.form.analysisDoc) {
-					_this.messageOpen('请上传分析设计文档', 'warning')
+					this.messageOpen('请上传分析设计文档', 'warning')
 					return false;
 				}
 				if(!this.form.itemBookDoc) {
-					_this.messageOpen('请上传项目规格书', 'warning')
+					this.messageOpen('请上传项目规格书', 'warning')
 					return false;
 				}
 				if(!this.form.testDoc) {
-					_this.messageOpen('请上传测试文档', 'warning')
+					this.messageOpen('请上传测试文档', 'warning')
 					return false;
 				}
 				if(!this.form.userDoc) {
-					_this.messageOpen('请上传用户手册', 'warning')
+					this.messageOpen('请上传用户手册', 'warning')
 					return false;
 				}
 
 				if(!this.form.softImgOne && !this.form.softImgTwo && !this.form.softImgThree && !this.form.softVideo) {
-					_this.messageOpen('请上传软件效果展示', 'warning')
+					this.messageOpen('请上传软件效果展示', 'warning')
 					return false;
 				}
 				/*if(!this.form.frameworkReportDoc) {
-					_this.messageOpen('请上传设计架构及技术报告', 'warning')
+					this.messageOpen('请上传设计架构及技术报告', 'warning')
 					return false;
 				}*/
 				if(this.form.analysisDoc && this.form.itemBookDoc && this.form.testDoc && this.form.userDoc) {
 
-					_this.$refs[formName].validate((valid) => {
+					this.$refs[formName].validate((valid) => {
 						if(valid) {
-							_this.axios.defaults.headers.common['token'] = this.token;
-							_this.axios.post(baseUrl.baseUrl + '/web/soft/startEvaluate', softDoc)
-								.then(function(response) {
-									if(response.data.code == 0) {
-										_this.$alert(response.data.msg, '提示信息', {
-											confirmButtonText: '确定',
-										});
-										_this.dialogReview = false;
-										_this.getMySoft()
+							this.axios.defaults.headers.common['token'] = this.token;
+							this.$http.post( '/haoweb/web/soft/startEvaluate', softDoc)
+								.then((response)=>{
+                  if(response.data.code == 0) {
+                    this.$alert(response.data.msg, '提示信息', {
+                      confirmButtonText: '确定',
+                    });
+                    this.dialogReview = false;
+                    this.getMySoft()
 
-									} else if(response.data.code == 401) {
-										_this.$confirm(response.data.msg, '提示', {
-											confirmButtonText: '确定',
-											cancelButtonText: '取消',
-											type: 'warning'
-										}).then(() => {
-											sessionStorage.clear()
-											var newUrl = baseUrl.baseUrl + '/web/auth/login';
-											window.open(newUrl)
-											return false;
-
-										}).catch(() => {
-
-										});
-									} else {
-										_this.$alert(response.data.msg, '提示信息', {
-											confirmButtonText: '确定',
-										});
-									}
-
-								})
+                  }  else {
+                    this.$alert(response.data.msg, '提示信息', {
+                      confirmButtonText: '确定',
+                    });
+                  }
+                })
 								.catch(function(error) {
 									console.log(error);
 								})
@@ -1437,128 +1292,128 @@
 	.personalInfo {
 		background: #f8f8f8;
 	}
-	
+
 	.activityInfo {
 		width: 700px;
 	}
-	
+
 	.activityInfo .acInfo-box {
 		margin: 10px auto;
 		width: 610px;
 	}
-	
+
 	.activityInfo .el-dialog__body {
 		padding-top: 0px;
 	}
-	
+
 	.activityInfo .acInfo-box .libor {
 		overflow: hidden;
 		width: 100%;
 		line-height: 40px;
 		border-bottom: 1px dashed #dedede;
 	}
-	
+
 	.activityInfo .acInfo-box li .el-table th.is-leaf {
 		padding: 0;
 		height: 40px;
 		line-height: 40px;
 		background: #d5e6f3;
 	}
-	
+
 	.activityInfo .el-button--small {
 		float: left;
 	}
-	
+
 	.activityInfo .acInfo-box li h4 {
 		width: 100px;
 		font-size: 14px;
 		float: left;
 		color: #888;
 	}
-	
+
 	.activityInfo .acInfo-box li p {
 		font-size: 14px;
 		float: left;
 		color: #888;
 	}
-	
+
 	.activityInfo .acInfo-box li p a {
 		color: #009cd2;
 		text-decoration: underline;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron {
 		margin: 10px 0 20px;
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron img {
 		display: block;
 		margin: 10px auto;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron p {
 		font-size: 14px;
 		line-height: 24px;
 		color: #666;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h1 {
 		width: 100%;
 		font-size: 24px;
 		line-height: 36px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h2 {
 		width: 100%;
 		font-size: 22px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h3 {
 		width: 100%;
 		font-size: 20px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .ifniming {
 		float: right;
 		font-size: 12px;
 		color: #666;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h4 {
 		width: 100%;
 		font-size: 18px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h5 {
 		width: 100%;
 		font-size: 16px;
 		line-height: 30px;
 	}
-	
+
 	.activityInfo .acInfo-box li .intron h6 {
 		width: 100%;
 		font-size: 14px;
 		line-height: 30px;
 	}
-	
+
 	.personalInfo .examinedialog {
 		width: 800px;
 	}
-	
+
 	.personalInfo .examinedialog input {
 		width: 220px;
 	}
-	
+
 	.personalInfo .examinedialog .box {
 		overflow: hidden;
 		width: 100%;
 	}
-	
+
 	.personalInfo .examinedialog .tit {
 		margin-top: 5px;
 		overflow: hidden;
@@ -1566,7 +1421,7 @@
 		height: 30px;
 		width: 80px;
 	}
-	
+
 	.personalInfo .examinedialog .tit button {
 		float: left;
 		margin: 10px 0 0 15px;
@@ -1577,7 +1432,7 @@
 		background: #fdd765;
 		border-radius: 3px;
 	}
-	
+
 	.personalInfo .examinedialog .tit p {
 		float: left;
 		margin-left: 20px;
@@ -1585,67 +1440,122 @@
 		line-height: 24px;
 		color: #cc0000;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo {
 		position: relative;
 		width: 350px;
 		display: inline-block;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--primary {
 		background: #67C23A;
 		border: 1px solid #67C23A;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--success {
 		background: #46c3a1;
 		border: 1px solid #46c3a1;
 	}
-	
+
 	.personalInfo .examinedialog .upload-demo .el-button--primary span,
 	.personalInfo .examinedialog .upload-demo .el-button--success span {
 		color: #fff;
 	}
-	
+  /*新增*/
+  .personal-info-box h3 sup{
+    display:inline-block;
+    margin:8px 0 0 5px;
+    padding:1px 3px 5px 3px;
+    height: 16px;
+    font-style: normal;
+    text-align: center;
+    line-height: 16px;
+    position: relative;
+  }
+  .personal-info-box h3 sup::after{
+    position: absolute;
+    left:50%;
+    margin-left:-7px;
+    bottom:0;
+    width:0;
+    height:0;
+    border-right:7px solid transparent;
+    border-left:7px solid transparent;
+    content:"";
+  }
+  .personal-info-box h3 .sub{
+    color:#fff;
+    font-size: 12px;
+    background:#ff0000;
+  }
+  .personal-info-box h3 .sub::after{
+    border-bottom:7px solid #fff;
+  }
+  .personal-info-box h3 .suba{
+    color:#fff;
+    font-size: 12px;
+    background:#ec9d2f;
+  }
+  .personal-info-box h3 .suba::after{
+    border-bottom:7px solid #fff;
+  }
+  .personal-info-box h3  .subchania{
+    color:#fff;
+    font-size: 12px;
+    background:#07b62c;
+  }
+  .personal-info-box h3  .subchania::after{
+    border-bottom:7px solid #fff;
+  }
+  .personal-info-box h3  .subping{
+    color:#fff;
+    font-size: 12px;
+    background:#672fd9;
+  }
+  .personal-info-box h3  .subping::after{
+    border-bottom:7px solid #fff;
+  }
+  /*新增*/
+
 	.personalInfo .examinedialog .bottom {
 		padding-top: 20px;
 		overflow: hidden;
 		border-top: 1px dashed #dedede;
 	}
-	
+
 	.personalInfo .examinedialog .bottom .right {
 		overflow: hidden;
 		margin: 0 auto;
 		width: 300px;
 	}
-	
+
 	.personalInfo .examinedialog .bottom .right button {
 		padding: 10px 50px;
 		line-height: 30px;
 	}
-	
+
 	.personalInfo .content {
-		margin-top: 10px;
+    margin: 0 auto;
 		background: #fff;
 		padding: 0 10px;
 		width: 1180px;
 	}
-	
+
 	.personalInfo .content .min-height {
 		margin-top: 10px;
 		min-height: 400px;
 	}
-	
+
 	.personalInfo .content .min-height table td {
 		text-align: center;
 	}
-	
+
 	.personalInfo .top-box {
 		padding: 15px 0;
 		margin: 10px 0;
 		width: 100%;
 	}
-	
+
 	.personalInfo .top-box p {
 		width: 100%;
 		font-size: 14px;
@@ -1653,7 +1563,7 @@
 		color: #666;
 		text-indent: 20px;
 	}
-	
+
 	.personalInfo .avatar-uploader .el-upload {
 		border: 1px dashed #d9d9d9;
 		border-radius: 6px;
@@ -1661,11 +1571,11 @@
 		position: relative;
 		overflow: hidden;
 	}
-	
+
 	.personalInfo .avatar-uploader .el-upload:hover {
 		border-color: #409EFF;
 	}
-	
+
 	.personalInfo .avatar-uploader-icon {
 		font-size: 28px;
 		color: #8c939d;
@@ -1674,55 +1584,55 @@
 		line-height: 100px;
 		text-align: center;
 	}
-	
+
 	.personalInfo .upload-box {
 		margin: 20px;
 		float: left;
 	}
-	
+
 	.personalInfo .upload-box p {
 		width: 100%;
 		text-align: center;
 	}
-	
+
 	.personalInfo .avatar {
 		width: 100px;
 		height: 100px;
 		display: block;
 	}
-	
+
 	.avatar-uploader {
 		position: relative;
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list {
 		position: absolute;
 		left: 0;
 		top: 0;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item {
 		margin: 0;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item-thumbnail {
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item.is-success .el-upload-list__item-name {
 		width: 0;
 		margin: 0;
 	}
-	
+
 	.personalInfo .wordlist {
 		padding: 10px;
 		border-collapse: collapse;
 	}
-	
+
 	.personalInfo .wordlist th,
 	.personalInfo .wordlist td {
 		text-align: center;
@@ -1731,7 +1641,7 @@
 		color: #666;
 		border: 1px solid #EBEEF5;
 	}
-	
+
 	.personalInfo .wordlist td a {
 		display: block;
 		padding: 8px 8px;
@@ -1742,17 +1652,17 @@
 		border-radius: 5px;
 		margin: 10px 5px;
 	}
-	
+
 	.personalInfo .wordlist td a:hover {
 		background: #009cd2;
 		color: #fff;
 	}
-	
+
 	.personalInfo .imglist {
 		margin-top: 10px;
 		overflow: hidden;
 	}
-	
+
 	.personalInfo .imglist img {
 		float: left;
 		margin: 5px;
@@ -1760,11 +1670,11 @@
 		height: 150px;
 		border: 1px solid #EBEEF5;
 	}
-	
+
 	.personalInfo .content .min-height .myfeedbacktable td {
 		text-align: left;
 	}
-	
+
 	.personalInfo .addti {
 		float: left;
 		font-style: normal;
@@ -1772,19 +1682,19 @@
 		font-weight: bold;
 		color: #F56C6C;
 	}
-	
+
 	.personalInfo .box-big .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 150px;
 	}
-	
+
 	.personalInfo .box .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 150px;
 	}
-	
+
 	.personalInfo .uploadtit {
 		display: block;
 		margin-bottom: 20px;
@@ -1794,7 +1704,7 @@
 		color: #606266;
 		line-height: 16px;
 	}
-	
+
 	.personalInfo .ifmatchsoft1 {
 		margin: 5px 10px 0 0px;
 		float: left;
@@ -1807,7 +1717,7 @@
 		border-radius: 5px;
 		background: url(../assets/bg/bg_1.png) no-repeat
 	}
-	
+
 	.personalInfo .ifmatchsoft2 {
 		margin: 5px 10px 0 0px;
 		float: left;
@@ -1825,9 +1735,192 @@
 		width: 100%;
 		font-size: 12px;
 		color: #F56C6C;
-		
+
 	}
 	.personalInfo .el-upload-list--picture .el-upload-list__item-status-label{
 		z-index: 10;
 	}
+
+  .personal-info-box{
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px dashed #dedede;
+  }
+  .personal-info-box:hover h3,.personal-info-box:hover .p{
+    color: #ba7a73;
+  },
+  .personal-info-bg1{
+    background: #f4f9f3;
+  }
+  .personal-info-bg2{
+    background: #f8f8f0;
+  }
+  .personal-info-box h3{
+    overflow: hidden;
+    display: block;
+    padding: 0 10px;
+
+    color: #333;
+    font-weight: normal;
+  }
+  .personal-info-box h3 p{
+    float: left;
+  }
+  .personal-info-box h3 .hp{
+    font-size: 16px;
+    line-height: 36px;
+  }
+  .personal-info-box h3 span{
+    float: left;
+    margin: 10px 0 0 10px;
+    padding: 0 4px;
+    height: 18px;
+    font-size: 12px;
+    font-style: normal;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 3px;
+  }
+  .personal-info-box h3 .jian-bg{
+    display: inline-block;
+    background: #f8931f;
+    color: #fff;
+  }
+  .personal-info-box h3 .guo-bg{
+    display: inline-block;
+    background: #db2828;
+    color: #fff;
+  }
+  .personal-info-box h3 .xin-bg{
+    display: inline-block;
+    background: #22a85c;
+    color: #fff;
+  }
+  .personal-info-box .p{
+    display: block;
+    padding:0 10px;
+    width: 1060px;
+    font-size: 14px;
+    text-indent: 20px;
+    line-height: 22px;
+    color: #888;
+  }
+  .personal-info-box .p-box{
+    overflow: hidden;
+    width: 100%;
+
+  }
+  .personal-info-box .rj-infor{
+    margin-left: 0px;
+    padding: 5px 10px;
+    float: left;
+    width: 400px;
+    line-height: 16px;
+    color: #16a8e1;
+  }
+  .personal-info-box .btn-box{
+    overflow: hidden;
+    float: right;
+  }
+  .personal-info-box .btn-box button{
+    float: left;
+    padding: 0 15px;
+    margin-left: 5px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .personal-info-box .btn-box .button1{
+    background:#dedede ;
+  }
+  .personal-info-box .btn-box .button2{
+    color: #fff;
+    background:#2295d9 ;
+  }
+  .personal-info-box .btn-box .button3{
+    color: #fff;
+    background:#e26556 ;
+  }
+  .personal-info-box .btn-box .button4{
+    color: #977718;
+    background:#fdd765 ;
+  }
+  .personal-info-box .rj-infor span{
+    margin-right: 10px;
+    color: #999;
+    font-size: 12px;
+  }
+  .personal-info-box .rj-ypg{
+    background: #12ac38;
+  }
+  .personal-info-box .rj-state{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 8px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+    border-radius: 2px;
+    border: none;
+  }
+  .personal-info-box .rj-state span{
+    color: #fff;
+  }
+  .personal-info-box .state-dsh{
+    background: #b1afaf
+  }
+  .personal-info-box .state-pass{
+    background: #46c3a1;
+  }
+
+  .personal-info-box .state-nopass{
+    background: #cc0000;
+  }
+  .personal-info-box .state-zjpg{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 8px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+    border-radius: 4px;
+    background: #ff9900;
+    cursor: pointer;
+  }
+  .personal-info-box .state-ps{
+    position: absolute;
+    right:10px;
+    top: 40px;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+  }
+  .personal-info-box .state-ps-pass{
+    background: #12ac38;
+  }
+
+  .personal-info-box .rj-time{
+    display: block;
+
+    float: right;
+    padding: 0px 10px;
+    font-size: 12px;
+    width: 200px;
+    line-height: 24px;
+    color: #999;
+    text-align: right;
+  }
+/* .personalInfo .el-tabs__item.is-active{
+   color: #fff;
+   background: #409EFF;
+ }*/
 </style>

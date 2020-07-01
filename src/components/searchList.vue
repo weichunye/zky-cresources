@@ -14,10 +14,10 @@
 				<router-link v-if="softData.length>0" v-for="thitdItem in softData" :to="{path:'/details',query:{id:thitdItem.id}}">
 					<dl class="software-box">
 						<dt>
-		<h3>{{thitdItem.softName}} 	<span v-if="thitdItem.isHot==1" class="hot-bg">热</span>
-	   					<span v-if="thitdItem.isRecommend==1" class="jian-bg">荐</span>
-	   					<span v-if="thitdItem.isChina==1" class="guo-bg">国</span>
-	   						<!--<span v-if="thitdItem.isEvaluate==1" class="xin-bg">已评估</span>--></h3>
+		<h3>{{thitdItem.softName}} 	<sup v-if="thitdItem.isHot==1" class="sub">热</sup>
+	   					<sup v-if="thitdItem.isRecommend==1" class="suba">荐</sup>
+	   					<sup v-if="thitdItem.isChina==1" class="subchania">国</sup>
+	   						<sup v-if="thitdItem.isEvaluate==1" class="subping">信</sup></h3>
 <!--		<p class="p">
 			<span class="lable">很好</span>
 				<span class="lable">可以用</span>
@@ -26,17 +26,21 @@
 			<p class="p">License：{{thitdItem.softLicense}}</p>
 			<span  v-if="thitdItem.isEvaluate==1" class="pg-ico">已评估</span>
 	</dt>
-						<dd>{{thitdItem.softIntroduce}}...</dd>
+						<dd>{{thitdItem.softIntroduce | reBytesStr}}</dd>
 						<dd class="dd">
-							<span class="span spanbg">{{thitdItem.programmingLanguage}}</span> <span class="span">{{thitdItem.softVersion}}</span>
-							<!--<span class="span">{{thitdItem.userInterface}}</span>--><span class="span"> {{thitdItem.opensourceType}}</span><span class="span" v-if="thitdItem.operatingSystem"> {{thitdItem.operatingSystem}}</span><span class="spantime">{{thitdItem.createTime.substring(0, 10)}}</span>
+							<span class="span spanbg">{{thitdItem.programmingLanguage}}</span>
+              <span class="span">{{thitdItem.softVersion}}</span>
+							<!--<span class="span">{{thitdItem.userInterface}}</span>-->
+              <!--<span class="span"> {{thitdItem.opensourceType}}</span>-->
+              <span class="span" v-if="thitdItem.operatingSystem"> {{thitdItem.operatingSystem}}</span>
+              <span class="spantime">{{thitdItem.createTime.substring(0, 10)}}</span>
 							<span class="num">{{thitdItem.browseNum}}人浏览</span>
 						</dd>
 					</dl>
 				</router-link>
 				<div v-if="softData.length==0" class="empty-tit"></div>
 			</div>
-			<el-pagination layout="total, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange" :total="totalPage" :current-page.sync="pageNum" :page-size="limit">
+			<el-pagination style=" padding:30px 0 20px; text-align: center" layout="total, prev, pager, next, jumper" @size-change="handleSizeChange" @current-change="handleCurrentChange" :total="totalPage" :current-page.sync="pageNum" :page-size="limit">
 			</el-pagination>
 		</div>
 		<!--//content-->
@@ -57,7 +61,8 @@
 			return {
 				softData: [],
 				totalPage: 0,
-				limit: 1,
+				// limit: 1,
+        limit: 5,
 				pageNum: 1,
         keyWord:this.$route.query.keyword?this.$route.query.keyword:''
 
@@ -65,13 +70,40 @@
 		},
 		mounted() {
 			//获取信息
+      console.log("加载")
 			this.getList()
 		},
     watch: {
       '$route'(to, from) {
+        console.log("this.$route.query.keyword",this.$route.query.keyword)
         this.keyWord=this.$route.query.keyword?this.$route.query.keyword:''
+        console.log("监控")
         this.getList()
         //监控路由，更新tab
+      }
+    },
+    filters:{
+      reBytesStr: function(str) {
+        str=str.replace(/<\/?.+?>/g,"").replace(/ /g,"").replace(/&(\S*)?;/g,"")
+        if((!str && typeof(str) != 'undefined')) {
+          return '';
+        }
+        var num = 0;
+        var str1 = str;
+        var str = '';
+        for(var i = 0, lens = str1.length; i < lens; i++) {
+          num += ((str1.charCodeAt(i) > 255) ? 2 : 1);
+          if(num > 360) {
+            break;
+          } else {
+            str = str1.substring(0, i + 1);
+          }
+        }
+        if(num>360){
+          return str+"……";
+        }else{
+          return str
+        }
       }
     },
 		methods: {
@@ -84,6 +116,7 @@
 				this.$http.post('/haoweb/web/soft/querySoftListByKeyword', params)
 					.then((response)=>{
             this.softData = response.data.page.records;
+            console.log("this.softData",this.softData)
             this.totalPage = response.data.page.total
             this.$nextTick(function() {
               var curJ = $('.software-box')
@@ -92,7 +125,8 @@
           })
 			},
 			popupMsg: function(val) {
-				this.getList()
+       /* console.log("子集传值")
+				this.getList()*/
 			},
 			handleSizeChange(val) {
 				this.pageSize = val;
@@ -115,6 +149,7 @@
 	.list .content {
     margin: 0 auto;
     width: 1200px;
+    min-height: 400px;
 		background: #fff;
 	}
 
@@ -193,7 +228,62 @@
 		text-indent: 10px;
 		border-bottom: 1px solid #dedede;
 	}
+  /*新增*/
+  .software-box dt h3 sup{
+    display:inline-block;
+    margin: 0 5px 0 0;
+    padding:1px 3px 5px 3px;
+    height: 16px;
+    font-style: normal;
+    text-align: center;
+    line-height: 16px;
+    position: relative;
+  }
+  .software-box dt h3 sup::after{
+    position: absolute;
+    left:50%;
+    margin-left:-7px;
+    bottom:0;
+    width:0;
+    height:0;
+    border-right:7px solid transparent;
+    border-left:7px solid transparent;
+    content:"";
+  }
+  .software-box dt h3 .sub{
+    color:#fff;
+    font-size: 12px;
+    background:#ff0000;
+  }
+  .software-box dt h3 .sub::after{
+    border-bottom:7px solid #fff;
+  }
+  .software-box dt h3 .suba{
+    color:#fff;
+    font-size: 12px;
+    background:#ec9d2f;
+  }
+  .software-box dt h3 .suba::after{
+    border-bottom:7px solid #fff;
+  }
 
+  .software-box dt h3 .subchania{
+    color:#fff;
+    font-size: 12px;
+    background:#07b62c;
+  }
+  .software-box dt h3 .subchania::after{
+    border-bottom:7px solid #fff;
+  }
+  .software-box dt h3 .subping{
+    color:#fff;
+    font-size: 12px;
+    background:#672fd9;
+  }
+  .software-box dt h3 .subping::after{
+    border-bottom:7px solid #fff;
+  }
+  /*新增*/
 	.list .content .right-box .num-list ul {
 		margin: 5px;
 	}

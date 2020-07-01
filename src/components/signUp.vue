@@ -208,11 +208,8 @@
 						</el-col>
 						<el-col :xs="12">
 							<el-input v-model="item.userUnit" placeholder="请输入内容"></el-input>
-
 						</el-col>
-
 						<el-col :xs="6">
-
 						</el-col>
 					</el-row>
 					<el-row :gutter="10" class="elrowclass">
@@ -222,9 +219,7 @@
 							</p>
 						</el-col>
 						<el-col :xs="12">
-
 							<el-input v-model="item.userJob" placeholder="请输入内容"></el-input>
-
 						</el-col>
 						<el-col :xs="6">
 
@@ -371,12 +366,12 @@
 			},
 			  //删除一行
   delTr:function(event){
-  	
+
   	var _this=this;
   	var eve=event.currentTarget
   	var thisId=$(eve).attr('id')
   	_this.secondDomains.splice(thisId-1,1)
-  	
+
   },
   back:function(){
    		this.$router.go(-1);//返回上一层
@@ -527,10 +522,10 @@
 				status: 0,
 				updateTime: ""
 			}
-			
+
 			 joinVo[arr].push(curObj);
-		}	
-		
+		}
+
    		}*/
 
 				_this.$refs[formName].validate((valid) => {
@@ -582,7 +577,7 @@
 								path: '/'
 									});
 
-								} 
+								}
 
 							})
 							.catch(function(error) {
@@ -619,7 +614,7 @@
 		overflow: hidden;
 		background: #d5e5f2;
 	}
-	
+
 	.signUp h3 {
 		padding: 10px 0 10px;
 		width: 100%;
@@ -638,31 +633,31 @@
 	.signUp .el-select {
 		width: 100%;
 	}
-	
+
 	.signUp .ov-box {
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.signUp .ov-box p {
 		float: left;
 	}
-	
+
 	.signUp .ov-box .el-checkbox {
 		float: left;
 	}
-	
+
 	.signUp .elebtn {
 		display: block;
 		margin: 5px auto;
 		width: 100px;
 		color: #fff;
 	}
-	
+
 	.elrowclass {
 		margin: 5px auto;
 	}
-	
+
 	.elrowclass p {
 		text-align: center;
 		line-height: 40px;

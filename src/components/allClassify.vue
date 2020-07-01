@@ -4,7 +4,7 @@
   	<!--面包屑-->
   		<div class="crumbs">
   		<span @click="back">首頁 </span><span>&nbsp;&nbsp;>&nbsp;</span>
-  		 <span>全部分类 </span>   
+  		 <span>全部分类 </span>
   		</div>
   			<!--//面包屑-->
   	<!--content-->
@@ -12,20 +12,20 @@
   		<!--left-box-->
   	<div class="left-box">
   		<ul>
-  			<li  v-for="item in mentListL"> 
+  			<li  v-for="item in mentListL">
   			<h4>{{item.ctyName}}</h4>
   			<p>
-				
+
 				<router-link  v-for="secItem in item.sonList" :to="{path:'/list',query:{categoryId:secItem.id,categoryName:secItem.ctyName,ParentName:'全部分类'}}">
 				<span >{{secItem.ctyName}}</span>
 				</router-link>
-  			
-  				
+
+
   			</p>
   			</li>
-  				
+
   		</ul>
-  	    
+
   	</div>
   	    <!--//left-box-->
   	    <!--right-box-->
@@ -43,22 +43,22 @@
   	   				<span class="span1">1</span>
   	   				<p>软件111</p>
   	   			</li>
-  	   			
+
   	   		</ul>-->
-  	   	    
+
   	   	</div>
   	   	<router-link target="_blank" :to="'activityGame?id='+activityIngId">
   	   	<div class="game-banner">
-  	   	    
+
   	   	</div>
   	   	</router-link>
-  	   	
-  	       
+
+
   	   </div>
   	     <!--//right-box-->
   	</div>
 
-  
+
    <foot></foot>
   </div>
 </template>
@@ -72,54 +72,54 @@ export default {
   components: {
 			foot,
 			searchTop
-		
+
 		},
   data () {
     return {
 		mentListL:[],
 		hotList: [],
 		activityIngId:'',
-    	
-    
-      
+
+
+
     }
   },
   mounted(){
 	  var _this=this;
 	  _this.getListData()
 	  _this.activityIng()
-	  
+
 			//获取热门软件
 			var params1 = new URLSearchParams();
 			params1.append("page", 1);
 			params1.append("limit", 10);
-			this.axios.post(baseUrl.baseUrl + '/web/soft/queryHotSoftListByCondition', params1)
+			this.axios.post(baseUrl.baseUrl + '/haoweb/web/soft/queryHotSoftListByCondition', params1)
 				.then(function(response) {
 					this.hotList = response.data.page.list;
 					console.log("_this.hotList", response)
 				})
-  	
+
   },
    methods: {
    	   	//获取信息列表
    	getListData:function(){
 	var _this=this;
-   	_this.axios.post(baseUrl.baseUrl+'/web/soft/softCtyAllList')
+   	_this.axios.post(baseUrl.baseUrl+'/haoweb/web/soft/softCtyAllList')
    	.then(function(response){
    		_this.mentListL=response.data.list;
 		console.log("1111",_this.mentListL)
-   		
-   		
+
+
    	})
    	},
    		//获取当前正在进行中活动
    		activityIng: function() {
 				var _this = this;
-				_this.axios.get(baseUrl.baseUrl + '/web/activity/config/2')
+				_this.axios.get(baseUrl.baseUrl + '/haoweb/web/activity/config/2')
 					.then(function(response) {
 					_this.activityIngId=response.data.config.paramValue;
 					console.log("	_this.activityIngId",	_this.activityIngId)
-				
+
 					})
 					.catch(function(error) {
 						console.log(error);
@@ -134,11 +134,11 @@ export default {
 
 <style>
 	.allClassify{
-	background: #f8f8f8;	
+	background: #f8f8f8;
 	}
-	
+
 	.allClassify .content{
-		
+
 	}
 	.allClassify .min-height{
 		padding: 5px 0 15px;
@@ -214,7 +214,7 @@ export default {
 	.allClassify .content .right-box .num-list ul li{
 		overflow: hidden;
 		line-height: 30px;
-		
+
 	}
 	.allClassify .content .right-box .num-list ul li span{
 		float: left;
@@ -231,7 +231,7 @@ export default {
 	.allClassify .content .right-box .num-list ul li .span1{
 		background: #e76112;
 	}
-	
+
 	.allClassify .content .right-box .num-list ul li p{
 		float: left;
 		margin-left: 10px;
@@ -248,17 +248,17 @@ export default {
 		color: #333;
 		cursor: pointer;
 	}
-	
+
 	.allClassify dl:hover span,
 	.allClassify dl:hover dd {
 		color: #ba7a73;
 	}
-	
+
 	.allClassify dl dt {
 		font-size: 14px;
 		line-height: 26px;
 	}
-	
+
 	.allClassify dl dt span {
 		display: block;
 		width: 220px;
@@ -267,15 +267,15 @@ export default {
 		white-space: nowrap;
 		font-weight: bold;
 	}
-	
+
 	.allClassify dl dd {
 		font-size: 12px;
 		color: #b3b5b3;
 	}
-	
+
 	.allClassify dl dd span {
 		margin: 0 10px 0 5px;
 		color: #c0c1c5;
 	}
-	
+
 </style>

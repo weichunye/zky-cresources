@@ -51,19 +51,18 @@ import baseUrl from '../../config/index.js'
         },
         fileList: [],
         imglist: [],
-        imageUploadUrl:baseUrl.baseUrl+'/sys/upload/upload'
+        imageUploadUrl:window.SITE_CONFIG['apiURL']+'/haoweb/sys/upload/upload'
 
       }
     },
     methods: {
       // 文件上传成功时的钩子
       showSuccess (response, file, fileList) {
-        // console.log(file, fileList);
-        console.log('response::', response)
         // console.log(file.response.data.path);
         // console.log(this.imglistData)
         this.fileList = fileList
-        this.imglist.push(baseUrl.baseUrlImg+response.filePath)
+        console.log('this.fileList', this.fileList)
+        this.imglist.push(window.SITE_CONFIG['imgURL']+response.filePath)
         // console.log(this.form.imglist);
 //                this.listObj.fid = file.uid;
 //                this.listObj.url = response.data.path;
@@ -92,6 +91,7 @@ import baseUrl from '../../config/index.js'
 //                }
 //                console.log(arr)
         this.$emit('successCBK', this.imglist)
+        console.log('this.imglist', this.imglist)
 //                this.listObj = {}
         this.imglist = []
         this.fileList = []

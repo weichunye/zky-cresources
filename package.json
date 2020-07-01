@@ -15,12 +15,13 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^1.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "echarts": "^4.2.1",
     "element-ui": "^2.6.1",
     "js-cookie": "^2.2.0",
     "tinymce": "^4.8.5",
     "vue": "^2.5.2",
+    "vue-i18n": "^8.18.2",
     "vue-router": "^3.0.1",
     "vue-social-share": "0.0.3"
   },

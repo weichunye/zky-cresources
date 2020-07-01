@@ -7,24 +7,23 @@
 			<div class="header-top">
 				<div class="reposbox">
 					<router-link to="/">
-						<img class="logo" src="../assets/img/top_logo.png" alt="logo" />
+						<img class="logo" src="../assets/img/logo_small.png" alt="logo" />
 					</router-link>
 					<p class="text">
-						欢迎来到科学软件开源社区！
+						欢迎来到科研软件汇聚平台！
 					</p>
 
 					<p @click="toPersonalInfo" class="right-text">个人中心</p>
 				</div>
 			</div>
-
+      <h2>软件修改</h2>
 			<div class="softModify-box">
 
-				<h2>软件修改</h2>
+
 				<!--banner-->
 
 				<el-form :model="form" ref="form" :inline="true" class="demo-form-inline" @submit.native.prevent>
 					<div class="box-big">
-
 						<el-form-item label="软件名称" :label-width="formLabelWidth">
 							<em class="addti">*</em>
 							<el-input v-model="form.name" placeholder="请输入软件名称" auto-complete="off"></el-input>
@@ -39,22 +38,24 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="开源类型" :label-width="formLabelWidth">
+						<el-form-item label="收费方式" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-select v-model="form.opensourceType" value-key="id" filterable multiple placeholder="请选择开源类型">
-								<el-option v-for="item in opensourceTypeOption " :key="item.id" :label="item.ctyName" :value="item">
-								</el-option>
-							</el-select>
+              <el-cascader
+                v-model="form.softCategory"
+                :options="softCategoryOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
 						</el-form-item>
 					</div>
 					<div class="box-big">
 
 						<el-form-item label="软件类别" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-select v-model="form.softCategory" value-key="id" filterable multiple placeholder="请选择软件类别">
-								<el-option v-for="item in softCategoryOption " :key="item.id" :label="item.ctyName" :value="item">
-								</el-option>
-							</el-select>
+              <el-cascader
+                v-model="form.opensourceType"
+                :options="opensourceTypeOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
 
 						</el-form-item>
 					</div>
@@ -62,30 +63,41 @@
 
 						<el-form-item label="编程语言" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-select v-model="form.Language" value-key="id" filterable multiple placeholder="请选择编程语言">
-								<el-option v-for="item in LanguageOption " :key="item.id" :label="item.ctyName" :value="item">
-								</el-option>
-							</el-select>
+              <el-cascader
+                v-model="form.Language"
+                :options="LanguageOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
 						</el-form-item>
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="用户接口" :label-width="formLabelWidth">
+						<el-form-item label="学科领域" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-select v-model="form.userInterface" value-key="id" filterable multiple placeholder="请选择用户接口">
-								<el-option v-for="item in userInterfaceOption " :key="item.id" :label="item.ctyName" :value="item">
-								</el-option>
-							</el-select>
+              <el-cascader
+                v-model="form.userInterface"
+                :options="userInterfaceOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
 						</el-form-item>
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="应用领域" :label-width="formLabelWidth">
+						<el-form-item label="开发领域" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-select v-model="form.applicationField" value-key="id" filterable multiple placeholder="请选择应用领域">
-								<el-option v-for="item in applicationFieldOption " :key="item.id" :label="item.ctyName" :value="item">
-								</el-option>
-							</el-select>
+              <el-cascader
+                v-model="form.applicationField"
+                :options="applicationFieldOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
+						</el-form-item>
+            <el-form-item label="开源类型" :label-width="formLabelWidth">
+<!--							<em class="addti">*</em>-->&nbsp;
+              <el-cascader
+                v-model="form.openType"
+                :options="openTypeOption"
+                :props="{ multiple: true, checkStrictly: true }"
+                clearable></el-cascader>
 						</el-form-item>
 
 					</div>
@@ -101,7 +113,7 @@
 					<div class="box-big">
 
 						<el-form-item label="代码地址" :label-width="formLabelWidth">
-							<em class="addti">*</em>
+<!--							<em class="addti">*</em>-->&nbsp;
 							<el-input v-model.trim="form.softUrl" @blur='checkUrl' placeholder="github或cstos.cstcloud.cn的项目地址，推荐使用cstos.cstcloud.cn" auto-complete="off"></el-input>
 							<!--<a class="gitUrl" v-if="form.softUrl" target="_blank" :href="form.softUrl">查看</a>-->
 							<p class="textp"> {{softUrlTit}}</p>
@@ -111,9 +123,30 @@
 					</el-form-item>-->
 
 					</div>
+          <div class="box-big">
+
+						<el-form-item label="跳转地址" :label-width="formLabelWidth">
+              &nbsp;
+							<el-input v-model.trim="form.jumpUrl" placeholder="请输入跳转地址" auto-complete="off"></el-input>
+							<p class="textp"> {{jumpUrlTit}}</p>
+						</el-form-item>
+					</div>
+          <div class="box-big1">
+            <el-form-item prop="isRun" label="是否立即运行" :label-width="formLabelWidth">
+              &nbsp;
+              <el-radio v-model="form.isRun" label= '0'>否</el-radio>
+              <el-radio v-model="form.isRun" label= '1'>是</el-radio>
+            </el-form-item>
+          </div>
+          <div class="box-big" >
+            <el-form-item prop="runUrl" label="立即运行路径" :label-width="formLabelWidth" v-if="this.form.isRun === '1'">
+              <el-input v-model="form.runUrl" placeholder="请输入立即运行路径" auto-complete="off"></el-input>
+            </el-form-item>
+          </div>
+
 					<div class="box-big">
 						<el-form-item v-if="!form.ifSelfStudy" label="开发人员" :label-width="formLabelWidth">
-							<em class="addti">&nbsp;&nbsp;</em>
+							<em class="addti">&nbsp;</em>
 							<el-input v-model="form.developer" placeholder="请输入内容"></el-input>
 						</el-form-item>
 
@@ -170,8 +203,6 @@
 								<td>
 									<el-input v-model="item.userPhone" auto-complete="off"></el-input>
 									<p class="textp">{{phoneValueTit}}</p>
-									</el-form-item>
-
 								</td>
 								<td>
 									<div @click="delTr($event)" class="deltrbtn">删除</div>
@@ -222,8 +253,6 @@
 	</div>
 	</div>
 </template>
-<script type="text/javascript">
-</script>
 <script>
 	import TinymceEditor from '@/components/tinymce-editor'
 	import baseUrl from '../../config/index.js'
@@ -245,6 +274,9 @@
 					userInterface: [],
 					operatingSystem: [],
 					softUrl: '',
+          jumpUrl: '',
+          isRun: '',
+          runUrl: '',
 					ifCheckedCns: '',
 					ifCheckedMzs: true,
 					abstract: '',
@@ -254,9 +286,11 @@
 				},
 
 				softUrlTit: '',
+        jumpUrlTit: '',
 				joinVoUrl: '',
 				imageUrl: '',
 				getSoftUrl:'',
+				getJumpUrl:'',
 				firstDomains: {
 					activityId: 0,
 					awardLevel: 0,
@@ -265,7 +299,7 @@
 					joinTime: "",
 					rank: 0,
 					status: 0,
-					userId: 0,
+          userId:0,
 					userJob: "",
 					userName: "",
 					userPhone: "",
@@ -289,7 +323,7 @@
 				domainIndex: 1,
 				formLabelWidth: '150px',
 				ifCheck: false,
-
+        userId:window.SITE_CONFIG['userId'],
 			}
 		},
 		mounted() {
@@ -335,72 +369,107 @@
 			//获取报名表单下拉内容
 			getListOption: function() {
 				var _this = this;
-				_this.axios.post(baseUrl.baseUrl + '/web/soft/softCtyAllList')
-					.then(function(response) {
-						var newResponse = response.data.list
+				_this.$http.post( '/haoweb/web/soft/softCtyAllList')
+					.then((response)=>{
+            var newResponse = response.data.list
+           /* _this.opensourceTypeOption = newResponse[0].children; //软件类型
+            _this.applicationFieldOption = newResponse[3].children; //开发领域
+            _this.softCategoryOption = newResponse[1].children; //收费方式
+            _this.LanguageOption = newResponse[4].children; //变成语言
+            _this.userInterfaceOption = newResponse[2].children; //学科领域
+            _this.openTypeOption = newResponse[5].children; //开源类型*/
 
-						_this.opensourceTypeOption = newResponse[2].sonList; //开源类型
-						_this.applicationFieldOption = newResponse[0].sonList; //应用领域
-						_this.softCategoryOption = newResponse[1].sonList; //软件类型
-						_this.LanguageOption = newResponse[4].sonList; //变成语言
-						_this.userInterfaceOption = newResponse[3].sonList; //用户接口
 
-					})
+            let applicationFieldArrOne = newResponse.filter((item, index) => {
+              return item.label === '学科领域'
+            })
+            _this.userInterfaceOption = applicationFieldArrOne[0].children
+
+            let softCtyArrOne = newResponse.filter((item, index) => {
+              return item.label === '开发领域'
+            })
+            _this.applicationFieldOption = softCtyArrOne[0].children
+
+            let opensourceTypeArrOne =newResponse.filter((item, index) => {
+              return item.label === '开源类型'
+            })
+            _this.openTypeOption = opensourceTypeArrOne[0].children
+
+            let chargingMethodArrOne =newResponse.filter((item, index) => {
+              return item.label === '收费方式'
+            })
+            _this.softCategoryOption = chargingMethodArrOne[0].children
+
+            let softTypeArrOne = newResponse.filter((item, index) => {
+              return item.label === '软件类型'
+            })
+            _this.opensourceTypeOption = softTypeArrOne[0].children
+
+            let devLanguageArrOne = newResponse.filter((item, index) => {
+              return item.label === '编程语言'
+            })
+            _this.LanguageOption = devLanguageArrOne[0].children
+          })
 			},
 			//获取操作平台表单下拉内容
 			getoSystemOption: function() {
 				var _this = this;
 				var params = new URLSearchParams();
 				params.append("dictId", 6);
-				_this.axios.post(baseUrl.baseUrl + '/api/dict/getDictDetailsByDictId', params)
-					.then(function(response) {
-						_this.operatingSystemOption = response.data.list
-
-					})
+				_this.$http.post( '/haoweb/api/dict/getDictDetailsByDictId', params)
+					.then((response)=>{
+            _this.operatingSystemOption = response.data.list
+          })
 			},
 			//修改信息之前获取软件信息
 			getSoftInfo: function() {
+
 				var _this = this;
 				var params = new URLSearchParams();
+        console.log("this.userId------------",_this.userId)
 				params.append("softId", this.$route.query.id);
-				params.append("userId", this.userId);
-				params.append("token", this.token);
-				_this.axios.post(baseUrl.baseUrl + 'web/user/getSaveSoftDetail', params)
-					.then(function(response) {
+				params.append("userId", _this.userId);
+				this.$http.post( '/haoweb/web/user/getSaveSoftDetail', params)
+					.then((response)=>{
+					  console.log("*************",response)
+            var softInfoObg = response.data.softInfo;
+            var userListObg = response.data.userList;
+            var softDocObg = response.data.softDoc;
+            console.log("softInfoObg.operatingSystem",softInfoObg.operatingSystem)
+            console.log("softInfoObg.operatingSystems",softInfoObg.operatingSystems)
+            _this.softId = response.data.softInfo.id;
+            _this.form.name = softInfoObg.softName;
+            _this.form.developer = softInfoObg.developers;
+            _this.form.softVersion = softInfoObg.softVersion;
+            _this.form.opensourceType = softInfoObg.softTypes;
+            _this.form.openType = softInfoObg.opensourceTypes;
+            _this.form.softCategory = softInfoObg.chargingMethods;//1
+            _this.form.Language = softInfoObg.programmingLanguages;
+            _this.form.userInterface = softInfoObg.applicationFields;
+            _this.form.applicationField = softInfoObg.categoryIds;
+            _this.form.operatingSystem = softInfoObg.operatingSystems;
+            _this.form.softUrl=_this.getSoftUrl = softInfoObg.softUrl;
+            _this.form.jumpUrl=_this.getJumpUrl = softInfoObg.jumpUrl;
+            _this.form.isRun = softInfoObg.isRun.toString();
+            _this.form.runUrl = softInfoObg.runUrl;
+            _this.form.abstract = softInfoObg.softIntroduce;
+            _this.form.ifCrossPlatform = softInfoObg.isPlatform == 1 ? true : false;
+            _this.form.ifSelfStudy = softInfoObg.isSelf == 1 ? true : false;
+            _this.form.ifHsowRealName = softInfoObg.isShowDeveloperName == 0 ? true : false;
 
-						var softInfoObg = response.data.softInfo;
-						var userListObg = response.data.userList;
-						var softDocObg = response.data.softDoc;
-						_this.softId = response.data.softInfo.id;
-						_this.form.name = softInfoObg.softName;
-						_this.form.developer = softInfoObg.developers;
-						_this.form.softVersion = softInfoObg.softVersion;
-						_this.form.opensourceType = softInfoObg.opensourceTypes;
-						_this.form.softCategory = softInfoObg.categoryIds;
-						_this.form.Language = softInfoObg.programmingLanguages;
-						_this.form.userInterface = softInfoObg.userInterfaces;
-						_this.form.applicationField = softInfoObg.applicationFields;
-						_this.form.operatingSystem = softInfoObg.operatingSystems;
-						_this.form.softUrl=_this.getSoftUrl = softInfoObg.softUrl;
-						_this.form.abstract = softInfoObg.softIntroduce;
-						_this.form.ifCrossPlatform = softInfoObg.isPlatform == 1 ? true : false;
-						_this.form.ifSelfStudy = softInfoObg.isSelf == 1 ? true : false;
-						_this.form.ifHsowRealName = softInfoObg.isShowDeveloperName == 0 ? true : false;
+            if(userListObg.length > 0) {
+              var firstUserListObg = userListObg[0]
+              _this.firstDomains.userName = firstUserListObg.userName;
 
-						if(userListObg.length > 0) {
-							var firstUserListObg = userListObg[0]
-							_this.firstDomains.userName = firstUserListObg.userName;
+              _this.firstDomains.userUnit = firstUserListObg.userUnit;
+              _this.firstDomains.userJob = firstUserListObg.userJob;
+              _this.firstDomains.userPhone = firstUserListObg.userPhone;
+              for(var i = 1; i < userListObg.length; i++) {
+                _this.secondDomains.push(userListObg[i])
+              }
 
-							_this.firstDomains.userUnit = firstUserListObg.userUnit;
-							_this.firstDomains.userJob = firstUserListObg.userJob;
-							_this.firstDomains.userPhone = firstUserListObg.userPhone;
-							for(var i = 1; i < userListObg.length; i++) {
-								_this.secondDomains.push(userListObg[i])
-							}
-
-						}
-
-					})
+            }
+          })
 					.catch(function(error) {
 						console.log(error);
 					})
@@ -420,25 +489,24 @@
 
 					}
 					if(_this.getSoftUrl&&_this.form.softUrl==_this.getSoftUrl){
-						
+
 					}else{
 							var params = new URLSearchParams();
 					params.append("softUrl", _this.form.softUrl);
-					_this.axios.post(baseUrl.baseUrl + '/web/soft/checkIsEqualsSoftUrl', params)
-						.then(function(response) {
-							if(response.data.code != 0) {
-								_this.$alert(response.data.msg, '提示信息', {
-									confirmButtonText: '确定',
-								});
-								_this.form.softUrl = ''
-							}
-
-						})
+					_this.$http.post('/haoweb/web/soft/checkIsEqualsSoftUrl', params)
+						.then((response)=>{
+              if(response.data.code != 0) {
+                _this.$alert(response.data.msg, '提示信息', {
+                  confirmButtonText: '确定',
+                });
+                _this.form.softUrl = ''
+              }
+            })
 						.catch(function(error) {
 							console.log(error);
 						})
 					}
-				
+
 
 				}
 
@@ -455,7 +523,7 @@
 				_this.form.ifCrossPlatform = _this.form.ifCrossPlatform == true ? 1 : 0;
 				var joinVo = {
 					applicationField: "",
-					applicationFieldList: _this.form.applicationField,
+          categoryIds: _this.form.applicationField,
 					createTime: "",
 					createUser: this.userId,
 					developers: this.form.developer,
@@ -474,10 +542,11 @@
 					isShow: 0,
 					isShowDeveloperName: 0,
 					opensourceType: "",
-					opensourceTypeList: _this.form.opensourceType,
+          softTypes: _this.form.opensourceType,
+          opensourceTypes: _this.form.openType,
 					operatingSystem: "",
 					operatingSystemList: _this.form.operatingSystem,
-					programLanguageList: _this.form.Language,
+          programmingLanguages: _this.form.Language,
 					programmingLanguage: "",
 					softCategoryId: 0,
 					softCategoryName: "",
@@ -486,13 +555,16 @@
 					softLicense: "",
 					softLogo: "",
 					softName: _this.form.name,
-					softSonCtyList: _this.form.softCategory,
+          chargingMethods: _this.form.softCategory,
 					softUrl: _this.form.softUrl,
+          jumpUrl: _this.form.jumpUrl,
+          isRun: _this.form.isRun,
+          runUrl: _this.form.runUrl,
 					softVersion: _this.form.softVersion,
 					updateTime: "",
 					userId: this.userId,
 					userInterface: "",
-					userInterfaceList: _this.form.userInterface,
+          applicationFields: _this.form.userInterface,
 					userList: []
 
 				}
@@ -512,12 +584,12 @@
 					_this.messageOpen('请输入软件版本', 'warning')
 					return false;
 				}
-				if(_this.form.opensourceType.length == 0) {
-					_this.messageOpen('请选择开源类型', 'warning')
+				if(_this.form.softCategory.length == 0) {
+					_this.messageOpen('请选择收费方式', 'warning')
 					return false;
 				}
 				if(_this.form.userInterface.length == 0) {
-					_this.messageOpen('请选择用户接口', 'warning')
+					_this.messageOpen('请选择学科领域', 'warning')
 					return false;
 				}
 				if(_this.form.Language.length == 0) {
@@ -525,23 +597,30 @@
 					return false;
 				}
 				if(_this.form.applicationField.length == 0) {
-					_this.messageOpen('请选择应用领域', 'warning')
+					_this.messageOpen('请选择开发领域', 'warning')
 					return false;
 				}
-
+       /* if(!_this.form.openType||_this.form.openType.length == 0) {
+          _this.messageOpen('请选择开源类型', 'warning')
+          return false;
+        }*/
+        if(!_this.form.operatingSystem||_this.form.operatingSystem.length == 0) {
+          _this.messageOpen('请选择操作平台', 'warning')
+          return false;
+        }
 				if(_this.form.name.length > 50) {
 					_this.messageOpen('软件名称不能超过50字，请重新输入', 'warning')
 					return false;
 				}
 
-				if(_this.form.softCategory.length == 0) {
+				if(_this.form.opensourceType.length == 0) {
 					_this.messageOpen('请填写软件类别', 'warning')
 					return false;
 				}
-				if(!_this.form.softUrl) {
-					_this.messageOpen('请填写代码地址', 'warning')
-					return false;
-				}
+				// if(!_this.form.softUrl) {
+				// 	_this.messageOpen('请填写代码地址', 'warning')
+				// 	return false;
+				// }
 				/*			var reg = /github.com(.*?)/g;
 							var reg1 = /cstos.cstcloud.cn(.*?)/g;
 							if(!_this.form.softUrl) {
@@ -591,6 +670,10 @@
 					return false;
 
 				}
+        if(_this.form.isRun === '1' && !_this.form.runUrl) {
+          _this.messageOpen('请输入立即运行路径')
+          return false;
+        }
 
 				_this.$refs[formName].validate((valid) => {
 					if(valid) {
@@ -619,40 +702,22 @@
 								}
 								joinVo.userList.push(cur);
 							}
-
 						}
 
 						var _this = this;
 
 						_this.axios.defaults.headers.common['token'] = _this.token;
-						_this.axios.post(baseUrl.baseUrl + '/web/user/saveSoftInfoUpdate', joinVo)
-							.then(function(response) {
+						_this.$http.post('/haoweb/web/user/saveSoftInfoUpdate', joinVo)
+							.then((response)=>{
+                if(response.data.code == 0) {
+                  _this.toPersonalInfo()
+                } else {
+                  _this.$alert(response.data.msg, '提示信息', {
+                    confirmButtonText: '确定',
+                  });
+                }
 
-								if(response.data.code == 0) {
-									_this.toPersonalInfo()
-								} else if(response.data.code == 401) {
-									_this.$confirm(response.data.msg, '提示', {
-										confirmButtonText: '确定',
-										cancelButtonText: '取消',
-										type: 'warning'
-									}).then(() => {
-										sessionStorage.clear()
-										var newUrl = baseUrl.baseUrl + '/web/auth/login';
-										window.open(newUrl)
-										return false;
-
-									}).catch(() => {
-
-									});
-								} else {
-
-									_this.$alert(response.data.msg, '提示信息', {
-										confirmButtonText: '确定',
-									});
-
-								}
-
-							})
+              })
 							.catch(function(error) {
 								console.log(error);
 							})
@@ -672,50 +737,50 @@
 	.bodybg {
     background: #eef5f9;
 }
-	
+
 	.addbg {
 		width: 100%;
-		background: url(../assets/bg/sign_bg.png) repeat;
-	}
-	
-	.softModify-box {
-		padding: 0 0 20px 0;
-		margin: 20px auto;
-		width: 880px;
-		border: 1px solid #dedede;
 		background: #fff;
 	}
-	
+
+	.softModify-box {
+    margin: 0 auto;
+    padding: 20px 0 100px;
+		width: 880px;
+		background: #fff;
+	}
+  .softModify-box .el-cascader__tags{
+    left: 15px;
+  }
+
 	.softModify h2 {
-		margin: 0 0 20px 0;
+    margin: 30px 0 20px;
 		width: 100%;
 		line-height: 50px;
 		font-size: 16px;
-		color: #fff;
-		background: #4794e4;
+		color: #666;
 		text-align: center;
 		letter-spacing: 2px;
-		background: linear-gradient(to bottom, #dfecfa 0%, #2295d9 8%, #4794e4 100%);
-		border-bottom: 2px solid #2b75c2;
+		border-bottom: 1px #dedede dashed;
 	}
-	
+
 	.softModify .box-big {
 		position: relative;
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.softModify .box-big .el-select__tags {
 		margin-left: 15px;
 	}
-	
+
 	.softModify .diatit {
 		margin: 0;
 		line-height: 14px;
 		font-size: 12px;
 		color: #999;
 	}
-	
+
 	.softModify .h3 {
 		width: 100%;
 		font-size: 16px;
@@ -724,7 +789,7 @@
 		color: #666;
 		text-align: center;
 	}
-	
+
 	.softModify .singtext {
 		padding: 5px 0;
 		margin: 0 0 15px 165px;
@@ -734,18 +799,18 @@
 		text-align: center;
 		background: #d0e1f1;
 	}
-	
+
 	.softModify .singtext td {
 		line-height: 30px;
 	}
-	
+
 	.softModify .singtext .el-input__inner {
 		margin-top: 10px;
 		width: 100%;
 		height: 30px;
 		line-height: 30px;
 	}
-	
+
 	.softModify .singtext .deltrbtn {
 		margin-top: 10px;
 		font-size: 12px;
@@ -755,7 +820,7 @@
 		background: #e26556;
 		cursor: pointer;
 	}
-	
+
 	.softModify .singtext .addtr {
 		display: inline-block;
 		margin: 10px 0 0 150px;
@@ -768,19 +833,19 @@
 		border-radius: 3px;
 		cursor: pointer;
 	}
-	
+
 	.softModify .singtext .el-input {
 		padding: 0 5px;
 		box-sizing: border-box;
 	}
-	
+
 	.addti {
 		font-style: normal;
 		font-size: 14px;
 		font-weight: bold;
 		color: #F56C6C;
 	}
-	
+
 	.softModify .addti {
 		float: left;
 		font-style: normal;
@@ -788,44 +853,44 @@
 		font-weight: bold;
 		color: #F56C6C;
 	}
-	
+
 	.softModify .box-big .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 600px;
 	}
-	
+
 	.softModify .domainsnum span {
 		line-height: 40px;
 		font-weight: bold;
 		font-size: 14px;
 		color: #F56C6C;
 	}
-	
+
 	.softModify .tinymce-editor {
 		margin-left: 10px;
 		width: 600px;
 	}
-	
+
 	.softModify .box-input {
 		margin-top: 10px;
 		float: left;
 	}
-	
+
 	.softModify .bottom {
 		overflow: hidden;
 	}
-	
+
 	.softModify .left-box {
 		overflow: hidden;
 	}
-	
+
 	.softModify .right-box {
 		display: block;
 		margin: 10px auto;
 		width: 460px;
 	}
-	
+
 	.softModify .right-box button {
 		padding: 15px 0;
 		margin: 10px;
@@ -837,55 +902,55 @@
 		background: #4794e4;
 		border: 1px dashed #4794e4;
 	}
-	
+
 	.softModify .right-box button span {
 		font-size: 16px;
 		font-weight: bold;
 		color: #fff;
 	}
-	
+
 	.softModify .box {
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.softModify .box .el-input {
 		float: left;
 		margin-left: 10px;
 		width: 260px;
 	}
-	
+
 	.softModify .examinedialog {
 		width: 820px;
 	}
-	
+
 	.softModify .examinedialog input {
 		width: 220px;
 	}
-	
+
 	.softModify .examinedialog .box {
 		overflow: hidden;
 		width: 100%;
 	}
-	
+
 	.softModify .examinedialog .box-1 {
 		overflow: hidden;
 		width: 100%;
 	}
-	
+
 	.softModify .examinedialog .box-1 .el-form-item__content {
 		width: 600px;
 	}
-	
+
 	.softModify .examinedialog .box .el-form-item__content {
 		width: 280px;
 	}
-	
+
 	.softModify .examinedialog .tit {
 		margin-top: 5px;
 		overflow: hidden;
 	}
-	
+
 	.softModify .examinedialog .tit button {
 		float: left;
 		margin: 10px 0 0 5px;
@@ -896,7 +961,7 @@
 		background: #ff9900;
 		border-radius: 5px;
 	}
-	
+
 	.softModify .examinedialog .tit p {
 		float: left;
 		margin-left: 20px;
@@ -904,22 +969,22 @@
 		line-height: 24px;
 		color: #cc0000;
 	}
-	
+
 	.softModify .examinedialog .upload-demo {
 		position: relative;
 		width: 360px;
 		display: inline-block;
 	}
-	
+
 	.softModify .examinedialog .bottom {
 		overflow: hidden;
 		padding: 5px;
 	}
-	
+
 	.softModify .examinedialog .bottom .right {
 		float: right;
 	}
-	
+
 	.softModify .avatar-uploader .el-upload {
 		border: 1px dashed #d9d9d9;
 		border-radius: 6px;
@@ -927,11 +992,11 @@
 		position: relative;
 		overflow: hidden;
 	}
-	
+
 	.softModify .avatar-uploader .el-upload:hover {
 		border-color: #409EFF;
 	}
-	
+
 	.softModify .avatar-uploader-icon {
 		font-size: 28px;
 		color: #8c939d;
@@ -940,29 +1005,29 @@
 		line-height: 100px;
 		text-align: center;
 	}
-	
+
 	.softModify .upload-box {
 		margin: 20px;
 		float: left;
 	}
-	
+
 	.softModify .upload-box p {
 		width: 100%;
 		text-align: center;
 	}
-	
+
 	.softModify .avatar {
 		width: 100px;
 		height: 100px;
 		display: block;
 	}
-	
+
 	.avatar-uploader {
 		position: relative;
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.avatar-uploader .addShowPic {
 		position: absolute;
 		left: 0;
@@ -970,38 +1035,38 @@
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list {
 		position: absolute;
 		left: 0;
 		top: 0;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item {
 		margin: 0;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item-thumbnail {
 		width: 100px;
 		height: 100px;
 	}
-	
+
 	.upload-box .el-upload-list--picture .el-upload-list__item.is-success .el-upload-list__item-name {
 		width: 0;
 		margin: 0;
 	}
-	
+
 	.el-upload-list__item.is-success .el-upload-list__item-status-label {
 		z-index: 100;
 	}
-	
+
 	.softModify .header-top {
 		width: 100%;
 		height: 46px;
 		background: #4b505d;
 	}
-	
+
 	.softModify .header-top .reposbox {
 		overflow: hidden;
 		position: relative;
@@ -1012,21 +1077,21 @@
 		line-height: 46px;
 		color: #fff;
 	}
-	
+
 	.softModify .header-top .reposbox .logo {
 		float: left;
-		margin-left: 10px;
-		height: 46px;
+    padding: 5px 5px 0 0 ;
+		height: 35px;
 		width: auto;
 	}
-	
+
 	.softModify .header-top .reposbox .text {
 		float: left;
 		font-size: 14px;
 		line-height: 46px;
 		color: #fff;
 	}
-	
+
 	.softModify .header-top .reposbox .right-text {
 		float: right;
 		margin-right: 10px;
@@ -1035,7 +1100,7 @@
 		color: #f4f4f4;
 		cursor: pointer;
 	}
-	
+
 	.softModify .gitUrl {
 		padding: 9px 6px;
 		border: 1px solid #dedede;

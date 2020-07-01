@@ -6,27 +6,27 @@
   			<div class="session-num">
   			    {{activityData.periodNumber}}
   			</div>
-  			
+
   			<div v-if="activityData.status==1" class="game-state-nostart">
-  			    
+
   			</div>
   				<div v-if="activityData.status==2" class="game-state-start">
-  			    
+
   			</div>
   				<div v-if="activityData.status==3" class="game-state-end">
-  			    
+
   			</div>
   		    <div class="game-state">
   		<!--    	2019年5月1日正式开启报名-->
   		    	  {{activityData.statusDescribe}}
-  		        
+
   		    </div>
   		    <div class="game-time">
   		    {{activityData.startDate}}	&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp; {{activityData.endDate}}
-  		        
+
   		    </div>
   		</div>
-  	    
+
   	</div>
   	<!--//banner-->
   	<!--con-W1200-->
@@ -35,7 +35,7 @@
   	  <div class="title-top title-top1">
   		<span class="span1">1</span>
   		<span class="span2">活动目的</span>
-  	</div> 
+  	</div>
   	<div class="objective">
   	    <p>     {{activityData.purpose}}</p>
   	</div>
@@ -44,39 +44,39 @@
   	  <div class="title-top title-top2">
   		<span class="span1">2</span>
   		<span class="span2">日程安排和比赛流程</span>
-  	</div> 
+  	</div>
   	<img  class="stepimg" :src="activityData.scheduleProcess" alt="日程安排和比赛流程"/>
   		<!--2-->
   		<!--3-->
   		 <div class="title-top title-top1">
   		<span class="span1">3</span>
   		<span class="span2">参赛方式</span>
-  	</div> 
+  	</div>
   	<div class="entry-mode">
   	{{activityData.matchWay}}
-  	    
+
   	</div>
   	<!--3-->
   	<!--4-->
   	 <div class="title-top title-top1">
   		<span class="span1">4</span>
   		<span class="span2">作品评审</span>
-  	</div> 
+  	</div>
   	<div class="review-top">
-  	    
+
   	</div>
   	<div v-html="activityData.worksReview" class="review-center">
-  		
+
   	</div>
   	<div class="review-bottom">
-  	    
+
   	</div>
   		<!--4-->
   	</div>
   		<!--con-//W1200-->
   		<div class="bottom-box">
   			<div class="bottom-box-top">
-  			    
+
   			</div>
   			<div class="prize-box">
   				<ul>
@@ -89,17 +89,17 @@
   				所有报名参与大赛未获得奖项的有效选手，均将获得参赛纪念证书，软件可以在“中国科技云”科研开源软件社区发布。
   			</p>
   			</div>
-  			
+
   			 <p class="copy">
   				本次活动最终解释权归中科院所有
   			</p>
-  			 
-  		    
+
+
   		</div>
-  		
-  	
-  			
-  	
+
+
+
+
   </div>
 </template>
 
@@ -110,8 +110,8 @@ export default {
   data () {
     return {
     	activityData:''
-    
-      
+
+
     }
   },
   mounted(){
@@ -119,16 +119,16 @@ export default {
   	   	var _this=this;
   	var params = new URLSearchParams();
   	params.append("activityId", 2);
-	_this.axios.post(baseUrl.baseUrl+'/web/activity/activityInfo ',params)
+	_this.axios.post(baseUrl.baseUrl+'/haoweb/web/activity/activityInfo ',params)
   	.then(function(response){
   		_this.activityData=response.data.activity;
   		console.log("_this.activityData",	_this.activityData)
   	})
-  	
+
   },
    methods: {
 
-  	
+
    }
 }
 </script>
@@ -138,7 +138,7 @@ export default {
 	 	width: 100%;
 	 	height: 636px;
 	 	background:#0b54f9  url(../assets/activity/banner_top_bg.jpg) center top no-repeat;
- 	
+
  }
  	 .activityGame .banner-top .reposbox{
  	 	position: relative;
@@ -146,7 +146,7 @@ export default {
  	 	width: 1200px;
  	 }
   .activityGame .banner-top .session-num{
-  	position: absolute; 
+  	position: absolute;
   	top:230px;
   	left:352px;
   	width: 230px;
@@ -158,37 +158,37 @@ export default {
   	line-height: 38px;
   	text-align: center;
   	background: #55c20b;
-  	
+
   }
   .activityGame .banner-top .game-state-nostart{
-  	position: absolute; 
+  	position: absolute;
   	top:68px;
   	left:812px;
   	width: 382px;
   	height: 138px;
   	background: url(../assets/activity/game_state_nostart.png) no-repeat
-  	
+
   }
   .activityGame .banner-top .game-state-start{
-  	position: absolute; 
+  	position: absolute;
   	top:68px;
   	left:812px;
   	width: 382px;
   	height: 138px;
   	background: url(../assets/activity/game_state_start.png) no-repeat;
-  	
+
   }
   .activityGame .banner-top .game-state-end{
-  	position: absolute; 
+  	position: absolute;
   	top:68px;
   	left:812px;
   	width: 382px;
   	height: 138px;
   	background: url(../assets/activity/game_state_end.png) no-repeat
-  	
+
   }
   .activityGame .banner-top .game-state {
-  	position: absolute; 
+  	position: absolute;
   	top:180px;
   	left:952px;
   	width: 200px;
@@ -200,7 +200,7 @@ export default {
   	font-style: italic;
   }
    .activityGame .banner-top .game-time {
-  	position: absolute; 
+  	position: absolute;
   	top:436px;
   	left:290px;
   	line-height: 40px;
@@ -232,15 +232,15 @@ export default {
     	font-size: 20px;
     	text-align: center;
     	color: #006af5;
-    	
+
     }
      .activityGame .title-top .span2{
      	float: left;
      		display: inline-block;
      		margin: 0 0 0 10px;
     	font-size: 16px;
-    	color: #fff; 
-    	line-height: 32px; 	
+    	color: #fff;
+    	line-height: 32px;
     }
  	.activityGame .objective{
  		margin-bottom: 50px;
@@ -294,7 +294,7 @@ export default {
  			font-size: 16px;
  			line-height: 26px;
  			color: #666;
- 		
+
  		}
  		.activityGame .review-center p i{
  			display: inline-block;
@@ -369,6 +369,6 @@ export default {
  			line-height: 26px;
  			color: #fff;
  		}
- 	
+
 
 </style>
