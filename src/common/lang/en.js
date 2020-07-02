@@ -75,7 +75,7 @@ export const lang = {
   Disclaimeragreement:"Disclaimer Agreement for Scientific Research Open Source Software Creative Contest",
   Softwaremodification:"Software modification",
   Personalcenter:"Personal Center",
-  commercialsoftware:"commercial Software",
+  commercialsoftware:"Commercial Software",
   Opensourcesoftware:"Open Source Software",
   Selfdevelopedsoftware:"Self-developed Software",
   useimmediately:"Use Immediately",
