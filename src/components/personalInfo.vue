@@ -268,7 +268,6 @@
 						</el-table-column>
 						<el-table-column header-align="center" prop="userUnit" label="所在单位">
 						</el-table-column>
-						</el-table-column>
 						<el-table-column header-align="center" prop="userPhone" label="手机" width="130">
 						</el-table-column>
 					</el-table>
@@ -281,8 +280,6 @@
 						<el-table-column header-align="center" prop="userName" label="姓名" width="120">
 						</el-table-column>
 						<el-table-column header-align="center" prop="userUnit" label="所在单位">
-						</el-table-column>
-
 						</el-table-column>
 						<el-table-column header-align="center" prop="userJob" label="软件中承担何种工作">
 						</el-table-column>

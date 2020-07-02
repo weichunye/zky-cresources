@@ -53,6 +53,7 @@ export const lang = {
   Currentunit:"Current unit",
   Workinsoftware:"Work in software",
   phone:"Phone",
+  Telephone:"Telephone",
   operating:"Operating",
   delete:"delete",
   Addanewline:"Add a new line",
@@ -81,4 +82,6 @@ export const lang = {
   useimmediately:"Use Immediately",
   View:"View",
   modify:"Modify",
+  allrightsreserved:"All Rights Reserved",
+  ServiceSupportInformation:"Service Support Information",
 }

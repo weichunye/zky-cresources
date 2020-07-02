@@ -53,6 +53,7 @@ export const lang = {
   Currentunit:"所在单位",
   Workinsoftware:"软件中承担工作",
   phone:"手机",
+  Telephone:"电话",
   operating:"操作",
   delete:"删除",
   Addanewline:"新增一行",
@@ -81,4 +82,6 @@ export const lang = {
   useimmediately:"立即使用",
   View:"查看",
   modify:"修改",
+  allrightsreserved:"版权所有",
+  ServiceSupportInformation:"服务支持信息",
 }
