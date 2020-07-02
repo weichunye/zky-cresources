@@ -58,7 +58,7 @@ if(sessionStorage.getItem('sessionData')){
   userJsonStr = sessionStorage.getItem('sessionData');
   localStorage.setItem('sessionData',userJsonStr);
 }
-userJsonStr={"flag":"1","error":"","userId":"10","token":"d160aaeef21363286271faecf14a6829","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
+userJsonStr={"flag":"1","error":"","userId":"10","token":"411110d2b1c2023c8a5a0e5d3fadabb4","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
 userJsonStr=JSON.stringify(userJsonStr);
 var userEntity =userJsonStr?JSON.parse(userJsonStr):null;
 if(userEntity){

@@ -22,6 +22,7 @@ export const lang = {
   Submitter:"提&nbsp;交&nbsp;&nbsp;者",
   Programminglanguage:"编程语言",
   Developer:"开&nbsp;发&nbsp;&nbsp;者",
+  DevelopernoSpace:"开发人员",
   Softwareversion:"软件版本",
   Opensourcetype:"开源类型",
   Developmentarea:"开发领域",
@@ -63,6 +64,10 @@ export const lang = {
   pleaseenter:"请输入",
   pleasechoose:"请选择",
   pleasesignin:"请登录",
+  correct:"正确",
+  Promptmessage:"提示信息",
+  readtheAgreement:"请阅读软件投递免责协议",
+  tosoftwaredetails:"点击确定跳转到个人中心查看软件详情?",
 
 
 }

@@ -22,6 +22,7 @@ export const lang = {
   Submitter:"Submitter",
   Programminglanguage:"Programming Language",
   Developer:"Developer",
+  DevelopernoSpace:"Developer",
   Softwareversion:"Software Version",
   Opensourcetype:"Open Source Type",
   Developmentarea:"Development Area",
@@ -63,5 +64,9 @@ export const lang = {
   pleaseenter:"please enter ",
   pleasechoose:"please choose ",
   pleasesignin:"please sign in",
+  correct:"correct ",
+  Promptmessage:"Prompt message ",
+  readtheAgreement:"Please read the Software Delivery Disclaimer Agreement",
+  tosoftwaredetails:"Click OK to jump to the personal center to view the software details?",
 
 }

@@ -506,6 +506,7 @@
         hotKeyWordList:[]
       }
     },
+
     created(){
       var _this=this;
       $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
@@ -552,6 +553,12 @@
       '$route'(to, from) {
         this.menuId=this.$route.query.categoryId
         this.searchArr.itemType=this.$route.query.itemType
+      },
+      language: function (val) {       //侦听单选按钮的变化，从而进行切换语言
+        val === 0 ? this.$i18n.locale = 'zh' : this.$i18n.locale = 'en';
+        Vue.set(this.lang, 0, {label: this.$t('message.zh'), value: 0});
+        Vue.set(this.lang, 1, {label: this.$t('message.en'), value: 1})
+
       }
     },
     methods: {
@@ -645,9 +652,9 @@
       deliverySoft: function() {
         var _this = this;
         if(!this.userId) {
-          _this.$confirm('请登录', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          _this.$confirm(_this.$t('lang.pleasesignin'), _this.$t('lang.Promptmessage'), {
+            confirmButtonText: _this.$t('lang.ok'),
+            cancelButtonText: _this.$t('lang.Cancel'),
             type: 'warning'
           }).then(() => {
             var newUrl =window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
@@ -666,7 +673,8 @@
         if(_this.form.softUrl) {
           var thisurl = _this.form.softUrl.match(regexp);
           if(!thisurl) {
-            _this.messageOpen('填写正确链接地址', 'warning')
+            /*'填写正确链接地址'*/
+            _this.messageOpen( _this.$t('lang.pleaseenter')+  _this.$t('lang.correct')+  _this.$t('lang.Codeaddress'), 'warning')
             return false
           }
           var params = new URLSearchParams();
@@ -674,8 +682,8 @@
           _this.$http.post( '/haoweb/web/soft/checkIsEqualsSoftUrl', params)
             .then(()=>{
               if(response.data.code != 0) {
-                _this.$alert(response.data.msg, '提示信息', {
-                  confirmButtonText: '确定',
+                _this.$alert(response.data.msg,  _this.$t('lang.Promptmessage'), {
+                  confirmButtonText:  _this.$t('lang.ok'),
                 });
                 _this.form.softUrl = ''
               }
@@ -748,33 +756,40 @@
        }*/
         if(_this.form.ifSelfStudy) {
           if(!_this.firstDomains.userName) {
-            _this.messageOpen('请填写开发人员姓名', 'warning')
+            /*_this.messageOpen('请填写开发人员姓名', 'warning')*/
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.DevelopernoSpace')+_this.$t('lang.name'), 'warning')
             return false;
           }
           if(!_this.firstDomains.userUnit) {
-            _this.messageOpen('请填写开发人员单位', 'warning')
+         /*   _this.messageOpen('请填写开发人员单位', 'warning')*/
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.DevelopernoSpace')+_this.$t('lang.Currentunit'), 'warning')
             return false;
           }
           if(!_this.firstDomains.userJob) {
-            _this.messageOpen('请填写开发人员工作', 'warning')
+           /* _this.messageOpen('请填写开发人员工作', 'warning')*/
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.DevelopernoSpace')+_this.$t('lang.Workinsoftware'), 'warning')
             return false;
           }
           if(!_this.firstDomains.userPhone) {
-            _this.messageOpen('请填写开发人员手机', 'warning')
+/*            _this.messageOpen('请填写开发人员手机', 'warning')*/
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.DevelopernoSpace')+_this.$t('lang.phone'), 'warning')
             return false;
           }
           var phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/;
           if(!phoneReg.test(this.firstDomains.userPhone)) {
-            this.messageOpen('请填写正确手机号码', 'warning')
+          /*  this.messageOpen('请填写正确手机号码', 'warning')*/
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.correct')+_this.$t('lang.name'), 'warning')
             return false;
           }
         }
         if(!_this.form.abstract) {
-          _this.messageOpen('请填写作品摘要')
+      /*    _this.messageOpen('请填写作品摘要')*/
+          _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.Worksummary'), 'warning')
           return false;
         }
         if(!_this.ifCheckedMzs) {
-          _this.messageOpen('请阅读软件投递免责协议')
+         /* _this.messageOpen('请阅读软件投递免责协议')*/
+          _this.messageOpen(_this.$t('lang.readtheAgreement'), 'warning')
           return false;
         }
 
@@ -799,14 +814,16 @@
           for(var i = 0; i < this.secondDomains.length; i++) {
             var cur = this.secondDomains[i]
             if(!cur.userName) {
-              this.messageOpen('请填写开发人员姓名', 'warning')
+              /*this.messageOpen('请填写开发人员姓名', 'warning')*/
+              _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.DevelopernoSpace')+_this.$t('lang.name'), 'warning')
               return false;
             }
             sofoVo.userList.push(cur);
           }
         }
         if(this.form.isRun === '1' && !this.form.runUrl) {
-          this.messageOpen('请输入立即运行路径')
+         /* this.messageOpen('请输入立即运行路径')*/
+          _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.Runpathimmediately'))
           return false;
         }
         _this.$refs[formName].validate((valid) => {
@@ -828,17 +845,17 @@
                 if(_this.$route.path == '/personalInfo') {
                   location.reload()
                 } else {
-                  this.$confirm('点击确定跳转到个人中心查看软件详情?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                  this.$confirm(_this.$t('lang.tosoftwaredetails'), _this.$t('lang.Promptmessage'), {
+                    confirmButtonText:  _this.$t('lang.ok'),
+                    cancelButtonText:  _this.$t('lang.Cancel'),
                     type: 'warning'
                   }).then(() => {
                     _this.toPersonalInfo()
                   })
                 }
               } else {
-                _this.$alert(response.data.msg, '提示信息', {
-                  confirmButtonText: '确定',
+                _this.$alert(response.data.msg, _this.$t('lang.Promptmessage'), {
+                  confirmButtonText: _this.$t('lang.ok'),
                 });
               }
 
