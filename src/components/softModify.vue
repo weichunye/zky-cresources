@@ -10,13 +10,22 @@
 						<img class="logo" src="../assets/img/logo_small.png" alt="logo" />
 					</router-link>
 					<p class="text">
-						欢迎来到科研软件汇聚平台！
+						{{ $t('lang.greeting')}}
 					</p>
-
-					<p @click="toPersonalInfo" class="right-text">个人中心</p>
+          <span  class="changelang" >
+          <el-select v-model="langvalue" placeholder="" size="mini" @change="changeLangEvent">
+            <el-option
+              v-for="item in langOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+         </el-select>
+        </span>
+					<p @click="toPersonalInfo" class="right-text">{{ $t('lang.Personalcenter')}}</p>
 				</div>
 			</div>
-      <h2>软件修改</h2>
+      <h2>	{{ $t('lang.Softwaremodification')}}</h2>
 			<div class="softModify-box">
 
 
@@ -24,21 +33,21 @@
 
 				<el-form :model="form" ref="form" :inline="true" class="demo-form-inline" @submit.native.prevent>
 					<div class="box-big">
-						<el-form-item label="软件名称" :label-width="formLabelWidth">
+						<el-form-item :label=" $t('lang.nameofsoftware')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-input v-model="form.name" placeholder="请输入软件名称" auto-complete="off"></el-input>
+							<el-input v-model="form.name" :placeholder="$t('lang.pleaseenter')+$t('lang.nameofsoftware')"  auto-complete="off"></el-input>
 						</el-form-item>
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="软件版本" :label-width="formLabelWidth">
+						<el-form-item :label=" $t('lang.Softwareversion')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
-							<el-input v-model="form.softVersion" placeholder="请输入软件版本" auto-complete="off"></el-input>
+							<el-input v-model="form.softVersion" :placeholder="$t('lang.pleaseenter')+$t('lang.Softwareversion')" auto-complete="off"></el-input>
 						</el-form-item>
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="收费方式" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Chargemethod')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
               <el-cascader
                 v-model="form.softCategory"
@@ -49,7 +58,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="软件类别" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.softwaretype')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
               <el-cascader
                 v-model="form.opensourceType"
@@ -61,7 +70,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="编程语言" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Programminglanguage')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
               <el-cascader
                 v-model="form.Language"
@@ -72,7 +81,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="学科领域" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.academicarea')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
               <el-cascader
                 v-model="form.userInterface"
@@ -83,7 +92,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="开发领域" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Developmentarea')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
               <el-cascader
                 v-model="form.applicationField"
@@ -91,7 +100,7 @@
                 :props="{ multiple: true, checkStrictly: true }"
                 clearable></el-cascader>
 						</el-form-item>
-            <el-form-item label="开源类型" :label-width="formLabelWidth">
+            <el-form-item :label="$t('lang.Opensourcetype')" :label-width="formLabelWidth">
 <!--							<em class="addti">*</em>-->&nbsp;
               <el-cascader
                 v-model="form.openType"
@@ -102,7 +111,7 @@
 
 					</div>
 					<div class="box-big">
-						<el-form-item label="操作平台" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.operatingsystem')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
 							<el-select v-model="form.operatingSystem" value-key="id" filterable multiple placeholder="请选择操作平台">
 								<el-option v-for="item in operatingSystemOption " :key="item.id" :label="item.label" :value="item">
@@ -112,7 +121,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="代码地址" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Codeaddress')" :label-width="formLabelWidth">
 <!--							<em class="addti">*</em>-->&nbsp;
 							<el-input v-model.trim="form.softUrl" @blur='checkUrl' placeholder="github或cstos.cstcloud.cn的项目地址，推荐使用cstos.cstcloud.cn" auto-complete="off"></el-input>
 							<!--<a class="gitUrl" v-if="form.softUrl" target="_blank" :href="form.softUrl">查看</a>-->
@@ -125,46 +134,46 @@
 					</div>
           <div class="box-big">
 
-						<el-form-item label="跳转地址" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Jumpaddress')" :label-width="formLabelWidth">
               &nbsp;
-							<el-input v-model.trim="form.jumpUrl" placeholder="请输入跳转地址" auto-complete="off"></el-input>
+							<el-input v-model.trim="form.jumpUrl" :placeholder="$t('lang.pleaseenter')+$t('lang.Jumpaddress')" auto-complete="off"></el-input>
 							<p class="textp"> {{jumpUrlTit}}</p>
 						</el-form-item>
 					</div>
           <div class="box-big1">
-            <el-form-item prop="isRun" label="是否立即运行" :label-width="formLabelWidth">
+            <el-form-item prop="isRun" :label="$t('lang.Whethertorunimmediately')" :label-width="formLabelWidth">
               &nbsp;
-              <el-radio v-model="form.isRun" label= '0'>否</el-radio>
-              <el-radio v-model="form.isRun" label= '1'>是</el-radio>
+              <el-radio v-model="form.isRun" label= '0'>{{$t('lang.no')}}</el-radio>
+              <el-radio v-model="form.isRun" label= '1'>{{$t('lang.yes')}}</el-radio>
             </el-form-item>
           </div>
           <div class="box-big" >
-            <el-form-item prop="runUrl" label="立即运行路径" :label-width="formLabelWidth" v-if="this.form.isRun === '1'">
-              <el-input v-model="form.runUrl" placeholder="请输入立即运行路径" auto-complete="off"></el-input>
+            <el-form-item prop="runUrl" :label="$t('lang.Runpathimmediately')" :label-width="formLabelWidth" v-if="this.form.isRun === '1'">
+              <el-input v-model="form.runUrl" :placeholder="$t('lang.pleaseenter')+$t('lang.Runpathimmediately')" auto-complete="off"></el-input>
             </el-form-item>
           </div>
 
 					<div class="box-big">
-						<el-form-item v-if="!form.ifSelfStudy" label="开发人员" :label-width="formLabelWidth">
+						<el-form-item v-if="!form.ifSelfStudy" :label="$t('lang.DevelopernoSpace')" :label-width="formLabelWidth">
 							<em class="addti">&nbsp;</em>
-							<el-input v-model="form.developer" placeholder="请输入内容"></el-input>
+							<el-input v-model="form.developer" :placeholder="$t('lang.pleaseenter')+$t('lang.DevelopernoSpace')"></el-input>
 						</el-form-item>
 
 						<el-form-item label=" " :label-width="formLabelWidth">
-							<el-checkbox style="width: 100%;" v-model="form.ifSelfStudy">是否为自研</el-checkbox>
+							<el-checkbox style="width: 100%;" v-model="form.ifSelfStudy">{{$t('lang.ifselfdeveloped')}}</el-checkbox>
 						</el-form-item>
 					</div>
 					<div v-if="form.ifSelfStudy">
 
-						<h3 class="h3">参赛人员</h3>
+						<h3 class="h3">{{$t('lang.Participants')}}</h3>
 						<table class="singtext" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th width="30">&nbsp;</th>
-								<th width="120">姓名</th>
-								<th width="120">所在单位</th>
-								<th width="120">软件中承担工作</th>
-								<th width="150">手机</th>
-								<th width="80">操作</th>
+								<th width="120">{{$t('lang.name')}}</th>
+								<th width="120">{{$t('lang.Currentunit')}}</th>
+								<th width="120">{{$t('lang.Workinsoftware')}}</th>
+								<th width="150">{{$t('lang.phone')}}</th>
+								<th width="80">{{$t('lang.operating')}}</th>
 							</tr>
 							<tr>
 								<td class="domainsnum"><span>*</span></td>
@@ -205,14 +214,14 @@
 									<p class="textp">{{phoneValueTit}}</p>
 								</td>
 								<td>
-									<div @click="delTr($event)" class="deltrbtn">删除</div>
+									<div @click="delTr($event)" class="deltrbtn">{{$t('lang.delete')}}</div>
 								</td>
 							</tr>
 
 							<tr>
 								<td colspan="6">
-									<a href="javascript:;" @click="addDomain" class="addtr">新增一行</a>
-									<el-checkbox style="float: right; margin:10px 10px 0 0 ;color: #999;" v-model="form.ifHsowRealName">是否匿名</el-checkbox>
+									<a href="javascript:;" @click="addDomain" class="addtr">{{$t('lang.Addanewline')}}</a>
+									<el-checkbox style="float: right; margin:10px 10px 0 0 ;color: #999;" v-model="form.ifHsowRealName">{{$t('lang.Isitanonymous')}}</el-checkbox>
 
 								</td>
 							</tr>
@@ -220,7 +229,7 @@
 					</div>
 					<div class="box-big">
 
-						<el-form-item label="作品摘要" :label-width="formLabelWidth">
+						<el-form-item :label="$t('lang.Worksummary')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
 							<div class="box-input">
 								<tinymce-editor v-model="form.abstract" :disabled=false ref="editor"></tinymce-editor>
@@ -234,7 +243,7 @@
 
 							<el-form-item label=" " :label-width="formLabelWidth">
 								<el-checkbox v-model="form.ifCheckedMzs">
-									<router-link target="_blank" to="page2">投递软件免责协议</router-link>
+									<router-link target="_blank" to="page2">{{$t('lang.SoftwareDeliveryDisclaimer')}}</router-link>
 								</el-checkbox>
 
 							</el-form-item>
@@ -242,7 +251,7 @@
 						</div>
 
 						<div class="right-box">
-							<el-button type="primary" @click="submitForm('form')">提 交</el-button>
+							<el-button type="primary" @click="submitForm('form')">{{$t('lang.Submit')}}</el-button>
 						</div>
 
 					</div>
@@ -284,7 +293,17 @@
 					ifHsowRealName: false, //true不匿名，false匿名
 					developer: ''
 				},
-
+        langOptions:[
+          {
+            label:"中文",
+            value:1
+          },
+          {
+            label:"English",
+            value:2
+          },
+        ],
+        langvalue:1,
 				softUrlTit: '',
         jumpUrlTit: '',
 				joinVoUrl: '',
@@ -336,6 +355,33 @@
 
 		},
 		methods: {
+      //中英文切换
+      changeLangEvent(val){
+        var _=this
+        console.log("_.val",val)
+        if (val == 2 ) {
+          _.$i18n.locale = 'en-US';//关键语句
+          console.log('en-US')
+        }else {
+          _.$i18n.locale = 'zh-CN';//关键语句
+          console.log('zh-CN')
+        }
+        //搜索选项更新
+        _.searchOptions= [{
+          value: 1,
+          label: this.$t('lang.searchTypesoftware')
+        },
+          {
+            value: 2,
+            label: this.$t('lang.territory')
+          },
+          {
+            value: 3,
+            label:  this.$t('lang.author')
+          }
+        ]
+
+      },
 			//新增行
 			addDomain: function() {
 				var _this = this;
@@ -381,32 +427,39 @@
 
 
             let applicationFieldArrOne = newResponse.filter((item, index) => {
-              return item.label === '学科领域'
+              // return item.label === '学科领域'
+              return item.label === _this.$t('lang.academicarea')
+
             })
             _this.userInterfaceOption = applicationFieldArrOne[0].children
 
             let softCtyArrOne = newResponse.filter((item, index) => {
-              return item.label === '开发领域'
+              // return item.label === '开发领域'
+              return item.label === _this.$t('lang.Developmentarea')
             })
             _this.applicationFieldOption = softCtyArrOne[0].children
 
             let opensourceTypeArrOne =newResponse.filter((item, index) => {
-              return item.label === '开源类型'
+              // return item.label === '开源类型'
+              return item.label === _this.$t('lang.Opensourcetype')
             })
             _this.openTypeOption = opensourceTypeArrOne[0].children
 
             let chargingMethodArrOne =newResponse.filter((item, index) => {
-              return item.label === '收费方式'
+              // return item.label === '收费方式'
+              return item.label === _this.$t('lang.Chargemethod')
             })
             _this.softCategoryOption = chargingMethodArrOne[0].children
 
             let softTypeArrOne = newResponse.filter((item, index) => {
-              return item.label === '软件类型'
+              // return item.label === '软件类型'
+              return item.label === _this.$t('lang.softwaretype')
             })
             _this.opensourceTypeOption = softTypeArrOne[0].children
 
             let devLanguageArrOne = newResponse.filter((item, index) => {
-              return item.label === '编程语言'
+              // return item.label === '编程语言'
+              return item.label === _this.$t('lang.Programminglanguage')
             })
             _this.LanguageOption = devLanguageArrOne[0].children
           })
@@ -484,7 +537,8 @@
 				if(_this.form.softUrl) {
 					var thisurl = _this.form.softUrl.match(regexp);
 					if(!thisurl) {
-						_this.messageOpen('填写正确链接地址', 'warning')
+						// _this.messageOpen('填写正确链接地址', 'warning')
+            _this.messageOpen(_this.$t('lang.pleaseenter')+_this.$t('lang.correct')+_this.$t('lang.Codeaddress'), 'warning')
 						return false
 
 					}
@@ -496,8 +550,9 @@
 					_this.$http.post('/haoweb/web/soft/checkIsEqualsSoftUrl', params)
 						.then((response)=>{
               if(response.data.code != 0) {
-                _this.$alert(response.data.msg, '提示信息', {
-                  confirmButtonText: '确定',
+                _this.$alert(response.data.msg,   _this.$t('lang.Promptmessage'), {
+                  // confirmButtonText: '确定',
+                  confirmButtonText:_this.$t('lang.ok'),
                 });
                 _this.form.softUrl = ''
               }
@@ -577,27 +632,33 @@
 				joinVo.isSelf = _this.form.ifSelfStudy == true ? 1 : 0;
 
 				if(!_this.form.name) {
-					_this.messageOpen('请填写软件名称', 'warning')
+					// _this.messageOpen('请填写软件名称', 'warning')
+          _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.nameofsoftware'), 'warning')
 					return false;
 				}
 				if(!_this.form.softVersion) {
-					_this.messageOpen('请输入软件版本', 'warning')
+					// _this.messageOpen('请输入软件版本', 'warning')
+          _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Softwareversion'), 'warning')
 					return false;
 				}
 				if(_this.form.softCategory.length == 0) {
-					_this.messageOpen('请选择收费方式', 'warning')
+					// _this.messageOpen('请选择收费方式', 'warning')
+          _this.messageOpen(_this.$t('lang.pleasechoose')+  _this.$t('lang.Chargemethod'), 'warning')
 					return false;
 				}
 				if(_this.form.userInterface.length == 0) {
-					_this.messageOpen('请选择学科领域', 'warning')
+					// _this.messageOpen('请选择学科领域', 'warning')
+          _this.messageOpen(_this.$t('lang.pleasechoose')+  _this.$t('lang.academicarea'), 'warning')
 					return false;
 				}
 				if(_this.form.Language.length == 0) {
-					_this.messageOpen('请选择编程语言', 'warning')
+					// _this.messageOpen('请选择编程语言', 'warning')
+          _this.messageOpen(_this.$t('lang.pleasechoose')+  _this.$t('lang.Programminglanguage'), 'warning')
 					return false;
 				}
 				if(_this.form.applicationField.length == 0) {
-					_this.messageOpen('请选择开发领域', 'warning')
+					// _this.messageOpen('请选择开发领域', 'warning')
+          _this.messageOpen(_this.$t('lang.pleasechoose')+  _this.$t('lang.Developmentarea'), 'warning')
 					return false;
 				}
        /* if(!_this.form.openType||_this.form.openType.length == 0) {
@@ -605,16 +666,19 @@
           return false;
         }*/
         if(!_this.form.operatingSystem||_this.form.operatingSystem.length == 0) {
-          _this.messageOpen('请选择操作平台', 'warning')
+          // _this.messageOpen('请选择操作平台', 'warning')
+          _this.messageOpen(_this.$t('lang.pleasechoose')+  _this.$t('lang.operatingsystem'), 'warning')
           return false;
         }
 				if(_this.form.name.length > 50) {
-					_this.messageOpen('软件名称不能超过50字，请重新输入', 'warning')
+					// _this.messageOpen('软件名称不能超过50字，请重新输入', 'warning')
+          _this.messageOpen(_this.$t('lang.nameofsoftware')+  _this.$t('lang.exceedwords'), _this.$t('lang.pleaseenteragain'), 'warning')
 					return false;
 				}
 
 				if(_this.form.opensourceType.length == 0) {
-					_this.messageOpen('请填写软件类别', 'warning')
+					// _this.messageOpen('请填写软件类别', 'warning')
+          _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.softwaretype'), 'warning')
 					return false;
 				}
 				// if(!_this.form.softUrl) {
@@ -635,43 +699,51 @@
 				if(_this.form.ifSelfStudy == 1) {
 
 					if(!_this.firstDomains.userName) {
-						_this.messageOpen('请填写参赛人姓名', 'warning')
+						// _this.messageOpen('请填写参赛人姓名', 'warning')
+            _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Participants')+  _this.$t('lang.name'), 'warning')
 						return false;
 					}
 					if(!_this.firstDomains.userUnit) {
-						_this.messageOpen('请填写参赛人单位', 'warning')
+						// _this.messageOpen('请填写参赛人单位', 'warning')
+            _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Participants')+  _this.$t('lang.Currentunit'), 'warning')
 						return false;
 					}
 
 					if(!_this.firstDomains.userJob) {
-						_this.messageOpen('请填写参赛人工作', 'warning')
+						// _this.messageOpen('请填写参赛人工作', 'warning')
+            _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Participants')+  _this.$t('lang.Currentunit'), 'warning')
 						return false;
 					}
 
 					if(!_this.firstDomains.userPhone) {
-						_this.messageOpen('请填写参赛人手机', 'warning')
+						// _this.messageOpen('请填写参赛人手机', 'warning')
+            _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Participants')+  _this.$t('lang.phone'), 'warning')
 						return false;
 					}
 					var phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/;
 
 					if(!phoneReg.test(this.firstDomains.userPhone)) {
-						this.messageOpen('请填写正确手机号码', 'warning')
+						// this.messageOpen('请填写正确手机号码', 'warning')
+            this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.correct')+  _this.$t('lang.phone'), 'warning')
 						return false;
 
 					}
 				}
 				if(!_this.form.abstract) {
-					_this.messageOpen('请填写作品摘要', 'warning')
+					// _this.messageOpen('请填写作品摘要', 'warning')
+          _this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Worksummary'), 'warning')
 					return false;
 				}
 
 				if(!_this.form.ifCheckedMzs) {
-					_this.messageOpen('科研开源软件创意大赛免责协议', 'warning')
+					// _this.messageOpen('科研开源软件创意大赛免责协议', 'warning')
+          _this.messageOpen(_this.$t('lang.Disclaimeragreement'), 'warning')
 					return false;
 
 				}
         if(_this.form.isRun === '1' && !_this.form.runUrl) {
-          _this.messageOpen('请输入立即运行路径')
+          // _this.messageOpen('请输入立即运行路径')
+          _this.messageOpen(_this.$t('lang.pleaseenter')+ _this.$t('lang.Runpathimmediately'))
           return false;
         }
 
@@ -697,7 +769,8 @@
 							for(var i = 0; i < this.secondDomains.length; i++) {
 								var cur = this.secondDomains[i]
 								if(!cur.userName) {
-									this.messageOpen('请填写参赛人姓名', 'warning')
+									// this.messageOpen('请填写参赛人姓名', 'warning')
+                  this.messageOpen(_this.$t('lang.pleaseenter')+  _this.$t('lang.Participants')+  _this.$t('lang.name'), 'warning')
 									return false;
 								}
 								joinVo.userList.push(cur);
@@ -712,8 +785,8 @@
                 if(response.data.code == 0) {
                   _this.toPersonalInfo()
                 } else {
-                  _this.$alert(response.data.msg, '提示信息', {
-                    confirmButtonText: '确定',
+                  _this.$alert(response.data.msg,  _this.$t('lang.Promptmessage'), {
+                    confirmButtonText:_this.$t('lang.ok'),
                   });
                 }
 
@@ -1100,6 +1173,16 @@
 		color: #f4f4f4;
 		cursor: pointer;
 	}
+  /*切换中英文*/
+  .softModify .header-top .reposbox .changelang{
+    float: right;
+    width: 80px;
+  }
+  .softModify .header-top .reposbox .changelang .el-input__inner{
+    border: none;
+    background: none;
+    color: #f4f4f4;
+  }
 
 	.softModify .gitUrl {
 		padding: 9px 6px;

@@ -154,7 +154,9 @@
         <!--推荐-->
         <div  v-for="(item,index) in softList" :key="index"  style=" margin: 30px 0 20px 0 ;  " >
         <div class="headline">
-          <h3 :style="{color:index==0?'#1c4b8f':index==1?'#13a59b':index==2?'#b33d00':'#a96908'}">{{item.ctyName}}</h3>
+          <h3 :style="{color:index==0?'#1c4b8f':index==1?'#13a59b':index==2?'#b33d00':'#a96908'}">
+            {{item.ctyName=="商业软件"?$t('lang.commercialsoftware'):item.ctyName=="开源软件"?$t('lang.Opensourcesoftware'):item.ctyName=="自研软件"?$t('lang.Selfdevelopedsoftware'):$t('lang.useimmediately')}}
+         <!--   {{item.ctyName}}--></h3>
           <p v-if="index==0" class="english">BUSINESS  SOURCE</p>
           <p v-if="index==1" class="english">OPEN SOURCE</p>
           <p v-if="index==2" class="english">DEVELOPMENT </p>

@@ -68,6 +68,17 @@ export const lang = {
   Promptmessage:"提示信息",
   readtheAgreement:"请阅读软件投递免责协议",
   tosoftwaredetails:"点击确定跳转到个人中心查看软件详情?",
-
-
+  Participants:"参赛人员",
+  Submit:"提 交",
+  exceedwords:"不能超过50字",
+  pleaseenteragain:"请重新输入",
+  Disclaimeragreement:"科研开源软件创意大赛免责协议",
+  Softwaremodification:"软件修改",
+  Personalcenter:"个人中心",
+  commercialsoftware:"商业软件",
+  Opensourcesoftware:"开源软件",
+  Selfdevelopedsoftware:"自研软件",
+  useimmediately:"立即使用",
+  View:"查看",
+  modify:"修改",
 }

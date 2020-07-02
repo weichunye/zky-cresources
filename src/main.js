@@ -18,6 +18,7 @@ import Share from 'vue-social-share'
 import 'vue-social-share/dist/client.css';
 import http from '@/utils/request'
 import {parseTime} from '@/utils'
+import eleLocale from 'element-ui/lib/locale';
 import {Passport} from  './utils/checkLogin'
 promise.polyfill()
 import 'url-search-params-polyfill';
@@ -32,6 +33,12 @@ Vue.use(ElementUI);
 Vue.prototype.axios = axios;
 Vue.use(Cookies);
 Vue.use(Share)
+/*Vue.use(iView, {
+　　i18n: (key, value) => i18n.t(key, value)
+　　});
+　　Vue.use(ElementUI, {
+　　　　i18n: (key, value) => i18n.t(key, value)
+　　});*/
 Vue.use(VueI18n) ;
 Vue.prototype.$http = http
 Vue.prototype.messageOpen = function(msg, type) {
@@ -40,6 +47,7 @@ Vue.prototype.messageOpen = function(msg, type) {
     type: type
   });
 }
+eleLocale.i18n((key, value) => i18n.t(key, value))
 
 const i18n = new VueI18n({
   locale: 'zh-CN',    // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale
@@ -58,7 +66,7 @@ if(sessionStorage.getItem('sessionData')){
   userJsonStr = sessionStorage.getItem('sessionData');
   localStorage.setItem('sessionData',userJsonStr);
 }
-userJsonStr={"flag":"1","error":"","userId":"10","token":"411110d2b1c2023c8a5a0e5d3fadabb4","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
+userJsonStr={"flag":"1","error":"","userId":"10","token":"44bee32d9b3e6739df80baed7699eb72","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
 userJsonStr=JSON.stringify(userJsonStr);
 var userEntity =userJsonStr?JSON.parse(userJsonStr):null;
 if(userEntity){

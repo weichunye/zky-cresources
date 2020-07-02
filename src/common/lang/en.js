@@ -68,5 +68,17 @@ export const lang = {
   Promptmessage:"Prompt message ",
   readtheAgreement:"Please read the Software Delivery Disclaimer Agreement",
   tosoftwaredetails:"Click OK to jump to the personal center to view the software details?",
-
+  Participants:"Participants",
+  Submit:"Submit",
+  exceedwords:"Can't exceed 50 words",
+  pleaseenteragain:"please enter again",
+  Disclaimeragreement:"Disclaimer Agreement for Scientific Research Open Source Software Creative Contest",
+  Softwaremodification:"Software modification",
+  Personalcenter:"Personal Center",
+  commercialsoftware:"commercial Software",
+  Opensourcesoftware:"Open Source Software",
+  Selfdevelopedsoftware:"Self-developed Software",
+  useimmediately:"Use Immediately",
+  View:"View",
+  modify:"Modify",
 }

@@ -23,7 +23,7 @@
         </div>
         <div v-else="">
           <a class="right-text" @click="signOut" href="https://passport.escience.cn/logout?WebServerURL=http://www.scihub.cstcloud.cn">{{$t('lang.signout')}} </a>
-          <p @click="toPersonalInfo" class="right-text">{{userInfo.trueName}},&nbsp;&nbsp;个人中心&nbsp;&nbsp;&nbsp;|</p>
+          <p @click="toPersonalInfo" class="right-text">{{userInfo.trueName}},&nbsp;&nbsp;{{$t('lang.Personalcenter')}}&nbsp;&nbsp;&nbsp;|</p>
         </div>
 
 
@@ -32,7 +32,9 @@
     <div class="searchtop-box">
       <div class="con">
         <router-link to="/">
-          <img class="logo" src="../assets/img/search_logo.png" alt="logo" />
+
+          <img v-if="langvalue==1" class="logo" src="../assets/img/search_logo.png" alt="logo" />
+          <img v-if="langvalue==2" class="logo" src="../assets/img/search_logo_english.png" alt="logo" />
         </router-link>
         <div class="search-box">
           <el-select class="classify" v-model="searchArr.itemType" @change="searchTYpe" placeholder="请选择">
@@ -96,7 +98,7 @@
         <ul class="menu-list">
           <li  v-for="(item, index) in navList" :key="index" :class="menuId==item.value?'active':''">
             <router-link :to="{path:'/list',query:{categoryId:item.value,categoryName:item.label,type:2,ParentName:'首页'}}">
-              {{item.label}}
+              {{item.label=="商业软件"?$t('lang.commercialsoftware'):item.label=="开源软件"?$t('lang.Opensourcesoftware'):item.label=="自研软件"?$t('lang.Selfdevelopedsoftware'):$t('lang.useimmediately')}}
             </router-link>
           </li>
         </ul>
@@ -399,79 +401,9 @@
           ifSelfStudy: false, //是否为自研
           ifHsowRealName: false
         },
-        rules: {
-          name: [{
-            required: true,
-            /*message: `请填写软件名称`,*/
-            message: this.$t('lang.pleaseenter')+this.$t('lang.nameofsoftware'),
-            trigger: 'blur'
-          }],
-          developer: [{
-            required: true,
-           /* message: '请填写开发人员',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.Developer'),
-            trigger: 'blur'
-          }],
-          softVersion: [{
-            required: true,
-           /* message: '请填写版本号',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.Softwareversion'),
-            trigger: 'blur'
-          }],
-          opensourceType: [{
-            required: true,
-           /* message: '请填写软件类型',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.softwaretype'),
-            trigger: 'blur'
-          }],
-          applicationField: [{
-            required: true,
-           /* message: '请填写开发领域',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.Developmentarea'),
-            trigger: 'blur'
-          }],
-          // openType: [{
-          //   required: true,
-          //   message: '请填写开源类型',
-          //   trigger: 'blur'
-          // }],
-          softCategory: [{
-            required: true,
-           /* message: '请选择收费方式',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
-            trigger: 'blur'
-          }],
-          Language: [{
-            required: true,
-           /* message: '请选择开发语言',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
-            trigger: 'blur'
-          }],
-          userInterface: [{
-            required: true,
-           /* message: '请填写学科领域',*/
-            message:  this.$t('lang.pleaseenter')+this.$t('lang.academicarea'),
-            trigger: 'blur'
-          }],
-          // softUrl: [{
-          //   required: true,
-          //   message: '请填写代码地址',
-          //   trigger: 'blur'
-          // }],
-          abstract: [{
-            required: true,
-          /*  message: '请填写作品摘要',*/
-            message:   this.$t('lang.pleaseenter')+ this.$t('lang.Worksummary'),
-            trigger: 'blur'
-          }],
-          operatingSystem: [{
-            required: true,
-            /*message: '请选择操作平台',*/
-            message:   this.$t('lang.pleaseenter')+ this.$t('lang.operatingsystem'),
-            trigger: 'blur'
-          }],
+     /*   rules: {
 
-        },
+        },*/
         toLoginUrl: '',
         categoryOption: [],
         formLabelWidth: '200px',
@@ -507,6 +439,85 @@
       }
     },
 
+    computed: {
+      rules:function () {
+       return (
+         {
+           name: [{
+             required: true,
+             /*message: `请填写软件名称`,*/
+             message: this.$t('lang.pleaseenter')+this.$t('lang.nameofsoftware'),
+             trigger: 'blur'
+           }],
+           developer: [{
+             required: true,
+             /* message: '请填写开发人员',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.Developer'),
+             trigger: 'blur'
+           }],
+           softVersion: [{
+             required: true,
+             /* message: '请填写版本号',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.Softwareversion'),
+             trigger: 'blur'
+           }],
+           opensourceType: [{
+             required: true,
+             /* message: '请填写软件类型',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.softwaretype'),
+             trigger: 'blur'
+           }],
+           applicationField: [{
+             required: true,
+             /* message: '请填写开发领域',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.Developmentarea'),
+             trigger: 'blur'
+           }],
+           // openType: [{
+           //   required: true,
+           //   message: '请填写开源类型',
+           //   trigger: 'blur'
+           // }],
+           softCategory: [{
+             required: true,
+             /* message: '请选择收费方式',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
+             trigger: 'blur'
+           }],
+           Language: [{
+             required: true,
+             /* message: '请选择开发语言',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.Chargemethod'),
+             trigger: 'blur'
+           }],
+           userInterface: [{
+             required: true,
+             /* message: '请填写学科领域',*/
+             message:  this.$t('lang.pleaseenter')+this.$t('lang.academicarea'),
+             trigger: 'blur'
+           }],
+           // softUrl: [{
+           //   required: true,
+           //   message: '请填写代码地址',
+           //   trigger: 'blur'
+           // }],
+           abstract: [{
+             required: true,
+             /*  message: '请填写作品摘要',*/
+             message:   this.$t('lang.pleaseenter')+ this.$t('lang.Worksummary'),
+             trigger: 'blur'
+           }],
+           operatingSystem: [{
+             required: true,
+             /*message: '请选择操作平台',*/
+             message:   this.$t('lang.pleaseenter')+ this.$t('lang.operatingsystem'),
+             trigger: 'blur'
+           }],
+         }
+       )
+
+      }
+    },
     created(){
       var _this=this;
       $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
@@ -553,12 +564,6 @@
       '$route'(to, from) {
         this.menuId=this.$route.query.categoryId
         this.searchArr.itemType=this.$route.query.itemType
-      },
-      language: function (val) {       //侦听单选按钮的变化，从而进行切换语言
-        val === 0 ? this.$i18n.locale = 'zh' : this.$i18n.locale = 'en';
-        Vue.set(this.lang, 0, {label: this.$t('message.zh'), value: 0});
-        Vue.set(this.lang, 1, {label: this.$t('message.en'), value: 1})
-
       }
     },
     methods: {
@@ -1142,13 +1147,17 @@
     width: 100%;
     height: 40px;
   }
-  .searchTop .changelang{
+  .searchTop .changelang {
     float: right;
     width: 80px;
   }
   .searchTop .changelang .el-input__inner{
     border: none;
+    color: #3285ff;
 
+  }
+  .searchTop .changelang  .el-select .el-input .el-select__caret{
+    color: #3285ff;
   }
   .searchTop  .menu-box{
     margin: 20px auto 10px;

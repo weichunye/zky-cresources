@@ -19,18 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="国际化一半加点">
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_classfiy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_code.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_langage.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_lingyu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_mark_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icon/icon_shoufei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/content_bg.jpg" afterDir="false" />
+    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="图片补提">
+      <change afterPath="$PROJECT_DIR$/src/assets/img/search_logo_english.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/lang/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/personalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personalInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/softModify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/softModify.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +171,7 @@
       <workItem from="1593567350691" duration="27431000" />
       <workItem from="1593651926237" duration="594000" />
       <workItem from="1593652972614" duration="14000" />
-      <workItem from="1593653772319" duration="4559000" />
+      <workItem from="1593653772319" duration="19306000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -225,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593607155217</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="图片补提">
+      <created>1593658756380</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1593658756380</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +255,8 @@
     <MESSAGE value="个人中心带下拉" />
     <MESSAGE value="国际化一半" />
     <MESSAGE value="国际化一半加点" />
-    <option name="LAST_COMMIT_MESSAGE" value="国际化一半加点" />
+    <MESSAGE value="图片补提" />
+    <option name="LAST_COMMIT_MESSAGE" value="图片补提" />
   </component>
   <component name="WindowStateProjectService">
     <state x="609" y="296" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585710120360">
@@ -294,25 +299,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="330" y="69" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585819245709" />
-    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1593607156560">
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1593658757709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593607156560" />
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593658757709" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590371720849">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590371720849" />
-    <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593588821411">
+    <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593682506914">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593588821411" />
+    <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593682506914" />
     <state x="483" y="185" width="1009" height="766" key="find.popup" timestamp="1590738068272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="483" y="185" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590738068272" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1593581916208">
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1593661941927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593581916208" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593661941927" />
   </component>
 </project>

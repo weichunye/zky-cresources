@@ -67,19 +67,19 @@
 
 									<!--<button v-if="item.isExpertEvaluate==0&&!item.isMatchSoft&&item.isSelf==1&&item.firstAudit==1" @click="getText(item.softName,item.softUrl,item.id)" class="button4">请专家评估</button>-->
 									<router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-										<button class="button1">查看</button>
+										<button class="button1">{{$t('lang.View')}}</button>
 									</router-link>
 									<router-link v-if="item.firstAudit!=1" :to="{path:'/softModify',query:{id:item.id,ParentName:'个人中心'}}">
-										<button class="button2">修改</button>
+										<button class="button2">{{$t('lang.modify')}}</button>
 									</router-link>
 
-									<button v-if="item.firstAudit!=1" @click="delSoftOrdinary(item)" class="button3">删除</button>
+									<button v-if="item.firstAudit!=1" @click="delSoftOrdinary(item)" class="button3">{{$t('lang.delete')}}</button>
 
 								</div>
 								<div v-else="" class="btn-box">
 									<!--<button v-if="item.isExpertEvaluate==0&&item.isMatchSoft&&item.firstAudit==1" @click="expertReview(item.id)" class="button4">参赛作品请专家评估</button>-->
 <router-link :to="{path:'/details',query:{id:item.id,ParentName:'个人中心'}}">
-										<button class="button1">查看</button>
+										<button class="button1">{{$t('lang.View')}}</button>
 									</router-link>
 								</div>
 											<p v-if="item.isExpertEvaluate==0&&!item.isMatchSoft&&item.isSelf==1&&item.firstAudit==1" @click="getText(item.softName,item.softUrl,item.id)" class=" state-zjpg">请专家评估
