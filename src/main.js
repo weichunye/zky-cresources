@@ -47,7 +47,6 @@ Vue.prototype.messageOpen = function(msg, type) {
     type: type
   });
 }
-eleLocale.i18n((key, value) => i18n.t(key, value))
 
 const i18n = new VueI18n({
   locale: 'zh-CN',    // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale
