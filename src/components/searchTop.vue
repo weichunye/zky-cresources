@@ -6,16 +6,14 @@
           {{$t('lang.greeting')}}
 
         </p>
-        <span  class="changelang" >
-          <el-select v-model="langvalue" placeholder="" size="mini" @change="changeLangEvent">
-            <el-option
-              v-for="item in langOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-         </el-select>
+
+        <span v-if="langvalue==1"  class="changelang"  @click="changeLangEvent(2)">
+        English
         </span>
+        <span v-else  class="changelang"  @click="changeLangEvent(1)">
+           中文
+        </span>
+
         <div style="float: right" v-if="!userId">
           <a class="right-text" target="_blank" href="https://passport.escience.cn/regist.jsp">   {{$t('lang.registered')}} </a>
           <a class="right-text" @click="toLogin" :href="toLoginUrl">  {{$t('lang.login')}} &nbsp;&nbsp;&nbsp;|</a>
@@ -68,7 +66,7 @@
             <li v-for="(item, index) in softTypeList" :key="index">
               <router-link :to="{path:'/list',query:{categoryId:item.value,categoryName:item.label,type:1,ParentName:'首页'}}">
                 <img src="../assets/icon/icon_classfiy.png" alt="">
-                <span>{{item.label}}</span>
+                <span>{{item.label=="软件类型"?$t('lang.softwaretype'):item.label=="收费方式"?$t('lang.Chargemethod'):item.label=="学科领域"?$t('lang.academicarea'):item.label=="开发领域"?$t('lang.Developmentarea'):item.label=="编程语言"?$t('lang.Programminglanguage'):item.label=="开源类型"?$t('lang.Opensourcetype'):""}}</span>
               </router-link>
               <div class="classify-second">
                 <dl   v-for="(i, k) in item.children" :key="k"  :style="{'width': i.children.length>0?'49%':'auto','clear':i.children.length>0&&k%2==0?'left':'','border-width':i.children.length>0&&k%2!=0?'1px':'0px',}">
@@ -587,6 +585,8 @@
       changeLangEvent(val){
         var _=this
         console.log("_.val",val)
+        this.langvalue=val
+        console.log(" _this.langvalue", this.langvalue)
         if (val == 2 ) {
           _.$i18n.locale = 'en-US';//关键语句
           console.log('en-US')
@@ -594,6 +594,7 @@
           _.$i18n.locale = 'zh-CN';//关键语句
           console.log('zh-CN')
         }
+
         //搜索选项更新
         _.searchOptions= [{
           value: 1,
@@ -1150,6 +1151,7 @@
   .searchTop .changelang {
     float: right;
     width: 80px;
+    cursor: pointer;
   }
   .searchTop .changelang .el-input__inner{
     border: none;

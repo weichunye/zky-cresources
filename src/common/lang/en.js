@@ -20,7 +20,7 @@ export const lang = {
   operatingsystem:"Operating System",
   academicarea:"Academic Area",
   Submitter:"Submitter",
-  Programminglanguage:"Programming Language",
+  Programminglanguage:"Programme Language",
   Developer:"Developer",
   DevelopernoSpace:"Developer",
   Softwareversion:"Software Version",
