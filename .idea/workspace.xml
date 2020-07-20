@@ -21,9 +21,20 @@
   <component name="ChangeListManager">
     <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="国际化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/banner01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/banner02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/banner03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner03.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/lang/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/details.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/details.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hotDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/list.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +56,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1YvZ5ODOxvFII7N2GWuZ34eWBcq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,7 +77,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="F:/zjyd-sh" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -71,13 +88,25 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\zky-cresources\src" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
@@ -168,7 +197,14 @@
       <workItem from="1593653772319" duration="20740000" />
       <workItem from="1593830859348" duration="428000" />
       <workItem from="1594282757226" duration="1769000" />
-      <workItem from="1594342337269" duration="3196000" />
+      <workItem from="1594342337269" duration="6714000" />
+      <workItem from="1594429788379" duration="3858000" />
+      <workItem from="1594601959812" duration="3631000" />
+      <workItem from="1594610122968" duration="2297000" />
+      <workItem from="1594687964708" duration="945000" />
+      <workItem from="1594775614278" duration="1225000" />
+      <workItem from="1594861383666" duration="50000" />
+      <workItem from="1595223220265" duration="5402000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -254,23 +290,31 @@
       <option name="project" value="LOCAL" />
       <updated>1593691154924</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="国际化">
+      <created>1594354371974</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1594354371974</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -287,10 +331,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="国际化" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="609" y="296" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585710120360">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="609" y="296" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1585710120360" />
     <state x="588" y="136" key="#start" timestamp="1591000473389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -303,46 +343,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="210" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594283256347" />
-    <state width="1899" height="181" key="GridCell.Tab.0.bottom" timestamp="1593831287711">
+    <state width="1899" height="181" key="GridCell.Tab.0.bottom" timestamp="1594630223504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="181" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593831287711" />
-    <state width="1899" height="181" key="GridCell.Tab.0.center" timestamp="1593831287710">
+    <state width="1899" height="181" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594630223504" />
+    <state width="1899" height="181" key="GridCell.Tab.0.center" timestamp="1594630223504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="181" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593831287710" />
-    <state width="1899" height="181" key="GridCell.Tab.0.left" timestamp="1593831287710">
+    <state width="1899" height="181" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594630223504" />
+    <state width="1899" height="181" key="GridCell.Tab.0.left" timestamp="1594630223504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="181" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593831287710" />
-    <state width="1899" height="181" key="GridCell.Tab.0.right" timestamp="1593831287710">
+    <state width="1899" height="181" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594630223504" />
+    <state width="1899" height="181" key="GridCell.Tab.0.right" timestamp="1594630223504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="181" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593831287710" />
-    <state x="787" y="155" key="RollbackChangesDialog" timestamp="1585712429253">
+    <state width="1899" height="181" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594630223504" />
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1594354373425">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="787" y="155" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585712429253" />
-    <state x="330" y="69" key="SettingsEditor" timestamp="1585819245709">
+    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594354373425" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1594433386590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="330" y="69" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585819245709" />
-    <state x="552" y="239" key="Vcs.Push.Dialog.v2" timestamp="1593691156268">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="239" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593691156268" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590371720849">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590371720849" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1594433386590" />
     <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593691087590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="692" y="410" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1593691087590" />
-    <state x="483" y="185" width="1009" height="766" key="find.popup" timestamp="1590738068272">
+    <state x="483" y="185" width="1009" height="766" key="find.popup" timestamp="1594603950423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="483" y="185" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590738068272" />
+    <state x="483" y="185" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1594603950423" />
     <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1593661941927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

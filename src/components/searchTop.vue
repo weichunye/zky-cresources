@@ -63,10 +63,10 @@
           <i class="el-icon-menu"></i>
           <p>{{$t('lang.categories')}}</p>
           <ul  class="classify-first">
-            <li v-for="(item, index) in softTypeList" :key="index">
+            <li v-for="(item, index) in softTypeListLoc" :key="index">
               <router-link :to="{path:'/list',query:{categoryId:item.value,categoryName:item.label,type:1,ParentName:'首页'}}">
                 <img src="../assets/icon/icon_classfiy.png" alt="">
-                <span>{{item.label=="软件类型"?$t('lang.softwaretype'):item.label=="收费方式"?$t('lang.Chargemethod'):item.label=="学科领域"?$t('lang.academicarea'):item.label=="开发领域"?$t('lang.Developmentarea'):item.label=="编程语言"?$t('lang.Programminglanguage'):item.label=="开源类型"?$t('lang.Opensourcetype'):""}}</span>
+                <span>{{item.label}}</span>
               </router-link>
               <div class="classify-second">
                 <dl   v-for="(i, k) in item.children" :key="k"  :style="{'width': i.children.length>0?'49%':'auto','clear':i.children.length>0&&k%2==0?'left':'','border-width':i.children.length>0&&k%2!=0?'1px':'0px',}">
@@ -514,18 +514,20 @@
          }
        )
 
-      }
+      },
+        softTypeListLoc:function(){
+          return  JSON.parse(_this.localStorage.getItem("softTypeListE"))?this.langvalue==2?JSON.parse(_this.localStorage.getItem("softTypeListE")):JSON.parse(_this.localStorage.getItem("softTypeListZ")):this.softTypeList
+            console.log(" _this.langvalue", this.langvalue)
+        }
     },
     created(){
       var _this=this;
       $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
-        console.log(" _this.userId", window.SITE_CONFIG['userId'])
+        console.log(" data.result", data.result)
         if(data.result){
           _this.userId=window.SITE_CONFIG['userId']
         }else{
           _this.userId=null
-          localStorage.clear()
-          sessionStorage.clear()
         }
       })
     },
@@ -537,6 +539,8 @@
       this.searchArr.keyword=this.$route.query.keyword?this.$route.query.keyword:''
       this.$http.post('/haoweb/web/soft/softCtyAllList',"")
         .then(({data:res })=>{
+            console.log("汉语",res.list)
+            localStorage.setItem("softTypeListZ",JSON.stringify(res.list) )
           this.softTypeList=res.list
           this.navList=this.softTypeList[0].children
           this.$nextTick(()=>{
@@ -554,6 +558,13 @@
             })*/
           })
         })
+        //英文
+        this.$http.post('/haoweb/web/soft/softCtyAllEnglishList',"")
+            .then(({data:res })=>{
+                console.log("英文",res.list)
+                localStorage.setItem("softTypeListE",JSON.stringify(res.list) )
+
+            })
       this.getListOption()
       this.getoSystemOption()
       this.getoHotKeyWords()
@@ -589,10 +600,14 @@
         console.log(" _this.langvalue", this.langvalue)
         if (val == 2 ) {
           _.$i18n.locale = 'en-US';//关键语句
+            _this.softTypeList=JSON.parse(_this.localStorage.getItem("softTypeListZ"))
+            console.log(" _this.softTypeListCCCCCCCCCC", _this.softTypeList)
           console.log('en-US')
         }else {
           _.$i18n.locale = 'zh-CN';//关键语句
-          console.log('zh-CN')
+            _this.softTypeList=JSON.parse(_this.localStorage.getItem("softTypeListE"))
+            console.log(" _this.softTypeListeeee", _this.softTypeList)
+            console.log('zh-CN')
         }
 
         //搜索选项更新
@@ -1169,7 +1184,7 @@
   .searchTop .menu-box .classify-btn{
     position: relative;
     float: left;
-    width: 200px;
+    width: 220px;
     height: 48px;
     line-height: 48px;
     border-radius: 6px 6px 0 0;
@@ -1183,7 +1198,7 @@
     display: none;
     position: absolute;
     top: 48px;
-    width: 200px;
+    width: 220px;
     height: 400px;
     background:rgba(0,0,0,0.3);
   }
@@ -1213,7 +1228,7 @@
     overflow: hidden;
     display: none;
     position: absolute;
-    left: 200px;
+    left:220px;
     top: 0;
     padding: 15px;
     width: 720px;

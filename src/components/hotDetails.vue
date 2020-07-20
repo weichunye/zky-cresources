@@ -1231,7 +1231,6 @@
 		overflow: hidden;
 		display: inline-block;
 		margin-right: 10px;
-		width: 150px;
 		height: 48px;
 		line-height: 48px;
 		text-align: center;

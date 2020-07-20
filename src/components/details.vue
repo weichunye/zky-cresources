@@ -1233,6 +1233,7 @@
 		display: inline-block;
 		margin-right: 10px;
     padding-right: 20px;
+    width: auto;
 		height: 48px;
 		line-height: 48px;
 		text-align: center;

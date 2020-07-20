@@ -108,7 +108,7 @@
                       <dd>
                       <h3>{{item.softName}}</h3>
                       <button>
-                        查看详情
+                        {{$t('lang.todetail')}}
                       </button>
                     </dd>
                   </dl>

@@ -3,17 +3,21 @@
   	<searchTop></searchTop>
   	<!--面包屑-->
   	<div class="crumbs">
-   			<router-link :to="{path:'/'}"><span>首页</span></router-link>
+   			<router-link :to="{path:'/'}"><span>{{$t('lang.home')}}</span></router-link>
 			<span>&nbsp;&nbsp;>&nbsp;</span>
 			<span @click="back">{{parentNamenew}}</span><span v-if="parentNamenew">&nbsp;&nbsp;>&nbsp;</span>
-			<span>{{categoryName}} </span>
+			<span>
+        {{categoryName=="商业软件"?$t('lang.commercialsoftware'):categoryName=="开源软件"?$t('lang.Opensourcesoftware'):categoryName=="自研软件"?$t('lang.Selfdevelopedsoftware'):categoryName=="立即使用"?$t('lang.useimmediately'): categoryName=="软件类型"?$t('lang.softwaretype'):categoryName=="收费方式"?$t('lang.Chargemethod'):categoryName=="学科领域"?$t('lang.academicarea'):categoryName=="开发领域"?$t('lang.Developmentarea'):categoryName=="编程语言"?$t('lang.Programminglanguage'):categoryName=="开源类型"?$t('lang.Opensourcetype'):categoryName}}</span>
 
   		</div>
   			<!--//面包屑-->
 
 <!--content-->
 <div class="content" style="margin-top: 20px;">
-	<h2>{{categoryName}}</h2>
+	<h2>
+
+    {{categoryName=="商业软件"?$t('lang.commercialsoftware'):categoryName=="开源软件"?$t('lang.Opensourcesoftware'):categoryName=="自研软件"?$t('lang.Selfdevelopedsoftware'):categoryName=="立即使用"?$t('lang.useimmediately'): categoryName=="软件类型"?$t('lang.softwaretype'):categoryName=="收费方式"?$t('lang.Chargemethod'):categoryName=="学科领域"?$t('lang.academicarea'):categoryName=="开发领域"?$t('lang.Developmentarea'):categoryName=="编程语言"?$t('lang.Programminglanguage'):categoryName=="开源类型"?$t('lang.Opensourcetype'):categoryName}}
+  </h2>
   <div class="box-over">
      <!-- <ul class="aside left-nav-public">
         <li v-for="(item,index) in leftMenu" :class="{'left-nav-active':item==='jswd'}" @click="handleMenu(item.id)">{{item.ctyName}} </li>

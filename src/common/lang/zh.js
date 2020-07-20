@@ -84,4 +84,8 @@ export const lang = {
   modify:"修改",
   allrightsreserved:"版权所有",
   ServiceSupportInformation:"服务支持信息",
+  todetail:"查看详情",
+  home:"首页",
+  //收费方式
+  certificateofpurchase:"证书购买",
 }
