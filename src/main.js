@@ -65,8 +65,8 @@ if(sessionStorage.getItem('sessionData')){
   userJsonStr = sessionStorage.getItem('sessionData');
   localStorage.setItem('sessionData',userJsonStr);
 }
-/*userJsonStr={"flag":"1","error":"","userId":"10","token":"44bee32d9b3e6739df80baed7699eb72","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}*/
-/*userJsonStr=JSON.stringify(userJsonStr);*/
+userJsonStr={"flag":"1","error":"","userId":"10","token":"297698ad86f324b36240bfa4a722d1b5","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
+userJsonStr=JSON.stringify(userJsonStr);
 var userEntity =userJsonStr?JSON.parse(userJsonStr):null;
 if(userEntity){
   window.SITE_CONFIG['token'] = userEntity.token;
@@ -82,7 +82,8 @@ $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
   }
   if(!data.result){
     _this.userId=null
-    localStorage.clear()
+    localStorage.removeItem("sessionData")
+    localStorage.removeItem("ifLogin")
     sessionStorage.clear()
   }
 })

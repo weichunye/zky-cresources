@@ -1,6 +1,6 @@
 <template>
 	<div class="enter">
-		<searchTop></searchTop>
+		<searchTop @getLangvalue="getLangvalue" @getBannerList="getBannerList"></searchTop>
     <div class="banner">
       <div class="banner-box">
         <el-carousel height="400px"  class="img-list">
@@ -119,37 +119,72 @@
         <!--细则-->
         <div class="Soft">
           <div class="title"><h3 class="h3">{{$t('lang.uploadingrule')}}</h3></div>
+           <div v-if="langvalueC==1">
+             <p class="text">
+               本网站（网址：scihub.cstcloud.cn）向公众开放并提供开源软件相关服务。 在使用本网站前，敬请您仔细阅读以下各项使用条款（以下简称“本使用条款”）。您对本网站的使用(包括但不限于对本网站的访问、登录，对本网站内容的浏览和使用)，将被视为您自愿承诺接受本声明的约束。如果您对本使用条款的内容不能接受，您应当立即停止使用本网站并迅速离开。
+             </p>
+             <span class="img"><img src="../assets/img/bg_img.png" /></span>
+             <ul >
+               <li>
+                 <h4 class="tit"><span>知识产权声明</span><em></em></h4>
+                 <div class="pic">
+                   您同意遵守所有适用本网站的版权保护法律法规，以及所有本网站包含的补充性的版权说明或限制。本网站的内容均由相应的机构/个人上传、维护。对于本网站内容的任何使用请遵守内容所附带的授权协议。如不清楚相应的授权协议请询问上传该内容的机构/个人。
+                   <br>任何在scihub.cstcloud.cn上注册的帐号上传的内容的版权均归上传者所有，上传者承担所有被上传内容的版权责任及相应风险。
+                 </div>
+               </li>
+               <li>
+                 <h4 class="tit"><span>上传软件规范</span><em></em></h4>
+                 <div class="pic">
+                   开源软件的上传如有违反国家法律、法规或社会公共秩序、社会风气的，本网站及本网站方（包括但不限于本网站的主办单位等）不承担任何责任，依法追究上传者的相关责任。所有开源软件的著作权、与软件有关的肖像权和名誉权等法律问题，由上传者自行解决并承担相应责任。
+                 </div>
+               </li>
+               <li>
+                 <h4 class="tit"><span>商业软件</span><em></em></h4>
+                 <div class="pic">
+                   所有商业软件均在商业软件证书的标准下进行发布运行，如有任何不满足相关条件的商业软件，请随时联我们。
+                 </div>
+               </li>
+               <li>
+                 <h4 class="tit"><span>软件上传流程</span><em></em></h4>
+                 <div class="pic">
+                   所有上传软件均需要按照上传软件相关信息->上传软件相关文件、文档->初审->复审的步骤来进行。
+                 </div>
+               </li>
+             </ul>
+           </div>
+          <div v-else>
             <p class="text">
-              本网站（网址：scihub.cstcloud.cn）向公众开放并提供开源软件相关服务。 在使用本网站前，敬请您仔细阅读以下各项使用条款（以下简称“本使用条款”）。您对本网站的使用(包括但不限于对本网站的访问、登录，对本网站内容的浏览和使用)，将被视为您自愿承诺接受本声明的约束。如果您对本使用条款的内容不能接受，您应当立即停止使用本网站并迅速离开。
+              This website (website: scihub.cstcloud.cn ）Open to the public and provide services of open-source software . Before using this website, please read the following terms of use (hereinafter referred to as the "terms of use"). Your use of this website (including but not limited to the visit, login, browsing and use of the website content) will be deemed as your voluntary commitment to be bound by this statement. If you do not accept the content of these terms of use, you should immediately stop using this website and leave quickly.
             </p>
             <span class="img"><img src="../assets/img/bg_img.png" /></span>
-          <ul>
-            <li>
-              <h4 class="tit"><span>知识产权声明</span><em></em></h4>
-              <div class="pic">
-                您同意遵守所有适用本网站的版权保护法律法规，以及所有本网站包含的补充性的版权说明或限制。本网站的内容均由相应的机构/个人上传、维护。对于本网站内容的任何使用请遵守内容所附带的授权协议。如不清楚相应的授权协议请询问上传该内容的机构/个人。
-                <br>任何在scihub.cstcloud.cn上注册的帐号上传的内容的版权均归上传者所有，上传者承担所有被上传内容的版权责任及相应风险。
-              </div>
-            </li>
-            <li>
-              <h4 class="tit"><span>上传软件规范</span><em></em></h4>
-              <div class="pic">
-                开源软件的上传如有违反国家法律、法规或社会公共秩序、社会风气的，本网站及本网站方（包括但不限于本网站的主办单位等）不承担任何责任，依法追究上传者的相关责任。所有开源软件的著作权、与软件有关的肖像权和名誉权等法律问题，由上传者自行解决并承担相应责任。
-              </div>
-            </li>
-            <li>
-              <h4 class="tit"><span>商业软件</span><em></em></h4>
-              <div class="pic">
-                所有商业软件均在商业软件证书的标准下进行发布运行，如有任何不满足相关条件的商业软件，请随时联我们。
-              </div>
-            </li>
-            <li>
-              <h4 class="tit"><span>软件上传流程</span><em></em></h4>
-              <div class="pic">
-                所有上传软件均需要按照上传软件相关信息->上传软件相关文件、文档->初审->复审的步骤来进行。
-              </div>
-            </li>
-          </ul>
+            <ul >
+              <li>
+                <h4 class="tit"><span> Intellectual property declaration</span><em></em></h4>
+                <div class="pic">
+                  You agree to comply with all applicable copyright protection laws and regulations of this website, as well as all supplementary copyright instructions or restrictions contained in this website. The contents of this website are uploaded and maintained by corresponding organizations / individuals. For any use of the content of this website, please abide by the license agreement attached to the content. If you are not clear about the authorization agreement, please ask the organization / person who uploaded the content.
+                  <br>Any scihub.cstcloud.cn The copyright of the content uploaded by the account registered on is owned by the uploader, and the uploader bears the copyright responsibility and corresponding risk of all uploaded content.
+                </div>
+              </li>
+              <li>
+                <h4 class="tit"><span>Upload software specification</span><em></em></h4>
+                <div class="pic">
+                  If the upload of open source software violates national laws, regulations or social public order and social ethos, this website and its party (including but not limited to the sponsor of this website, etc.) shall not bear any responsibility, and the relevant responsibilities of the uploader shall be investigated in accordance with the law. All open source software copyright, software related portrait rights and reputation rights and other legal issues shall be solved by the uploader himself and bear corresponding responsibilities.
+                </div>
+              </li>
+              <li>
+                <h4 class="tit"><span>Business software</span><em></em></h4>
+                <div class="pic">
+                  All commercial software is released and operated under the standard of commercial software certificate. If there is any commercial software that does not meet the relevant conditions, please contact us at any time.
+                </div>
+              </li>
+              <li>
+                <h4 class="tit"><span>Software upload process</span><em></em></h4>
+                <div class="pic">
+                  All software uploading should follow the steps of uploading software information, uploading related files and documents, preliminary review, and reexamination.
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
         <!--推荐-->
         <div  v-for="(item,index) in softList" :key="index"  style=" margin: 30px 0 20px 0 ;  " >
@@ -275,15 +310,22 @@
         softList: [], //软件列表
 				indexSoftList: [],
         bannerList:[],
-
+          langvalue:null
 			}
 		},
+      computed:{
+          langvalueC:function(){
+              console.log(" this.langvalue6666666", this.langvalue)
+              return   this.langvalue?this.langvalue==2? 2:1: localStorage.getItem("isEnglish")
+          },
+      },
 		mounted() {
 		  //热门搜索
       this.getHotSoft(1)
       this.getRecommendedList()
       this.getSoftList()
-      this.getBannerList()
+        console.log("&&&&&&&&&&&&&&",localStorage.getItem("isEnglish")==2)
+     /* this.getBannerList(localStorage.getItem("isEnglish")?localStorage.getItem("isEnglish")==2?1:0:0)*/
 		},
     filters:{
       reBytesStr: function(str) {
@@ -316,6 +358,10 @@
         let newTab=parseFloat(tab)+1
         this.getHotSoft(parseFloat(tab.index)+1)
       },
+        getLangvalue(data){
+            console.log("langvalue888888",data)
+            this.langvalue=data
+        },
 
       //获取推荐列表
       getRecommendedList(){
@@ -344,9 +390,10 @@
           })
       },
       //首页轮播图
-      getBannerList(){
+      getBannerList(val){
         var params = new URLSearchParams();
-        params.append("type", 1);
+        params.append("type",1);
+        params.append("isEnglish", val==2?1:0);
         this.$http.post('/haoweb/web/soft/selectBannerList',params)
           .then(({data:res })=>{
             // for (let list of res.list){

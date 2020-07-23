@@ -19,20 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="国际化">
+    <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dist.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/banner01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/banner02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/banner03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/banner03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/lang/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/details.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/details.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hotDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hotDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/list.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_20200522.zip" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="G:/zjyd-enterprises-pace-front" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -204,7 +197,9 @@
       <workItem from="1594687964708" duration="945000" />
       <workItem from="1594775614278" duration="1225000" />
       <workItem from="1594861383666" duration="50000" />
-      <workItem from="1595223220265" duration="5402000" />
+      <workItem from="1595223220265" duration="12391000" />
+      <workItem from="1595411487802" duration="3484000" />
+      <workItem from="1595466017925" duration="5161000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -297,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594354371974</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="国际化接口变化">
+      <created>1595230320701</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1595230320701</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +330,8 @@
     <MESSAGE value="国际化上传" />
     <MESSAGE value="大小写修改" />
     <MESSAGE value="国际化" />
-    <option name="LAST_COMMIT_MESSAGE" value="国际化" />
+    <MESSAGE value="国际化接口变化" />
+    <option name="LAST_COMMIT_MESSAGE" value="国际化接口变化" />
   </component>
   <component name="WindowStateProjectService">
     <state x="588" y="136" key="#start" timestamp="1591000473389">

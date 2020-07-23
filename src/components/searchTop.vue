@@ -7,10 +7,10 @@
 
         </p>
 
-        <span v-if="langvalue==1"  class="changelang"  @click="changeLangEvent(2)">
+        <span v-if="langvalue==1"  class="changelang"  @click="()=>{changeLangEvent(2)}">
         English
         </span>
-        <span v-else  class="changelang"  @click="changeLangEvent(1)">
+        <span v-else  class="changelang"  @click="()=>{changeLangEvent(1)}">
            中文
         </span>
 
@@ -35,7 +35,7 @@
           <img v-if="langvalue==2" class="logo" src="../assets/img/search_logo_english.png" alt="logo" />
         </router-link>
         <div class="search-box">
-          <el-select class="classify" v-model="searchArr.itemType" @change="searchTYpe" placeholder="请选择">
+          <el-select class="classify" v-model="searchArr.itemType" @change="searchTYpe" placeholder="">
             <el-option v-for="item in searchOptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
@@ -118,7 +118,7 @@
                <el-option v-for="item in opensourceTypeOption" :key="item.id" :label="item.ctyName" :value="item">
                </el-option>
              </el-select>-->
-            <el-cascader
+            <el-cascader :placeholder="$t('lang.pleaseenter')+$t('lang.softwaretype')"
               v-model="form.opensourceType"
               :options="opensourceTypeOption"
               :props="{ multiple: true, checkStrictly: true }"
@@ -130,7 +130,7 @@
                   <el-option v-for="item in softCategoryOption " :key="item.id" :label="item.ctyName" :value="item">
                   </el-option>
                 </el-select>-->
-            <el-cascader
+            <el-cascader :placeholder="$t('lang.pleaseenter')+$t('lang.Chargemethod')"
               v-model="form.softCategory"
               :options="softCategoryOption"
               :props="{ multiple: true, checkStrictly: true }"
@@ -143,7 +143,7 @@
               </el-option>
             </el-select>-->
             <el-cascader
-              v-model="form.Language"
+              v-model="form.Language" :placeholder="$t('lang.pleaseenter')+$t('lang.Programminglanguage')"
               :options="LanguageOption"
               :props="{ multiple: true, checkStrictly: true }"
               clearable></el-cascader>
@@ -156,7 +156,7 @@
               </el-option>
             </el-select>-->
             <el-cascader
-              v-model="form.userInterface"
+              v-model="form.userInterface"  :placeholder="$t('lang.pleaseenter')+$t('lang.academicarea')"
               :options="userInterfaceOption"
               :props="{ multiple: true, checkStrictly: true }"
               clearable></el-cascader>
@@ -166,7 +166,7 @@
               <el-option v-for="item in applicationFieldOption " :key="item.id" :label="item.ctyName" :value="item">
               </el-option>
             </el-select>-->
-            <el-cascader
+            <el-cascader :placeholder="$t('lang.pleaseenter')+$t('lang.Developmentarea')"
               v-model="form.applicationField"
               :options="applicationFieldOption"
               :props="{ multiple: true, checkStrictly: true }"
@@ -178,7 +178,7 @@
               </el-option>
             </el-select>-->
             <el-cascader
-              v-model="form.openType"
+              v-model="form.openType" :placeholder="$t('lang.pleaseenter')+$t('lang.Opensourcetype')"
               :options="openTypeOption"
               :props="{ multiple: true, checkStrictly: true }"
               clearable></el-cascader>
@@ -191,7 +191,6 @@
               <el-option v-for="item in operatingSystemOption " :key="item.id" :label="item.label" :value="item">
               </el-option>
             </el-select>
-
           </el-form-item>
         </div>
 
@@ -363,7 +362,7 @@
             value:2
           },
         ],
-        langvalue:1,
+        langvalue:"",
         softCategories:[],
         searchOptions: [{
           value: 1,
@@ -516,9 +515,21 @@
 
       },
         softTypeListLoc:function(){
-          return  JSON.parse(_this.localStorage.getItem("softTypeListE"))?this.langvalue==2?JSON.parse(_this.localStorage.getItem("softTypeListE")):JSON.parse(_this.localStorage.getItem("softTypeListZ")):this.softTypeList
-            console.log(" _this.langvalue", this.langvalue)
+            console.log(" _this.langvalue++++++++++++++++++++++++", this.langvalue)
+            this.$nextTick(()=>{
+                $(".classify-first li").each((index,item)=>{
+                    $(item).hover(()=>{
+                        $('.classify-second').eq(index).show()
+                        console.log(" $('.classify-second')", $('.classify-second').height())
+                    },()=>{
+                        $('.classify-second').hide()
+                    })
+                })
+            })
+          return  JSON.parse(localStorage.getItem("softTypeListE"))?this.langvalue==2?JSON.parse(localStorage.getItem("softTypeListE")):JSON.parse(localStorage.getItem("softTypeListZ")):this.softTypeList
+
         }
+
     },
     created(){
       var _this=this;
@@ -535,6 +546,9 @@
       this.toLoginUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
       this.menuId=this.$route.query.categoryId
       this.searchArr.itemType=this.$route.query.itemType?this.$route.query.itemType:1
+        console.log("localStorage.getItem(\"isEnglish\")666666666",localStorage.getItem("isEnglish"))
+        this.langvalue=localStorage.getItem("isEnglish")?localStorage.getItem("isEnglish"):1
+        this.changeLangEvent( this.langvalue)
       //获取软件分类
       this.searchArr.keyword=this.$route.query.keyword?this.$route.query.keyword:''
       this.$http.post('/haoweb/web/soft/softCtyAllList',"")
@@ -543,20 +557,7 @@
             localStorage.setItem("softTypeListZ",JSON.stringify(res.list) )
           this.softTypeList=res.list
           this.navList=this.softTypeList[0].children
-          this.$nextTick(()=>{
-            $(".classify-first li").each((index,item)=>{
-              $(item).hover(()=>{
-                $('.classify-second').eq(index).show()
-                console.log(" $('.classify-second')", $('.classify-second').height())
-              },()=>{
-                $('.classify-second').hide()
-              })
-            })
-           /* $('.classify-second').each((index,item)=>{
-              $(item).css({"top":$(item).height()/2})
-              console.log("item",$(item).innerHeight())
-            })*/
-          })
+
         })
         //英文
         this.$http.post('/haoweb/web/soft/softCtyAllEnglishList',"")
@@ -594,24 +595,22 @@
       },
       //中英文切换
       changeLangEvent(val){
-        var _=this
+        var _this=this
         console.log("_.val",val)
         this.langvalue=val
+          localStorage.setItem("isEnglish",val)
         console.log(" _this.langvalue", this.langvalue)
         if (val == 2 ) {
-          _.$i18n.locale = 'en-US';//关键语句
-            _this.softTypeList=JSON.parse(_this.localStorage.getItem("softTypeListZ"))
-            console.log(" _this.softTypeListCCCCCCCCCC", _this.softTypeList)
-          console.log('en-US')
+            _this.$i18n.locale = 'en-US';//关键语句
+            _this.softTypeList=JSON.parse(localStorage.getItem("softTypeListZ"))
         }else {
-          _.$i18n.locale = 'zh-CN';//关键语句
-            _this.softTypeList=JSON.parse(_this.localStorage.getItem("softTypeListE"))
-            console.log(" _this.softTypeListeeee", _this.softTypeList)
-            console.log('zh-CN')
+            _this.$i18n.locale = 'zh-CN';//关键语句
+            _this.softTypeList=JSON.parse(localStorage.getItem("softTypeListE"))
         }
-
+        this.$emit("getLangvalue",val)
+        this.$emit("getBannerList",val)
         //搜索选项更新
-        _.searchOptions= [{
+          _this.searchOptions= [{
           value: 1,
           label: this.$t('lang.searchTypesoftware')
         },
