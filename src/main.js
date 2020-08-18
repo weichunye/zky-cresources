@@ -65,8 +65,8 @@ if(sessionStorage.getItem('sessionData')){
   userJsonStr = sessionStorage.getItem('sessionData');
   localStorage.setItem('sessionData',userJsonStr);
 }
-userJsonStr={"flag":"1","error":"","userId":"10","token":"297698ad86f324b36240bfa4a722d1b5","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
-userJsonStr=JSON.stringify(userJsonStr);
+/*userJsonStr={"flag":"1","error":"","userId":"10","token":"79c1558ddb25d09365d490cc0bc2eaa3","refreshToken":"0f2dc79a3280cb4e672d3eac7f70a1c8","userInfo":{"trueName":"李健","cstnetId":"371246735@qq.com"}}
+userJsonStr=JSON.stringify(userJsonStr);*/
 var userEntity =userJsonStr?JSON.parse(userJsonStr):null;
 if(userEntity){
   window.SITE_CONFIG['token'] = userEntity.token;
@@ -76,9 +76,10 @@ if(userEntity){
 }
 console.log("window.SITE_CONFIG['userId']",window.SITE_CONFIG['userId'])
 $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
+  console.log("data.result",data.result)
   if(data.result&&!localStorage.getItem("ifLogin")){
     localStorage.setItem("ifLogin",true)
-    window.location.href = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
+   /* window.location.href = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'*/
   }
   if(!data.result){
     _this.userId=null

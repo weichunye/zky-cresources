@@ -519,9 +519,9 @@
 				innerVisible: false,
 				ActivityInfoPop: false,
 				innerTitle: '',
-				upUrl:window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluate/',
-				imgUrlNew: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateImg/',
-				imgUrlVideo: window.SITE_CONFIG['apiURL'] + '/haoweb/sys/upload/uploadForEvaluateVideo/',
+				upUrl:window.SITE_CONFIG['tinymeURL'] + '/sys/upload/uploadForEvaluate/',
+				imgUrlNew: window.SITE_CONFIG['tinymeURL'] + '/sys/upload/upload/',
+				imgUrlVideo: window.SITE_CONFIG['tinymeURL'] + '/sys/upload/uploadForEvaluateVideo/',
 				form: {
 					name: '',
 					softUrl: '',
@@ -620,8 +620,9 @@
       $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
         console.log("科技云验证是否登录",data.result)
         //本地缓存有数据，但是是未登录状态，验证是否退出
-        if(!data.result)
-          window.location.href=window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
+        if(!data.result){
+           /* window.location.href=window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'*/
+        }
       })
 			//我的软件
 			this.getMySoft()

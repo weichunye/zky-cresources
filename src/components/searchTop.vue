@@ -546,6 +546,7 @@
       this.toLoginUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
       this.menuId=this.$route.query.categoryId
       this.searchArr.itemType=this.$route.query.itemType?this.$route.query.itemType:1
+        console.log(" this.searchArr.itemType+++++++++", this.searchArr.itemType)
         console.log("localStorage.getItem(\"isEnglish\")666666666",localStorage.getItem("isEnglish"))
         this.langvalue=localStorage.getItem("isEnglish")?localStorage.getItem("isEnglish"):1
         this.changeLangEvent( this.langvalue)
@@ -573,7 +574,7 @@
     watch: {
       '$route'(to, from) {
         this.menuId=this.$route.query.categoryId
-        this.searchArr.itemType=this.$route.query.itemType
+          this.searchArr.itemType=this.$route.query.itemType?this.$route.query.itemType:1
       }
     },
     methods: {

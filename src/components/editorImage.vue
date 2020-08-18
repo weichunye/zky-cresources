@@ -51,7 +51,7 @@ import baseUrl from '../../config/index.js'
         },
         fileList: [],
         imglist: [],
-        imageUploadUrl:window.SITE_CONFIG['apiURL']+'/haoweb/sys/upload/upload'
+        imageUploadUrl:window.SITE_CONFIG['tinymeURL']+'/sys/upload/upload'
 
       }
     },

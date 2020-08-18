@@ -22,7 +22,10 @@
     <list default="true" id="2e7acc79-5aff-4033-a731-6b0816207759" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/dist.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Enter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editorImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editorImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/personalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personalInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_20200522.zip" beforeDir="false" />
@@ -70,7 +73,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="G:/zjyd-enterprises-pace-front" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -199,7 +202,13 @@
       <workItem from="1594861383666" duration="50000" />
       <workItem from="1595223220265" duration="12391000" />
       <workItem from="1595411487802" duration="3484000" />
-      <workItem from="1595466017925" duration="5161000" />
+      <workItem from="1595466017925" duration="6512000" />
+      <workItem from="1595502373649" duration="3462000" />
+      <workItem from="1595555688516" duration="2059000" />
+      <workItem from="1595569001367" duration="676000" />
+      <workItem from="1595811672743" duration="90000" />
+      <workItem from="1597651023928" duration="1365000" />
+      <workItem from="1597665039259" duration="10961000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -299,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595230320701</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="国际化接口变化">
+      <created>1595471749098</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1595471749098</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
