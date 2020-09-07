@@ -444,6 +444,7 @@
 				activityData: '',
 				activityInfo: '',
 				disabled: false,
+       userId:this.$userId,
 				theFirst: {
 					img: '',
 					name: ''

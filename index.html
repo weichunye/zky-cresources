@@ -125,17 +125,19 @@
     <script>
       window.SITE_CONFIG = {};
     </script>
-    <% if (process.env.NODE_ENV === 'production') { %>
+    <% if (process.env.NODE_ENV === 'development') { %>
         <script>window.SITE_CONFIG['apiURL'] = 'http://192.168.1.8:8088';</script>
-        <script>window.SITE_CONFIG['imgURL'] = 'http://192.168.1.8:8088/haoweb/upload/';</script>
+        <script>window.SITE_CONFIG['imgURL'] = 'http://192.168.1.8:8080/rossc/upload/';</script>
+         <script>window.SITE_CONFIG['tinymeURL'] = 'http://192.168.1.8:8080/rossc';</script>
     <!--    <script>window.SITE_CONFIG['apiURL'] = 'http://portal.cstcloud.cn';</script>-->
     <!--退出登录回调地址-->
     <script>window.SITE_CONFIG['backURL'] = 'http://192.168.1.8:8088/';</script>
     <% } %>
     <!-- 生产环境 -->
-    <% if (process.env.NODE_ENV === 'development') { %>
+    <% if (process.env.NODE_ENV === 'production') { %>
     <script>window.SITE_CONFIG['apiURL'] = 'http://www.scihub.cstcloud.cn/';</script>
-    <script>window.SITE_CONFIG['imgURL'] = 'http://www.scihub.cstcloud.cn/haoweb/upload/';</script>
+    <script>window.SITE_CONFIG['imgURL'] = 'http://cstsai.cstcloud.cn/rossc/upload/';</script>
+    <script>window.SITE_CONFIG['tinymeURL'] = 'http://cstsai.cstcloud.cn/rossc';</script>
     <!--退出登录回调地址-->
     <script>window.SITE_CONFIG['backURL'] = 'http://www.scihub.cstcloud.cn/haoweb/web/auth/callback';</script>
     <% } %>

@@ -24,9 +24,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/lang/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/activityGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/activityGame.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/agSignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/agSignUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/details.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/details.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/editorImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editorImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/personalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personalInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/searchTop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/signUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/softModify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/softModify.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_20200522.zip" beforeDir="false" />
     </list>
@@ -73,7 +81,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/rc-bullets-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -111,7 +119,7 @@
       <scripts>
         <script value="start" />
       </scripts>
-      <node-interpreter value="$PROJECT_DIR$/../node/node" />
+      <node-interpreter value="node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -208,7 +216,13 @@
       <workItem from="1595569001367" duration="676000" />
       <workItem from="1595811672743" duration="90000" />
       <workItem from="1597651023928" duration="1365000" />
-      <workItem from="1597665039259" duration="10961000" />
+      <workItem from="1597665039259" duration="11347000" />
+      <workItem from="1597804141294" duration="9810000" />
+      <workItem from="1598859043361" duration="3065000" />
+      <workItem from="1599010171889" duration="5741000" />
+      <workItem from="1599094671188" duration="2097000" />
+      <workItem from="1599181076846" duration="1376000" />
+      <workItem from="1599461107089" duration="8639000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1583307339657</created>
@@ -315,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595471749098</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="修改">
+      <created>1597712985769</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1597712985769</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +368,8 @@
     <MESSAGE value="大小写修改" />
     <MESSAGE value="国际化" />
     <MESSAGE value="国际化接口变化" />
-    <option name="LAST_COMMIT_MESSAGE" value="国际化接口变化" />
+    <MESSAGE value="修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改" />
   </component>
   <component name="WindowStateProjectService">
     <state x="588" y="136" key="#start" timestamp="1591000473389">

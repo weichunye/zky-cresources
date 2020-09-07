@@ -70,6 +70,7 @@
 		},
 
 		mounted() {
+        console.log("+++++++++++++++++",this.userId)
 			var _this = this;
 			_this.toLoginUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
 				if(this.userId){

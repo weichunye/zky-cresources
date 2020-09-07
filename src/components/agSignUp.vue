@@ -421,6 +421,7 @@
 					softVideoName: '',
 					ifHsowRealName: false, //true不匿名，false匿名
 				},
+          this: this.$userId,
 				analysisCheck:'',
 				itemBookCheck:'',
 				testDocCheck:'',
@@ -531,7 +532,7 @@
 					joinTime: "",
 					rank: 0,
 					status: 0,
-					userId: this.userId,
+					userId: this.$userId,
 					softId: this.checkId,
 					userJob: '',
 					userName: '',

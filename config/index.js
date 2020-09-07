@@ -6,17 +6,24 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
-    // Paths
+    env: require('./dev.env'),
+    port: 8080,
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/sys': {
+        target: 'http://cstsai.cstcloud.cn/rossc',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/sys': '/sys'
+        }
+      }
+    },
 
     // Various Dev Server settings
 /*    host: '192.168.1.2', // can be overwritten by process.env.HOST*/
     host: '192.168.1.7', // can be overwritten by process.env.HOST
-    port: 8010, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

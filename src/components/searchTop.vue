@@ -102,7 +102,7 @@
         </ul>
       </div>
     </div>
-    <el-dialog custom-class="examinedialog " :close-on-click-modal="false" :close-on-press-escape="false" :title=" $t('lang.btnSoftware')" :visible.sync="dialogDelivering">
+    <el-dialog custom-class="examinedialog " width="800px" :close-on-click-modal="false" :close-on-press-escape="false" :title=" $t('lang.btnSoftware')" :visible.sync="dialogDelivering">
       <el-form :model="form" ref="form" :rules="rules" :inline="true" class="demo-form-inline" @submit.native.prevent>
         <div class="box-big1">
           <el-form-item prop="name" :label=" $t('lang.nameofsoftware')" :label-width="formLabelWidth">
@@ -293,6 +293,28 @@
             </tr>
           </table>
         </div>
+        <div class="box input-width">
+          <el-form-item prop="softUrl" :label=" $t('lang.userBook')" :label-width="formLabelWidth">
+            <el-input v-model="form.userDocName" placeholder="" auto-complete="off" :disabled="true"></el-input>
+          </el-form-item>
+          <el-upload class="upload-demo" ref="userDocRef" :action=upUrl :on-success='userDocSuccess' :on-change="userDocChange" :limit="1" alllist-con :auto-upload="false" :file-list="fileList4">
+            <el-button slot="trigger" size="small" type="primary">{{ $t('lang.SelectTheFile')}}</el-button>
+            <el-button style="margin-left:20px; width:120px" size="small" type="success" @click="submitUserDoc()">{{ $t('lang.uploading')}}</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传 .doc/.docx/.pdf文件，且不超过1M<span v-if="userDocCheck&&!form.userDocName" >请确认文档并上传</span></div>
+          </el-upload>
+
+        </div>
+        <div class="box input-width">
+          <el-form-item prop="softUrl" :label=" $t('lang.downZip')" :label-width="formLabelWidth">
+            <el-input v-model="form.downZipName" placeholder="" auto-complete="off" :disabled="true"></el-input>
+          </el-form-item>
+          <el-upload class="upload-demo" ref="downZipRef" :action=upUrl :on-success='downZipSuccess' :on-change="downZipChange" :limit="1" alllist-con :auto-upload="false" :file-list="fileList4">
+            <el-button slot="trigger" size="small" type="primary">{{ $t('lang.SelectTheFile')}}</el-button>
+            <el-button style="margin-left:20px; width:120px" size="small" type="success" @click="submitDownZip()">{{ $t('lang.uploading')}}</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传 .doc/.docx/.pdf文件，且不超过1M<span v-if="userDocCheck&&!form.userDocName" >请确认文档并上传</span></div>
+          </el-upload>
+
+        </div>
         <el-form-item prop="abstract" :label=" $t('lang.Worksummary')"  :label-width="formLabelWidth">
           <div class="box-input">
             <tinymce-editor v-model="form.abstract" :disabled=false ref="editor"></tinymce-editor>
@@ -343,7 +365,7 @@
         showLogin:false,
         softTypeList:[],//分类
         navList:[],//菜单分类
-        userId: "",
+        userId: this.$userId,
         loginIfShow:false,
         dialogDelivering:false,
         baseUrl:window.SITE_CONFIG['apiURL'],
@@ -396,7 +418,11 @@
           operatingSystem: [],
           ifShowRealName: false,
           ifSelfStudy: false, //是否为自研
-          ifHsowRealName: false
+          ifHsowRealName: false,
+            userDocName:'',//用户手册
+            userDoc: '',
+            downZipName:'',//下载包
+            downZipDoc: '',
         },
      /*   rules: {
 
@@ -432,7 +458,8 @@
         ifDownWordUrl: '',
         feedbackOption: [], //反馈选项
         menuId:1,
-        hotKeyWordList:[]
+        hotKeyWordList:[],
+        upUrl:window.SITE_CONFIG['tinymeURL'] + '/sys/upload/uploadForEvaluate/',
       }
     },
 
@@ -533,16 +560,10 @@
     },
     created(){
       var _this=this;
-      $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
-        console.log(" data.result", data.result)
-        if(data.result){
-          _this.userId=window.SITE_CONFIG['userId']
-        }else{
-          _this.userId=null
-        }
-      })
     },
     mounted() {
+        var _this=this
+        console.log("+++++++++111111111111111111111111111+",_this.$userId)
       this.toLoginUrl = window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
       this.menuId=this.$route.query.categoryId
       this.searchArr.itemType=this.$route.query.itemType?this.$route.query.itemType:1
@@ -763,7 +784,12 @@
           isMatchSoft: 0,
           applicationFields: this.form.userInterface,
           userList: [],
+          userDoc: this.form.userDoc,
+          userDocOriginalName: this.form.userDocName,
+          softCompressedPackage: this.form.downZipDoc,
+          softCompressedPackageOriginalName: this.form.downZipName,
         }
+          console.log("sofoVo",sofoVo)
         sofoVo.isShowDeveloperName = _this.form.ifHsowRealName == true ? 0 : 1;
         sofoVo.isSelf = _this.form.ifSelfStudy == true ? 1 : 0;
         if(!sofoVo.isShowDeveloperName) {
@@ -892,6 +918,45 @@
       toLogin: function() {
         localStorage.setItem("ifLogin",true)
       },
+        userDocSuccess: function(response, file, fileList) {
+            this.form.userDoc = response.filePath;
+            this.form.userDocName = response.originalFileName;
+            var codeStype;
+            if(response.code == 0) {
+                codeStype = 'success'
+
+            } else {
+                codeStype = 'warning'
+            }
+            this.messageOpen(response.msg, codeStype)
+            this.fileList4 = []
+
+        },
+        userDocChange(file) {
+            this.userDocCheck=file.name
+        },
+        submitUserDoc() {
+            this.$refs.userDocRef.submit();
+        },
+        downZipSuccess: function(response, file, fileList) {
+            this.form.downZipDoc = response.filePath;
+            this.form.downZipName = response.originalFileName;
+            var codeStype;
+            if(response.code == 0) {
+                codeStype = 'success'
+
+            } else {
+                codeStype = 'warning'
+            }
+            this.messageOpen(response.msg, codeStype)
+            this.fileList4 = []
+        },
+        downZipChange(file) {
+            this.userDocCheck=file.name
+        },
+        submitDownZip() {
+            this.$refs.downZipRef.submit();
+        },
       //获取操作平台表单下拉内容
       getoSystemOption: function() {
         var _this = this;
@@ -1236,6 +1301,9 @@
     background:rgba(51,51,51,0.7);
     clear: both;
   }
+  .searchTop  .input-width input{
+    width: 140px;
+  }
 
   .searchTop  .menu-box .classify-first li .classify-second dl{
     padding-left: 2%;
@@ -1513,5 +1581,10 @@
     font-size: 12px;
     line-height: 12px;
     color: #d3d5d6;
+  }
+  .searchTop .upload-demo {
+    position: relative;
+    width: 360px;
+    display: inline-block;
   }
 </style>

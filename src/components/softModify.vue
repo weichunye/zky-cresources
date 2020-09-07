@@ -227,8 +227,29 @@
 							</tr>
 						</table>
 					</div>
-					<div class="box-big">
+          <div class="box input-width">
+            <el-form-item prop="softUrl"  :label=" $t('lang.userBook')" :label-width="formLabelWidth">
+              <el-input v-model="form.userDocName" placeholder="" auto-complete="off" :disabled="true"></el-input>
+            </el-form-item>
+            <el-upload class="upload-demo" ref="userDocRef" :action=upUrl :on-success='userDocSuccess' :on-change="userDocChange" :limit="1" alllist-con :auto-upload="false" :file-list="fileList4">
+              <el-button slot="trigger" size="small" type="primary">{{ $t('lang.SelectTheFile')}}</el-button>
+              <el-button style="margin-left:20px; width:120px" size="small" type="success" @click="submitUserDoc()">{{ $t('lang.uploading')}}</el-button>
+              <div slot="tip" class="el-upload__tip">只能上传 .doc/.docx/.pdf文件，且不超过1M<span v-if="userDocCheck&&!form.userDocName" >请确认文档并上传</span></div>
+            </el-upload>
 
+          </div>
+          <div class="box input-width">
+            <el-form-item prop="softUrl" :label=" $t('lang.downZip')" :label-width="formLabelWidth">
+              <el-input v-model="form.downZipName" placeholder="" auto-complete="off" :disabled="true"></el-input>
+            </el-form-item>
+            <el-upload class="upload-demo" ref="downZipRef" :action=upUrl :on-success='downZipSuccess' :on-change="downZipChange" :limit="1" alllist-con :auto-upload="false" :file-list="fileList4">
+              <el-button slot="trigger" size="small" type="primary">{{ $t('lang.SelectTheFile')}}</el-button>
+              <el-button style="margin-left:20px; width:120px" size="small" type="success" @click="submitDownZip()">{{ $t('lang.uploading')}}</el-button>
+              <div slot="tip" class="el-upload__tip">只能上传 .doc/.docx/.pdf文件，且不超过1M<span v-if="userDocCheck&&!form.userDocName" >请确认文档并上传</span></div>
+            </el-upload>
+
+          </div>
+					<div class="box-big">
 						<el-form-item :label="$t('lang.Worksummary')" :label-width="formLabelWidth">
 							<em class="addti">*</em>
 							<div class="box-input">
@@ -291,8 +312,13 @@
 					abstract: '',
 					ifSelfStudy: false, //是否为自研
 					ifHsowRealName: false, //true不匿名，false匿名
-					developer: ''
+					developer: '',
+            userDocName:'',//用户手册
+            userDoc: '',
+            downZipName:'',//下载包
+            downZipDoc: '',
 				},
+          upUrl:window.SITE_CONFIG['tinymeURL'] + '/sys/upload/uploadForEvaluate/',
         langOptions:[
           {
             label:"中文",
@@ -342,7 +368,7 @@
 				domainIndex: 1,
 				formLabelWidth: '150px',
 				ifCheck: false,
-        userId:window.SITE_CONFIG['userId'],
+        userId: this.$userId,
 			}
 		},
 		mounted() {
@@ -487,7 +513,7 @@
 					  console.log("*************",response)
             var softInfoObg = response.data.softInfo;
             var userListObg = response.data.userList;
-            var softDocObg = response.data.softDoc;
+            var softDocObg = response.data.docInfo;
             console.log("softInfoObg.operatingSystem",softInfoObg.operatingSystem)
             console.log("softInfoObg.operatingSystems",softInfoObg.operatingSystems)
             _this.softId = response.data.softInfo.id;
@@ -506,6 +532,10 @@
             _this.form.isRun = softInfoObg.isRun.toString();
             _this.form.runUrl = softInfoObg.runUrl;
             _this.form.abstract = softInfoObg.softIntroduce;
+            _this.form.userDocName = softDocObg.userDocOriginalName;
+            _this.form.userDoc = softDocObg.userDoc;
+            _this.form.downZipName = softDocObg.softCompressedPackageOriginalName;
+            _this.form.downZipDoc = softDocObg.softCompressedPackage;
             _this.form.ifCrossPlatform = softInfoObg.isPlatform == 1 ? true : false;
             _this.form.ifSelfStudy = softInfoObg.isSelf == 1 ? true : false;
             _this.form.ifHsowRealName = softInfoObg.isShowDeveloperName == 0 ? true : false;
@@ -566,6 +596,46 @@
 				}
 
 			},
+        userDocSuccess: function(response, file, fileList) {
+            this.form.userDoc = response.filePath;
+            this.form.userDocName = response.originalFileName;
+            var codeStype;
+            if(response.code == 0) {
+                codeStype = 'success'
+
+            } else {
+                codeStype = 'warning'
+            }
+            this.messageOpen(response.msg, codeStype)
+            this.fileList4 = []
+
+        },
+        userDocChange(file) {
+            this.userDocCheck=file.name
+        },
+        submitUserDoc() {
+            this.$refs.userDocRef.submit();
+        },
+        downZipSuccess: function(response, file, fileList) {
+            this.form.downZipDoc = response.filePath;
+            this.form.downZipName = response.originalFileName;
+            var codeStype;
+            if(response.code == 0) {
+                codeStype = 'success'
+
+            } else {
+                codeStype = 'warning'
+            }
+            this.messageOpen(response.msg, codeStype)
+            this.fileList4 = []
+
+        },
+        downZipChange(file) {
+            this.userDocCheck=file.name
+        },
+        submitDownZip() {
+            this.$refs.downZipRef.submit();
+        },
 			toPersonalInfo: function() {
 				var _this = this
 				_this.$router.push({
@@ -620,7 +690,11 @@
 					userId: this.userId,
 					userInterface: "",
           applicationFields: _this.form.userInterface,
-					userList: []
+					userList: [],
+          userDoc: this.form.userDoc,
+          userDocOriginalName: this.form.userDocName,
+          softCompressedPackage: this.form.downZipDoc,
+          softCompressedPackageOriginalName: this.form.downZipName,
 
 				}
 
@@ -763,6 +837,10 @@
 							userName: this.firstDomains.userName,
 							userPhone: this.firstDomains.userPhone,
 							userUnit: this.firstDomains.userUnit,
+              userDoc: this.form.userDoc,
+              userDocOriginalName: this.form.userDocName,
+              softCompressedPackage: this.form.downZipDoc,
+              softCompressedPackageOriginalName: this.form.downZipName,
 						}
 						joinVo.userList.push(this.firstDomains);
 						if(this.secondDomains.length > 0) {
@@ -1139,7 +1217,17 @@
 		height: 46px;
 		background: #4b505d;
 	}
-
+  .softModify  .input-width input{
+    width: 140px;
+  }
+  .softModify  .input-width .el-input{
+    width: 150px;
+  }
+  .upload-demo {
+    position: relative;
+    width: 350px;
+    display: inline-block;
+  }
 	.softModify .header-top .reposbox {
 		overflow: hidden;
 		position: relative;

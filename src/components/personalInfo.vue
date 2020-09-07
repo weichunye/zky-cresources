@@ -514,7 +514,7 @@
 					state: '进行中',
 					ranking: '纪念奖'
 				}],
-        userId:window.SITE_CONFIG['userId'],
+          userId:this.$userId,
 				dialogReview: false,
 				innerVisible: false,
 				ActivityInfoPop: false,
@@ -617,22 +617,23 @@
 			}
 		},
 		mounted() {
-      $.getScript("http://passport.escience.cn/js/isLogin.do", function(){
+      /*$.getScript("http://passport.escience.cn/js/isLogin.do", function(){
         console.log("科技云验证是否登录",data.result)
         //本地缓存有数据，但是是未登录状态，验证是否退出
         if(!data.result){
-           /* window.location.href=window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'*/
+            window.location.href=window.SITE_CONFIG['apiURL'] + '/haoweb/web/auth/login'
         }
-      })
+      })*/
 			//我的软件
 			this.getMySoft()
+			this.aaaaaaaaaa()
       console.log("userId个人中心",this.userId)
 
 			this.userInfoNew = this.userInfo.trueName;
 			this.cstnetIdNew = this.userInfo.cstnetId
 
 			//验证token是否过期
-			this.axios.defaults.headers.common['token'] = this.token;
+			/*this.axios.defaults.headers.common['token'] = this.token;
 			this.$http.post('haoweb/web/user/checkingToken')
 				.then((response)=>{
           if(response.data.code == 401) {
@@ -653,10 +654,22 @@
         })
 				.catch(function(error) {
 					console.log(error);
-				})
+				})*/
 
 		},
 		methods: {
+        aaaaaaaaaa: function() {
+            var params1 = new URLSearchParams();
+            params1.append("page", 1);
+            params1.append("limit", 7);
+            this.$http.post( 'http://cstsai.cstcloud.cn/rossc//web/soft/queryHotSoftListByCondition', params1)
+                .then((response)=>{
+                    console.log("666666666666",response)
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        },
 			//我的软件
 			getMySoft: function() {
 				var params1 = new URLSearchParams();

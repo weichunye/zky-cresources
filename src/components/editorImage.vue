@@ -62,7 +62,7 @@ import baseUrl from '../../config/index.js'
         // console.log(this.imglistData)
         this.fileList = fileList
         console.log('this.fileList', this.fileList)
-        this.imglist.push(window.SITE_CONFIG['imgURL']+response.filePath)
+        this.imglist.push(window.SITE_CONFIG['imgURL']+'/'+response.filePath)
         // console.log(this.form.imglist);
 //                this.listObj.fid = file.uid;
 //                this.listObj.url = response.data.path;

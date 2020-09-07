@@ -77,18 +77,18 @@
 						</a>
 
 					</li>
-					<li v-if="userIdData">
-						<a @click="saveFollow(3)" href="javascript:;">
+					<li v-if="downDoc">
+						<a @click="saveFollow(3)" target="_blank" >
               {{$t('lang.download')}}<span>{{statInfo.downloadNum}} </span>
 						</a>
 					</li>
-					<li v-else="">
-						<a @click="saveFollow(3)" target="_blank">
-              {{$t('lang.download')}}<span>{{statInfo.downloadNum}} </span>
-						</a>
-					</li>
+          <li>
+            <a v-if="downZip" @click="saveFollow(4)"   target="_blank">
+              {{$t('lang.userBook')}}
+            </a>
+          </li>
 					<li>
-						<a href="javascript:;" class="hover">
+						<a href="javascript:;" >
               {{$t('lang.Browse')}}<span>{{statInfo.browseNum}} </span>
 						</a>
 					</li>
@@ -266,11 +266,13 @@
 				activityIngId: '',
 				DownWordUrl: '',
 				userIdData: '',
-        userId:'',
+        userId:this.$userId,
 				indexeCharts: false,
 				softLogoUrl: '',
 				ifDownWordUrl: '',
 				newSoftUrl: '',
+        downDoc:'',
+        downZip:'',
 				runUrl: '',
         imgUrl:window.SITE_CONFIG['imgURL'],
 				config: {
@@ -286,6 +288,7 @@
 					wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
 
 				},
+        upUrl:window.SITE_CONFIG['imgURL'],
 				dialogFeedback: false,
 				myChart: '',
 
@@ -357,8 +360,7 @@
 		mounted() {
 			//悬浮导航
 			this.softId = this.$route.query.id;
-			this.userIdData = window.SITE_CONFIG['userId']
-			this.userId=window.SITE_CONFIG['userId']
+			this.userIdData =  this.$userId
 			/*console.log("baseUrl",baseUrl)*/
 			this.softLogoUrl = baseUrl.baseUrlImg
 			this.parentNamenew = this.$route.query.ParentName == "首页" ? '' : this.$route.query.ParentName;
@@ -415,7 +417,10 @@
 						this.runUrl = response.data.softInfo.runUrl;
 						this.softData.createTime = this.softData.createTime.substring(0, 10)
 						this.categoryInfo = response.data.categoryInfo;
-						this.newSoftUrl = this.softData.softUrl.split(",")[0]
+              this.newSoftUrl = this.softData.softUrl.split(",")[0]
+						this.downDoc = response.data.docInfo.userDoc
+						this.downZip = response.data.docInfo.softCompressedPackage
+              console.log("this.downDoc ",this.downDoc)
 						var collectionNumNew = this.statInfo.collectionNum > 100 ? 100 : this.statInfo.collectionNum;
 						var enjoyNumNew = this.statInfo.enjoyNum > 100 ? 100 : this.statInfo.enjoyNum;
 						var downloadNumNew = this.statInfo.downloadNum > 100 ? 100 : this.statInfo.downloadNum;
@@ -509,20 +514,14 @@
 
 							}
 							if(type == 3) {
-							  console.log("this.statInfo",_this.statInfo)
                 _this.statInfo.downloadNum = _this.statInfo.downloadNum + 1;
-
 								var tempwindow = window.open('_blank'); // 先打开页面
-								tempwindow.location = _this.newSoftUrl; // 后更改页面地址
-								/*var openSoftUrl=this.newSoftUrl.substr(0,6)
-								if(openSoftUrl!='https:'&&openSoftUrl!='http:/'){
-									this.newSoftUrl='http://'+this.newSoftUrl
-								}
-								window.open(this.newSoftUrl,'_blank')*/
-
-								/*'http://'*/
-							}saveFollow
-
+								tempwindow.location =_this.upUrl+ _this.downDoc; // 后更改页面地址
+							}
+               if(type == 4) {
+                   var tempwindow = window.open('_blank'); // 先打开页面
+                   tempwindow.location =_this.upUrl+ _this.downZip; // 后更改页面地址
+               }
 						} else {
              _this.$alert(
 								response.data.msg, '提示信息', {
@@ -979,12 +978,13 @@
 
 	.details .top-box .left-box .list-tools li a {
 		display: inline-block;
-		padding-left: 6px;
+    padding: 0 6px;
 		color: #666;
 		line-height: 26px;
 		height: 26px;
 		background: #f0efef;
 		border-radius: 2px;
+    cursor: pointer;
 	}
 
 	.details .top-box .left-box .list-tools li .added {

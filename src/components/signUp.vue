@@ -293,8 +293,9 @@
 					softUrl: '',
 					ifCheckedCns: '',
 					ifCheckedMzs: '',
-					abstract: ''
+					abstract: '',
 				},
+          userId: this.$userId,
 				firstDomains: {
 					"activityId": 0,
 					"awardLevel": 0,
